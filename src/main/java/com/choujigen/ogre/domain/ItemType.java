@@ -24,6 +24,17 @@ public class ItemType {
 	@Column(name = "item_type_name_es")
 	private String itemTypeNameEs;
 
+	public ItemType() {
+	}
+
+	public ItemType(Long itemTypeId, String itemTypeNameJa, String itemTypeNameEn, String itemTypeNameEs) {
+		super();
+		this.itemTypeId = itemTypeId;
+		this.itemTypeNameJa = itemTypeNameJa;
+		this.itemTypeNameEn = itemTypeNameEn;
+		this.itemTypeNameEs = itemTypeNameEs;
+	}
+
 	public Long getItemTypeId() {
 		return itemTypeId;
 	}
