@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +23,9 @@ public class GrowthRate {
 	@Column(name = "growth_rate_name_es")
 	private String GrowthRateNameEs;
 
+	@OneToMany(mappedBy = "growthRateId")
+	private List<GrowthTypeAchieveGrowthRate> growthTypeAchieveGrowthRate;
+	
 	public GrowthRate() {
 	}
 
