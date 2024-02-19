@@ -1,12 +1,17 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +26,9 @@ public class ShootSpecialProperty {
 	@Column(name = "shoot_special_property_name_es")
 	private String shootSpecialPropertyNameEs;
 
+	@ManyToMany(mappedBy = "shootSpecialProperty")
+	private List<HissatsuShoot> hissatsuShootAll;
+
 	public ShootSpecialProperty() {
 	}
 
@@ -31,6 +39,61 @@ public class ShootSpecialProperty {
 		this.shootSpecialPropertyNameJa = shootSpecialPropertyNameJa;
 		this.shootSpecialPropertyNameEn = shootSpecialPropertyNameEn;
 		this.shootSpecialPropertyNameEs = shootSpecialPropertyNameEs;
+	}
+
+	public String getOneLetterByLang() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		default:
+			switch (this.shootSpecialPropertyId.intValue()) {
+			case 1:
+				return "C";
+			case 2:
+				return "L";
+			case 3:
+				return "B";
+			}
+		}
+		return null;
+	}
+
+	public String getTwoLetterByLangByLang() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "es":
+			switch (this.shootSpecialPropertyId.intValue()) {
+			case 1:
+				return "Cadena";
+			case 2:
+				return "Largo";
+			case 3:
+				return "Bloqueo";
+			}
+		default:
+			switch (this.shootSpecialPropertyId.intValue()) {
+			case 1:
+				return "SC";
+			case 2:
+				return "LS";
+			case 3:
+				return "SB";
+			}
+		}
+		return null;
+	}
+
+	public String getNameByLang() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			return this.getShootSpecialPropertyNameJa();
+		case "en":
+			return this.getShootSpecialPropertyNameEn();
+		case "es":
+			return this.getShootSpecialPropertyNameEs();
+		default:
+			return this.getShootSpecialPropertyNameEn();
+		}
 	}
 
 	public Long getShootSpecialPropertyId() {
