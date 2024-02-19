@@ -5,27 +5,25 @@ import java.util.Objects;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "item")
-@IdClass(GrowthTypeAchieveGrowthRateId.class)
+@Table(name = "growth_type_can_achieve_growth_rate")
 public class GrowthTypeAchieveGrowthRate {
 	@EmbeddedId
 	private GrowthTypeAchieveGrowthRateId id;
 
 	@ManyToOne
 	@MapsId("growthTypeId")
-    @JoinColumn(name = "growth_type_id")
+	@JoinColumn(name = "growth_type_id")
 	private GrowthType growthType;
 
 	@ManyToOne
 	@MapsId("growthRateId")
-    @JoinColumn(name = "growth_rate_id")
+	@JoinColumn(name = "growth_rate_id")
 	private GrowthRate growthRate;
 
 	@Column(name = "additional_power")

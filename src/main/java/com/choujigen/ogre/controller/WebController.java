@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.choujigen.ogre.domain.ItemType;
-import com.choujigen.ogre.service.ItemTypeService;
+import com.choujigen.ogre.domain.ItemHissatsu;
+import com.choujigen.ogre.service.ItemHissatsuService;
 
 @Controller
 public class WebController {
     @Autowired
-    private ItemTypeService itemTypeService;
+    private ItemHissatsuService itemHissatsuService;
 	
     @RequestMapping(value = "/")
     public String index(Model model) {
@@ -20,8 +20,8 @@ public class WebController {
     
     @RequestMapping(value = "/hissatsu-list")
     public String hissatsuList(Model model) {
-    	ItemType itemType = itemTypeService.one(1L);
-    	model.addAttribute("itemType", itemType);
+    	ItemHissatsu itemHissatsu = itemHissatsuService.one(1L);
+    	model.addAttribute("aux", itemHissatsu.getHissatsuEvolves().get(0).getGrowthType().getGrowthTypeAchieveGrowthRate().get(1).getAdditionalPower());
         return "/hissatsu-list";
     }
 }

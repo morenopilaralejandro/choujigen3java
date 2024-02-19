@@ -22,7 +22,9 @@ public class GrowthTypeAchieveGrowthRateServiceImpl implements GrowthTypeAchieve
 
 	@Override
 	public GrowthTypeAchieveGrowthRate one(Long growthTypeId, Long growthRateId) {
-		return growthTypeAchieveGrowthRateRepository.findById(new GrowthTypeAchieveGrowthRateId(growthTypeId, growthRateId)).orElseThrow(() -> new GrowthTypeAchieveGrowthRateNotFoundException(growthTypeId, growthRateId));
+		return growthTypeAchieveGrowthRateRepository
+				.findById(new GrowthTypeAchieveGrowthRateId(growthTypeId, growthRateId))
+				.orElseThrow(() -> new GrowthTypeAchieveGrowthRateNotFoundException(growthTypeId, growthRateId));
 	}
 
 	@Override
@@ -31,19 +33,21 @@ public class GrowthTypeAchieveGrowthRateServiceImpl implements GrowthTypeAchieve
 	}
 
 	@Override
-	public GrowthTypeAchieveGrowthRate replace(GrowthTypeAchieveGrowthRate newObj, Long growthTypeId, Long growthRateId) {
-		return growthTypeAchieveGrowthRateRepository.findById(new GrowthTypeAchieveGrowthRateId(growthTypeId, growthRateId)).map(oldObj -> {
-			oldObj.setAdditionalPower(newObj.getAdditionalPower());
-			oldObj.setNumberOfUses(newObj.getNumberOfUses());
-			return growthTypeAchieveGrowthRateRepository.save(oldObj);
-		}).orElseGet(() -> {
-			newObj.setId(new GrowthTypeAchieveGrowthRateId(growthTypeId, growthRateId));
-			return growthTypeAchieveGrowthRateRepository.save(newObj);
-		});
+	public GrowthTypeAchieveGrowthRate replace(GrowthTypeAchieveGrowthRate newObj, Long growthTypeId,
+			Long growthRateId) {
+		return growthTypeAchieveGrowthRateRepository
+				.findById(new GrowthTypeAchieveGrowthRateId(growthTypeId, growthRateId)).map(oldObj -> {
+					oldObj.setAdditionalPower(newObj.getAdditionalPower());
+					oldObj.setNumberOfUses(newObj.getNumberOfUses());
+					return growthTypeAchieveGrowthRateRepository.save(oldObj);
+				}).orElseGet(() -> {
+					newObj.setId(new GrowthTypeAchieveGrowthRateId(growthTypeId, growthRateId));
+					return growthTypeAchieveGrowthRateRepository.save(newObj);
+				});
 	}
 
 	@Override
-	public void delete(Long id) {
-		growthTypeAchieveGrowthRateRepository.deleteById(id);
+	public void delete(Long growthTypeId, Long growthRateId) {
+		growthTypeAchieveGrowthRateRepository.deleteById(new GrowthTypeAchieveGrowthRateId(growthTypeId, growthRateId));
 	}
 }

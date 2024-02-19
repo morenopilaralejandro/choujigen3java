@@ -21,7 +21,8 @@ public class ShootSpecialPropertyServiceImpl implements ShootSpecialPropertyServ
 
 	@Override
 	public ShootSpecialProperty one(Long id) {
-		return shootSpecialPropertyRepository.findById(id).orElseThrow(() -> new ShootSpecialPropertyNotFoundException(id));
+		return shootSpecialPropertyRepository.findById(id)
+				.orElseThrow(() -> new ShootSpecialPropertyNotFoundException(id));
 	}
 
 	@Override

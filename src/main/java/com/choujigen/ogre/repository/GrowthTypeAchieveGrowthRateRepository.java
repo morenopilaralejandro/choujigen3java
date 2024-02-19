@@ -11,4 +11,6 @@ public interface GrowthTypeAchieveGrowthRateRepository extends JpaRepository<Gro
 
 	Optional<GrowthTypeAchieveGrowthRate> findById(GrowthTypeAchieveGrowthRateId growthTypeAchieveGrowthRateId);
 
+	void deleteById(GrowthTypeAchieveGrowthRateId growthTypeAchieveGrowthRateId);
+
 }

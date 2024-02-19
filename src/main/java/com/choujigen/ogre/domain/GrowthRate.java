@@ -1,7 +1,10 @@
 package com.choujigen.ogre.domain;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +26,7 @@ public class GrowthRate {
 	@Column(name = "growth_rate_name_es")
 	private String GrowthRateNameEs;
 
-	@OneToMany(mappedBy = "growthRateId")
+	@OneToMany(mappedBy = "growthRate")
 	private List<GrowthTypeAchieveGrowthRate> growthTypeAchieveGrowthRate;
 	
 	public GrowthRate() {
@@ -35,6 +38,20 @@ public class GrowthRate {
 		GrowthRateNameJa = growthRateNameJa;
 		GrowthRateNameEn = growthRateNameEn;
 		GrowthRateNameEs = growthRateNameEs;
+	}
+	
+	public String getNameByLang() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			return this.getGrowthRateNameJa();
+		case "en":
+			return this.getGrowthRateNameEn();
+		case "es":
+			return this.getGrowthRateNameEs();
+		default:
+			return this.getGrowthRateNameEn();
+		}
 	}
 
 	public Long getGrowthRateId() {
@@ -67,6 +84,14 @@ public class GrowthRate {
 
 	public void setGrowthRateNameEs(String growthRateNameEs) {
 		GrowthRateNameEs = growthRateNameEs;
+	}
+
+	public List<GrowthTypeAchieveGrowthRate> getGrowthTypeAchieveGrowthRate() {
+		return growthTypeAchieveGrowthRate;
+	}
+
+	public void setGrowthTypeAchieveGrowthRate(List<GrowthTypeAchieveGrowthRate> growthTypeAchieveGrowthRate) {
+		this.growthTypeAchieveGrowthRate = growthTypeAchieveGrowthRate;
 	}
 
 	@Override

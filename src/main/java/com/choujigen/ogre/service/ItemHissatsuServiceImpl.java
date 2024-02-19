@@ -35,7 +35,7 @@ public class ItemHissatsuServiceImpl implements ItemHissatsuService {
 			oldObj.setHissatsuType(newObj.getHissatsuType());
 			return itemRepository.save(oldObj);
 		}).orElseGet(() -> {
-			newObj.setItemHissatsuId(id);
+			newObj.setItemId(id);
 			return itemRepository.save(newObj);
 		});
 	}

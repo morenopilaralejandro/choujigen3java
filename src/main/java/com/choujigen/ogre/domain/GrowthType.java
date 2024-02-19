@@ -1,7 +1,10 @@
 package com.choujigen.ogre.domain;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +26,7 @@ public class GrowthType {
 	@Column(name = "growth_type_name_es")
 	private String GrowthTypeNameEs;
 
-	@OneToMany(mappedBy = "growthTypeId")
+	@OneToMany(mappedBy = "growthType")
 	private List<GrowthTypeAchieveGrowthRate> growthTypeAchieveGrowthRate;
 
 	public GrowthType() {
@@ -35,6 +38,64 @@ public class GrowthType {
 		GrowthTypeNameJa = growthTypeNameJa;
 		GrowthTypeNameEn = growthTypeNameEn;
 		GrowthTypeNameEs = growthTypeNameEs;
+	}
+	
+	
+	public String getNameByLang() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			return this.getGrowthTypeNameJa();
+		case "en":
+			return this.getGrowthTypeNameEn();
+		case "es":
+			return this.getGrowthTypeNameEs();
+		default:
+			return this.getGrowthTypeNameEn();
+		}
+	}
+	
+	public String getSymbolByLang() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			switch(this.growthTypeId.intValue()) {
+			case 1:
+				return "真";
+			case 2:
+				return "V3";
+			case 3:
+				return "G5";	
+			}
+		case "en":
+			switch(this.growthTypeId.intValue()) {
+			case 1:
+				return "+2";
+			case 2:
+				return "V3";
+			case 3:
+				return "L5";	
+			}
+		case "es":
+			switch(this.growthTypeId.intValue()) {
+			case 1:
+				return "++";
+			case 2:
+				return "N3";
+			case 3:
+				return "G5";	
+			}
+		default:
+			switch(this.growthTypeId.intValue()) {
+			case 1:
+				return "真";
+			case 2:
+				return "V3";
+			case 3:
+				return "G5";	
+			}
+		}
+		return null;
 	}
 
 	public Long getGrowthTypeId() {
@@ -67,6 +128,14 @@ public class GrowthType {
 
 	public void setGrowthTypeNameEs(String growthTypeNameEs) {
 		GrowthTypeNameEs = growthTypeNameEs;
+	}
+
+	public List<GrowthTypeAchieveGrowthRate> getGrowthTypeAchieveGrowthRate() {
+		return growthTypeAchieveGrowthRate;
+	}
+
+	public void setGrowthTypeAchieveGrowthRate(List<GrowthTypeAchieveGrowthRate> growthTypeAchieveGrowthRate) {
+		this.growthTypeAchieveGrowthRate = growthTypeAchieveGrowthRate;
 	}
 
 	@Override

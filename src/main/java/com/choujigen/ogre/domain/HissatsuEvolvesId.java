@@ -7,8 +7,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class GrowthTypeAchieveGrowthRateId implements Serializable {
+public class HissatsuEvolvesId implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	@Column(name = "item_hissatsu_id")
+	private Long itemHissatsuId;
 
 	@Column(name = "growth_type_id")
 	private Long growthTypeId;
@@ -16,14 +19,23 @@ public class GrowthTypeAchieveGrowthRateId implements Serializable {
 	@Column(name = "growth_rate_id")
 	private Long growthRateId;
 
-	public GrowthTypeAchieveGrowthRateId() {
+	public HissatsuEvolvesId() {
 
 	}
 
-	public GrowthTypeAchieveGrowthRateId(Long growthTypeId, Long growthRateId) {
+	public HissatsuEvolvesId(Long itemHissatsuId, Long growthTypeId, Long growthRateId) {
 		super();
+		this.itemHissatsuId = itemHissatsuId;
 		this.growthTypeId = growthTypeId;
 		this.growthRateId = growthRateId;
+	}
+
+	public Long getItemHissatsuId() {
+		return itemHissatsuId;
+	}
+
+	public void setItemHissatsuId(Long itemHissatsuId) {
+		this.itemHissatsuId = itemHissatsuId;
 	}
 
 	public Long getGrowthTypeId() {
@@ -44,7 +56,7 @@ public class GrowthTypeAchieveGrowthRateId implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(growthRateId, growthTypeId);
+		return Objects.hash(growthRateId, growthTypeId, itemHissatsuId);
 	}
 
 	@Override
@@ -55,15 +67,15 @@ public class GrowthTypeAchieveGrowthRateId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GrowthTypeAchieveGrowthRateId other = (GrowthTypeAchieveGrowthRateId) obj;
-		return Objects.equals(growthRateId, other.growthRateId) && Objects.equals(growthTypeId, other.growthTypeId);
+		HissatsuEvolvesId other = (HissatsuEvolvesId) obj;
+		return Objects.equals(growthRateId, other.growthRateId) && Objects.equals(growthTypeId, other.growthTypeId)
+				&& Objects.equals(itemHissatsuId, other.itemHissatsuId);
 	}
 
 	@Override
 	public String toString() {
-		return "GrowthTypeAchieveGrowthRateId [growthTypeId=" + growthTypeId + ", growthRateId=" + growthRateId + "]";
+		return "HissatsuEvolvesId [itemHissatsuId=" + itemHissatsuId + ", growthTypeId=" + growthTypeId
+				+ ", growthRateId=" + growthRateId + "]";
 	}
-
-
 
 }
