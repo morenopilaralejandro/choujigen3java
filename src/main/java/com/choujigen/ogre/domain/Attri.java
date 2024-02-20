@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +25,15 @@ public class Attri {
 	private String attriNameEn;
 	@Column(name = "attri_name_es")
 	private String attriNameEs;
+	
+	@ManyToMany(mappedBy = "restricAttriUser")
+	private List<ItemHissatsu> itemHissatsuUser;
+	
+	@ManyToMany(mappedBy = "restricAttriHelper")
+	private List<ItemHissatsu> itemHissatsuHelper;
+	
+	@ManyToMany(mappedBy = "attri")
+	private List<ItemHissatsu> itemHissatsuAll;
 
 	public Attri() {
 	}
@@ -79,6 +90,30 @@ public class Attri {
 
 	public void setAttriNameEs(String attriNameEs) {
 		this.attriNameEs = attriNameEs;
+	}
+
+	public List<ItemHissatsu> getItemHissatsuUser() {
+		return itemHissatsuUser;
+	}
+
+	public void setItemHissatsuUser(List<ItemHissatsu> itemHissatsuUser) {
+		this.itemHissatsuUser = itemHissatsuUser;
+	}
+
+	public List<ItemHissatsu> getItemHissatsuHelper() {
+		return itemHissatsuHelper;
+	}
+
+	public void setItemHissatsuHelper(List<ItemHissatsu> itemHissatsuHelper) {
+		this.itemHissatsuHelper = itemHissatsuHelper;
+	}
+
+	public List<ItemHissatsu> getItemHissatsuAll() {
+		return itemHissatsuAll;
+	}
+
+	public void setItemHissatsuAll(List<ItemHissatsu> itemHissatsuAll) {
+		this.itemHissatsuAll = itemHissatsuAll;
 	}
 
 	@Override

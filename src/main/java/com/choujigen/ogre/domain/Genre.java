@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +28,9 @@ public class Genre {
 	@Column(name = "genre_symbol")
 	private String genreSymbol;
 
+	@ManyToMany(mappedBy = "restricGenre")
+	private List<ItemHissatsu> itemHissatsuAll;
+
 	public Genre() {
 	}
 
@@ -37,7 +42,7 @@ public class Genre {
 		this.genreNameEs = genreNameEs;
 		this.genreSymbol = genreSymbol;
 	}
-	
+
 	public String getNameByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
 		switch (locale.getLanguage()) {
@@ -51,7 +56,7 @@ public class Genre {
 			return this.getGenreNameEn();
 		}
 	}
-	
+
 	public Long getGenreId() {
 		return genreId;
 	}
@@ -92,6 +97,14 @@ public class Genre {
 		this.genreSymbol = genreSymbol;
 	}
 
+	public List<ItemHissatsu> getItemHissatsuAll() {
+		return itemHissatsuAll;
+	}
+
+	public void setItemHissatsuAll(List<ItemHissatsu> itemHissatsuAll) {
+		this.itemHissatsuAll = itemHissatsuAll;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(genreId, genreNameEn, genreNameEs, genreNameJa, genreSymbol);
@@ -116,6 +129,5 @@ public class Genre {
 		return "Genre [genreId=" + genreId + ", genreNameJa=" + genreNameJa + ", genreNameEn=" + genreNameEn
 				+ ", genreNameEs=" + genreNameEs + ", genreSymbol=" + genreSymbol + "]";
 	}
-	
-	
+
 }

@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +25,9 @@ public class Positi {
 	private String positiNameEn;
 	@Column(name = "positi_name_es")
 	private String positiNameEs;
+
+	@ManyToMany(mappedBy = "restricPositi")
+	private List<ItemHissatsu> itemHissatsuAll;
 
 	public Positi() {
 	}
@@ -79,6 +84,14 @@ public class Positi {
 
 	public void setPositiNameEs(String positiNameEs) {
 		this.positiNameEs = positiNameEs;
+	}
+
+	public List<ItemHissatsu> getItemHissatsuAll() {
+		return itemHissatsuAll;
+	}
+
+	public void setItemHissatsuAll(List<ItemHissatsu> itemHissatsuAll) {
+		this.itemHissatsuAll = itemHissatsuAll;
 	}
 
 	@Override
