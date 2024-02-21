@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "hissatsu_shoot")
 @PrimaryKeyJoinColumn(name = "item_hissatsu_id")
 public class HissatsuShoot extends ItemHissatsu {
-
+	
 	@Column(name = "hissatsu_shoot_power")
 	private Long hissatsuShootPower;
 
@@ -24,6 +24,7 @@ public class HissatsuShoot extends ItemHissatsu {
 
 	@Column(name = "hissatsu_shoot_participants")
 	private Long hissatsuShootParticipants;
+	
 
 	@ManyToMany
 	@JoinTable(name = "hissatsu_shoot_can_have_shoot_special_property", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "shoot_special_property_id"))
@@ -40,6 +41,13 @@ public class HissatsuShoot extends ItemHissatsu {
 		this.hissatsuShootParticipants = hissatsuShootParticipants;
 		this.shootSpecialProperty = shootSpecialProperty;
 	}
+	public Long getHissatsuShootAdditionalPower() {
+		return getHissatsuEvolves().get(0).getGrowthType().getGrowthTypeAchieveGrowthRate().get(0).getAdditionalPower();
+	}
+	
+	public Long getHissatsuShootMaxPower() {
+		return getHissatsuShootPower() + getHissatsuShootAdditionalPower();
+	}	
 
 	public Long getHissatsuShootPower() {
 		return hissatsuShootPower;
