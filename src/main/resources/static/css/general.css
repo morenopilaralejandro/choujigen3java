@@ -1,4 +1,78 @@
 :root {
+    --attri-wind-color: #6bdef7;
+    --attri-wood-color: #18e710;
+    --attri-fire-color: #de1831;
+    --attri-earth-color: #ff9c39;
 
+    --hissatsu-shoot-color: #e76b7b;
+    --hissatsu-dribble-color: #4a6bd6;
+    --hissatsu-block-color: #39b529;
+    --hissatsu-catch-color: #de8c00;
+    --hissatsu-skill-color: #73398c;
 }
 
+table td {
+  empty-cells: hide;
+}
+
+
+div.mainContainer {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/*attriIcon*/
+.attriIcon {
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    box-sizing: border-box;
+    padding: 1px;
+}
+
+.attriIcon.wind{
+    border: 1px solid var(--attri-wind-color);
+}
+
+.attriIcon.wood{
+    border: 1px solid var(--attri-wood-color);
+}
+
+.attriIcon.fire{
+    border: 1px solid var(--attri-fire-color);
+}
+
+.attriIcon.earth{
+    border: 1px solid var(--attri-earth-color);
+}
+
+/*hissatsuTypeIcon*/
+.hissatsuTypeIcon {
+    display: inline-block;
+    width: max-content;
+    font-size: 10px;
+    color: white;
+    box-sizing: border-box;
+    border: 1px solid white;
+    padding: 2px 1px 2px 1px;
+}
+
+.hissatsuTypeIcon.shoot {
+        background-color: var(--hissatsu-shoot-color);
+}
+
+.hissatsuTypeIcon.dribble {
+        background-color: var(--hissatsu-dribble-color);
+}
+
+.hissatsuTypeIcon.block {
+        background-color: var(--hissatsu-block-color);
+}
+
+.hissatsuTypeIcon.catch {
+        background-color: var(--hissatsu-catch-color);
+}
+
+.hissatsuTypeIcon.skill {
+        background-color: var(--hissatsu-skill-color);
+}

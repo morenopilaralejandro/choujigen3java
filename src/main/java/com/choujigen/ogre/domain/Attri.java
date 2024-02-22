@@ -59,6 +59,10 @@ public class Attri {
 			return this.getAttriNameEn();
 		}
 	}
+	
+	public String getCssClass() {
+		return this.attriNameEn.toLowerCase();
+	}
 
 	public Long getAttriId() {
 		return attriId;

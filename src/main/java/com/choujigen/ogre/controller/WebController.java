@@ -80,12 +80,16 @@ public class WebController {
 			switch(h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				shootWind.add(h);
+				break;
 			case 2:
 				shootWood.add(h);
+				break;
 			case 3:
 				shootFire.add(h);
+				break;
 			case 4:
 				shootEarth.add(h);
+				break;
 			}
 		}
 		
@@ -93,12 +97,16 @@ public class WebController {
 			switch(h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				dribbleWind.add(h);
+				break;
 			case 2:
 				dribbleWood.add(h);
+				break;
 			case 3:
 				dribbleFire.add(h);
+				break;
 			case 4:
 				dribbleEarth.add(h);
+				break;
 			}
 		}
 		
@@ -106,12 +114,16 @@ public class WebController {
 			switch(h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				blockWind.add(h);
+				break;
 			case 2:
 				blockWood.add(h);
+				break;
 			case 3:
 				blockFire.add(h);
+				break;
 			case 4:
 				blockEarth.add(h);
+				break;
 			}
 		}
 		
@@ -119,18 +131,24 @@ public class WebController {
 			switch(h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				catchWind.add(h);
+				break;
 			case 2:
 				catchWood.add(h);
+				break;
 			case 3:
 				catchFire.add(h);
+				break;
 			case 4:
 				catchEarth.add(h);
+				break;
 			}
 		}
 		
 		shootWind.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
+		shootWood.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
+		shootFire.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
+		shootEarth.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
 
-		
 		model.addAttribute("shootWind", shootWind);
 		model.addAttribute("shootWood", shootWood);
 		model.addAttribute("shootFire", shootFire);

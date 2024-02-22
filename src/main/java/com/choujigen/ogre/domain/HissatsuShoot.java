@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "hissatsu_shoot")
 @PrimaryKeyJoinColumn(name = "item_hissatsu_id")
 public class HissatsuShoot extends ItemHissatsu {
-	
+
 	@Column(name = "hissatsu_shoot_power")
 	private Long hissatsuShootPower;
 
@@ -24,7 +24,6 @@ public class HissatsuShoot extends ItemHissatsu {
 
 	@Column(name = "hissatsu_shoot_participants")
 	private Long hissatsuShootParticipants;
-	
 
 	@ManyToMany
 	@JoinTable(name = "hissatsu_shoot_can_have_shoot_special_property", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "shoot_special_property_id"))
@@ -41,13 +40,23 @@ public class HissatsuShoot extends ItemHissatsu {
 		this.hissatsuShootParticipants = hissatsuShootParticipants;
 		this.shootSpecialProperty = shootSpecialProperty;
 	}
+
 	public Long getHissatsuShootAdditionalPower() {
-		return getHissatsuEvolves().get(0).getGrowthType().getGrowthTypeAchieveGrowthRate().get(0).getAdditionalPower();
+		List<GrowthTypeAchieveGrowthRate> achieveList = getHissatsuEvolves().get(0).getGrowthType()
+				.getGrowthTypeAchieveGrowthRate();
+		GrowthType growthType = getHissatsuEvolves().get(0).getGrowthType();
+		GrowthRate growthRate = getHissatsuEvolves().get(0).getGrowthRate();
+		for (GrowthTypeAchieveGrowthRate a : achieveList) {
+			if (a.getGrowthType().equals(growthType) && a.getGrowthRate().equals(growthRate)) {
+				return a.getAdditionalPower();
+			}
+		}
+		return 0L;
 	}
-	
+
 	public Long getHissatsuShootMaxPower() {
 		return getHissatsuShootPower() + getHissatsuShootAdditionalPower();
-	}	
+	}
 
 	public Long getHissatsuShootPower() {
 		return hissatsuShootPower;

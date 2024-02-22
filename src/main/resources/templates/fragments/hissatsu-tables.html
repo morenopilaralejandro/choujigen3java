@@ -3,33 +3,47 @@
 <head>
 </head>
 <body>
-    <table th:fragment="hissatsu-shoot(shoots)">
-        <tr>
-            <th colspan=2 th:text="#{hissatsu.type}"></th>
-            <th th:text="#{hissatsu.name}"></th>
-            <th th:text="#{hissatsu.tp}"></th>
-            <th th:text="#{hissatsu.maxPower}"></th>
-            <th th:text="#{hissatsu.characteristic}"></th>
-            <th th:text="#{hissatsu.growthType}"></th>
-            <th th:text="#{hissatsu.growthRate}"></th>
-            <th th:text="#{hissatsu.basePower}"></th>
-            <th th:text="#{hissatsu.additionalPower}"></th>
-        </tr>
-        <tr th:each="shoot : ${shoots}">
-            <td th:text="${shoot.getAttri().get(0).getAttriNameJa()}"></td>
-            <td th:text="${shoot.getHissatsuType().getNameByLang()}"></td>
-            <td th:text="${shoot.getNameByLang()}"></td>
-            <td th:text="${shoot.getHissatsuShootTp()}"></td>
-            <td th:text="${shoot.getHissatsuShootMaxPower()}"></td>
-            <td th:if="${shoot.getShootSpecialProperty().isEmpty()}">&nbsp;</td>
-            <td th:unless="${shoot.getShootSpecialProperty().isEmpty()}" 
-                th:text="${shoot.getShootSpecialProperty().get(0).getNameByLang()}">
-            </td>
-            <td th:text="${shoot.getHissatsuEvolves().get(0).getGrowthType().getSymbolByLang()}"></td>
-            <td th:text="${shoot.getHissatsuEvolves().get(0).getGrowthRate().getNameByLang()}"></td>
-            <td th:text="${shoot.getHissatsuShootPower()}"></td>
-            <td th:text="${shoot.getHissatsuShootAdditionalPower()}"></td>
-        </tr>
-    </table>
+    <div th:fragment="hissatsu-shoot(shoots)" class="table-responsive">
+        <table class="table table-bordered table-sm">
+            <tr>
+                <th colspan=2 th:text="#{hissatsu.type}"></th>
+                <th th:text="#{hissatsu.name}"></th>
+                <th th:text="#{hissatsu.tp}"></th>
+                <th th:text="#{hissatsu.maxPower}"></th>
+                <th th:text="#{hissatsu.characteristic}"></th>
+                <th th:text="#{hissatsu.growthType}"></th>
+                <th th:text="#{hissatsu.growthRate}"></th>
+                <th th:text="#{hissatsu.basePower}"></th>
+                <th th:text="#{hissatsu.additionalPower}"></th>
+            </tr>
+            <tr th:each="shoot : ${shoots}">
+                <td style="text-align: center;">
+                    <span th:text="${shoot.getAttri().get(0).getAttriNameJa()}"
+                        th:title="${shoot.getAttri().get(0).getNameByLang()}"
+                        class="attriIcon"
+                        th:classappend="${shoot.getAttri().get(0).getCssClass()}"></span>
+                </td>
+                <td style="text-align: center;">
+                    <span th:text="${shoot.getHissatsuType().getNameByLang()}"
+                        class="hissatsuTypeIcon"
+                        th:classappend="${shoot.getHissatsuType().getCssClass()}"></span>
+                </td>
+                <td>
+                    <a th:text="${shoot.getNameByLang()}"
+                        th:href="@{hissatsu/{id}(id=${shoot.getItemId()})}"></a>
+                </td>
+                <td th:text="${shoot.getHissatsuShootTp()}"></td>
+                <td th:text="${shoot.getHissatsuShootMaxPower()}"></td>
+                <td th:if="${shoot.getShootSpecialProperty().isEmpty()}"></td>
+                <td th:unless="${shoot.getShootSpecialProperty().isEmpty()}" 
+                    th:text="${shoot.getShootSpecialProperty().get(0).getNameByLang()}">
+                </td>
+                <td th:text="${shoot.getHissatsuEvolves().get(0).getGrowthType().getSymbolByLang()}"></td>
+                <td th:text="${shoot.getHissatsuEvolves().get(0).getGrowthRate().getNameByLang()}"></td>
+                <td th:text="${shoot.getHissatsuShootPower()}"></td>
+                <td th:text="${shoot.getHissatsuShootAdditionalPower()}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

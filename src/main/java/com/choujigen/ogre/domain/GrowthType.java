@@ -70,11 +70,11 @@ public class GrowthType {
 		case "en":
 			switch(this.growthTypeId.intValue()) {
 			case 1:
-				return "+2";
+				return "+2 (真)";
 			case 2:
 				return "V3";
 			case 3:
-				return "L5";	
+				return "L5 (G5)";	
 			}
 		case "es":
 			switch(this.growthTypeId.intValue()) {

@@ -35,6 +35,10 @@ public class HissatsuType {
 		this.hissatsuTypeNameEn = hissatsuTypeNameEn;
 		this.hissatsuTypeNameEs = hissatsuTypeNameEs;
 	}
+	
+	public String getCssClass() {
+		return this.hissatsuTypeNameEn.toLowerCase();
+	}
 
 	public Long getHissatsuTypeId() {
 		return hissatsuTypeId;
