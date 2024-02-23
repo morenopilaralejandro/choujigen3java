@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -37,6 +38,23 @@ public class HissatsuCatch extends ItemHissatsu {
 		this.hissatsuCatchTp = hissatsuCatchTp;
 		this.hissatsuCatchParticipants = hissatsuCatchParticipants;
 		this.catchType = catchType;
+	}
+
+	public Long getHissatsuCatchAdditionalPower() {
+		List<GrowthTypeAchieveGrowthRate> achieveList = getHissatsuEvolves().get(0).getGrowthType()
+				.getGrowthTypeAchieveGrowthRate();
+		GrowthType growthType = getHissatsuEvolves().get(0).getGrowthType();
+		GrowthRate growthRate = getHissatsuEvolves().get(0).getGrowthRate();
+		for (GrowthTypeAchieveGrowthRate a : achieveList) {
+			if (a.getGrowthType().equals(growthType) && a.getGrowthRate().equals(growthRate)) {
+				return a.getAdditionalPower();
+			}
+		}
+		return 0L;
+	}
+
+	public Long getHissatsuCatchMaxPower() {
+		return getHissatsuCatchPower() + getHissatsuCatchAdditionalPower();
 	}
 
 	public Long getHissatsuCatchPower() {

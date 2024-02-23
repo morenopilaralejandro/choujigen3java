@@ -15,10 +15,13 @@ table td {
   empty-cells: hide;
 }
 
+table.table-hissatsu {
+    min-width: 600px;
+}
 
 div.mainContainer {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 /*attriIcon*/

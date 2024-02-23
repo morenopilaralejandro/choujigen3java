@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html th:lang="#{lang.code}" data-bs-theme="dark">
     <head>
         <meta charset="utf-8">
@@ -20,59 +20,60 @@
 
         <div class="mainContainer">
             <h1 th:text="#{hissatsuList.title}"></h1>
-            <section>
-                <h2>Table of Contents</h2>
-                <div id="toc">
-                    <span class="tocTitle">Contents</span>
-                    <ul class="tocList">
-                        <li>
-                            <a href="#about">1. About</a>
-                        </li>                        
-                        <li>
-                            <a href="#shoots">2. <span th:text="#{general.shoots}" class="text-capitalize"></span></a>
-                            <ul>
-                                <li><a href="#shoot-wind">2.1. <span th:text="#{hissatsuList.shootWind}"></a></li>
-                                <li><a href="#shoot-wood">2.2. <span th:text="#{hissatsuList.shootWood}"></a></li>
-                                <li><a href="#shoot-fire">2.3. <span th:text="#{hissatsuList.shootFire}"></a></li>
-                                <li><a href="#shoot-earth">2.4. <span th:text="#{hissatsuList.shootEarth}"></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#dribbles">3. <span th:text="#{general.dribbles}" class="text-capitalize"></span></a>
-                            <ul>
-                                <li><a href="#dribble-wind">3.1. <span th:text="#{hissatsuList.dribbleWind}"></a></li>
-                                <li><a href="#dribble-wood">3.2. <span th:text="#{hissatsuList.dribbleWood}"></a></li>
-                                <li><a href="#dribble-fire">3.3. <span th:text="#{hissatsuList.dribbleFire}"></a></li>
-                                <li><a href="#dribble-earth">3.4. <span th:text="#{hissatsuList.dribbleEarth}"></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#blocks">4. <span th:text="#{general.blocks}" class="text-capitalize"></span></a>
-                            <ul>
-                                <li><a href="#block-wind">4.1. <span th:text="#{hissatsuList.blockWind}"></a></li>
-                                <li><a href="#block-wood">4.2. <span th:text="#{hissatsuList.blockWood}"></a></li>
-                                <li><a href="#block-fire">4.3. <span th:text="#{hissatsuList.blockFire}"></a></li>
-                                <li><a href="#block-earth">4.4. <span th:text="#{hissatsuList.blockEarth}"></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#catches">5. <span th:text="#{general.catches}" class="text-capitalize"></span></a>
-                            <ul>
-                                <li><a href="#catch-wind">5.1. <span th:text="#{hissatsuList.catchWind}"></a></li>
-                                <li><a href="#catch-wood">5.2. <span th:text="#{hissatsuList.catchWood}"></a></li>
-                                <li><a href="#catch-fire">5.3. <span th:text="#{hissatsuList.catchFire}"></a></li>
-                                <li><a href="#catch-earth">5.4. <span th:text="#{hissatsuList.catchEarth}"></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#skills">6. <span th:text="#{general.skills}" class="text-capitalize"></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </section>
+            <div id="toc">
+                <span class="tocTitle" th:text="#{toc.title}">Contents</span>
+                <ul class="tocList">
+                    <li>
+                        <a href="#about">1. <span th:text="#{hissatsuList.about}"></span></a>
+                    </li>                    
+                    <li>
+                        <a href="#shoots">2. <span th:text="#{general.shoots}" class="text-capitalize"></span></a>
+                        <ul>
+                        <li><a href="#shoot-wind">2.1. <span th:text="#{hissatsuList.shootWind}"></span></a></li>
+                        <li><a href="#shoot-wood">2.2. <span th:text="#{hissatsuList.shootWood}"></span></a></li>
+                        <li><a href="#shoot-fire">2.3. <span th:text="#{hissatsuList.shootFire}"></span></a></li>
+                        <li><a href="#shoot-earth">2.4. <span th:text="#{hissatsuList.shootEarth}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#dribbles">3. <span th:text="#{general.dribbles}" class="text-capitalize"></span></a>
+                        <ul>
+                        <li><a href="#dribble-wind">3.1. <span th:text="#{hissatsuList.dribbleWind}"></span></a></li>
+                        <li><a href="#dribble-wood">3.2. <span th:text="#{hissatsuList.dribbleWood}"></span></a></li>
+                        <li><a href="#dribble-fire">3.3. <span th:text="#{hissatsuList.dribbleFire}"></span></a></li>
+                        <li><a href="#dribble-earth">3.4. <span th:text="#{hissatsuList.dribbleEarth}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#blocks">4. <span th:text="#{general.blocks}" class="text-capitalize"></span></a>
+                        <ul>
+                        <li><a href="#block-wind">4.1. <span th:text="#{hissatsuList.blockWind}"></span></a></li>
+                        <li><a href="#block-wood">4.2. <span th:text="#{hissatsuList.blockWood}"></span></a></li>
+                        <li><a href="#block-fire">4.3. <span th:text="#{hissatsuList.blockFire}"></span></a></li>
+                        <li><a href="#block-earth">4.4. <span th:text="#{hissatsuList.blockEarth}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#catches">5. <span th:text="#{general.catches}" class="text-capitalize"></span></a>
+                        <ul>
+                        <li><a href="#catch-wind">5.1. <span th:text="#{hissatsuList.catchWind}"></span></a></li>
+                        <li><a href="#catch-wood">5.2. <span th:text="#{hissatsuList.catchWood}"></span></a></li>
+                        <li><a href="#catch-fire">5.3. <span th:text="#{hissatsuList.catchFire}"></span></a></li>
+                        <li><a href="#catch-earth">5.4. <span th:text="#{hissatsuList.catchEarth}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#skills">6. <span th:text="#{general.skills}" class="text-capitalize"></span></a>
+                    </li>
+                </ul>
+            </div>
 
             <section>
-                <h2 id="about">About Hissatsu Growth</h2>
+                <h2 id="about" th:text="#{hissatsuList.about}"></h2>
+                <p th:text="#{hissatsuList.about.p1}"></p>
+                <div th:replace="~{fragments/hissatsu-tables.html :: 
+                    hissatsu-growth(achieveAll = ${achieveAll})}">
+                </div>
             </section>
 
             <section>
@@ -101,6 +102,96 @@
                         hissatsu-shoot(shoots = ${shootEarth})}">
                     </div>
                 </article>
+            </section>
+
+            <section>
+                <h2 id="dribbles" th:text="#{general.dribbles}" class="text-capitalize"></h2>
+                <article>
+                    <h3 id="dribble-wind" th:text="#{hissatsuList.dribbleWind}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-dribble(dribbles = ${dribbleWind})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="dribble-wood" th:text="#{hissatsuList.dribbleWood}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-dribble(dribbles = ${dribbleWood})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="dribble-fire" th:text="#{hissatsuList.dribbleFire}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-dribble(dribbles = ${dribbleFire})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="dribble-earth" th:text="#{hissatsuList.dribbleEarth}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-dribble(dribbles = ${dribbleEarth})}">
+                    </div>
+                </article>
+            </section>
+
+            <section>
+                <h2 id="blocks" th:text="#{general.blocks}" class="text-capitalize"></h2>
+                <article>
+                    <h3 id="block-wind" th:text="#{hissatsuList.blockWind}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-block(blocks = ${blockWind})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="block-wood" th:text="#{hissatsuList.blockWood}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-block(blocks = ${blockWood})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="block-fire" th:text="#{hissatsuList.blockFire}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-block(blocks = ${blockFire})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="block-earth" th:text="#{hissatsuList.blockEarth}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-block(blocks = ${blockEarth})}">
+                    </div>
+                </article>
+            </section>
+
+            <section>
+                <h2 id="catches" th:text="#{general.catches}" class="text-capitalize"></h2>
+                <article>
+                    <h3 id="catch-wind" th:text="#{hissatsuList.catchWind}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-catch(catches = ${catchWind})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="catch-wood" th:text="#{hissatsuList.catchWood}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-catch(catches = ${catchWood})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="catch-fire" th:text="#{hissatsuList.catchFire}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-catch(catches = ${catchFire})}">
+                    </div>
+                </article>
+                <article>
+                    <h3 id="catch-earth" th:text="#{hissatsuList.catchEarth}"></h3>
+                    <div th:replace="~{fragments/hissatsu-tables.html :: 
+                        hissatsu-catch(catches = ${catchEarth})}">
+                    </div>
+                </article>
+            </section>
+            <section>
+                <h2 id="skills" th:text="#{general.skills}" class="text-capitalize"></h2>
+                <div th:replace="~{fragments/hissatsu-tables.html :: 
+                    hissatsu-skill(skills = ${skillAll})}">
+                </div>
             </section>
         </div>
 

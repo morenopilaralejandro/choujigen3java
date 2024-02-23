@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -34,6 +35,23 @@ public class HissatsuDribble extends ItemHissatsu {
 		this.hissatsuDribbleTp = hissatsuDribbleTp;
 		this.hissatsuDribbleParticipants = hissatsuDribbleParticipants;
 		this.hissatsuDribbleFoul = hissatsuDribbleFoul;
+	}
+
+	public Long getHissatsuDribbleAdditionalPower() {
+		List<GrowthTypeAchieveGrowthRate> achieveList = getHissatsuEvolves().get(0).getGrowthType()
+				.getGrowthTypeAchieveGrowthRate();
+		GrowthType growthType = getHissatsuEvolves().get(0).getGrowthType();
+		GrowthRate growthRate = getHissatsuEvolves().get(0).getGrowthRate();
+		for (GrowthTypeAchieveGrowthRate a : achieveList) {
+			if (a.getGrowthType().equals(growthType) && a.getGrowthRate().equals(growthRate)) {
+				return a.getAdditionalPower();
+			}
+		}
+		return 0L;
+	}
+
+	public Long getHissatsuDribbleMaxPower() {
+		return getHissatsuDribblePower() + getHissatsuDribbleAdditionalPower();
 	}
 
 	public Long getHissatsuDribblePower() {

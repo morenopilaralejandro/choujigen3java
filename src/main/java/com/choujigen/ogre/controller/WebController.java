@@ -50,11 +50,13 @@ public class WebController {
 
 	@RequestMapping(value = "/hissatsu-list")
 	public String hissatsuList(Model model) {
+		String url = "hissatsu-list";
+		
 		List<HissatsuShoot> shootAll = hissatsuShootService.all();
 		List<HissatsuDribble> dribbleAll = hissatsuDribbleService.all();
 		List<HissatsuBlock> blockAll = hissatsuBlockService.all();
 		List<HissatsuCatch> catchAll = hissatsuCatchService.all();
-		List<HissatsuSkill> skillAll = hissatsuSkillService.all(); 
+		List<HissatsuSkill> skillAll = hissatsuSkillService.all();
 
 		List<HissatsuShoot> shootWind = new ArrayList<HissatsuShoot>();
 		List<HissatsuShoot> shootWood = new ArrayList<HissatsuShoot>();
@@ -148,7 +150,24 @@ public class WebController {
 		shootWood.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
 		shootFire.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
 		shootEarth.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
-
+		
+		dribbleWind.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
+		dribbleWood.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
+		dribbleFire.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
+		dribbleEarth.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
+		
+		blockWind.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
+		blockWood.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
+		blockFire.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
+		blockEarth.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
+		
+		catchWind.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
+		catchWood.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
+		catchFire.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
+		catchEarth.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
+		
+		model.addAttribute("url", url);
+		model.addAttribute("achieveAll", shootWind.get(0).getHissatsuEvolves().get(0).getGrowthType().getGrowthTypeAchieveGrowthRate());
 		model.addAttribute("shootWind", shootWind);
 		model.addAttribute("shootWood", shootWood);
 		model.addAttribute("shootFire", shootFire);

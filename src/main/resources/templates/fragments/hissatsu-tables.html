@@ -3,8 +3,16 @@
 <head>
 </head>
 <body>
-    <div th:fragment="hissatsu-shoot(shoots)" class="table-responsive">
+    <div th:fragment="hissatsu-growth(achieveAll)" class="table-responsive">
         <table class="table table-bordered table-sm">
+            <tr th:each="a : ${achieveAll}">
+                <td th:text="${a.getAdditionalPower()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:fragment="hissatsu-shoot(shoots)" class="table-responsive">
+        <table class="table table-bordered table-sm table-hissatsu">
             <tr>
                 <th colspan=2 th:text="#{hissatsu.type}"></th>
                 <th th:text="#{hissatsu.name}"></th>
@@ -34,14 +42,163 @@
                 </td>
                 <td th:text="${shoot.getHissatsuShootTp()}"></td>
                 <td th:text="${shoot.getHissatsuShootMaxPower()}"></td>
+
                 <td th:if="${shoot.getShootSpecialProperty().isEmpty()}"></td>
                 <td th:unless="${shoot.getShootSpecialProperty().isEmpty()}" 
                     th:text="${shoot.getShootSpecialProperty().get(0).getNameByLang()}">
                 </td>
+
                 <td th:text="${shoot.getHissatsuEvolves().get(0).getGrowthType().getSymbolByLang()}"></td>
                 <td th:text="${shoot.getHissatsuEvolves().get(0).getGrowthRate().getNameByLang()}"></td>
                 <td th:text="${shoot.getHissatsuShootPower()}"></td>
                 <td th:text="${shoot.getHissatsuShootAdditionalPower()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:fragment="hissatsu-dribble(dribbles)" class="table-responsive">
+        <table class="table table-bordered table-sm table-hissatsu">
+            <tr>
+                <th colspan=2 th:text="#{hissatsu.type}"></th>
+                <th th:text="#{hissatsu.name}"></th>
+                <th th:text="#{hissatsu.tp}"></th>
+                <th th:text="#{hissatsu.maxPower}"></th>
+                <th th:text="#{hissatsu.foul}"></th>
+                <th th:text="#{hissatsu.growthType}"></th>
+                <th th:text="#{hissatsu.growthRate}"></th>
+                <th th:text="#{hissatsu.basePower}"></th>
+                <th th:text="#{hissatsu.additionalPower}"></th>
+            </tr>
+            <tr th:each="dribble : ${dribbles}">
+                <td style="text-align: center;">
+                    <span th:text="${dribble.getAttri().get(0).getAttriNameJa()}"
+                        th:title="${dribble.getAttri().get(0).getNameByLang()}"
+                        class="attriIcon"
+                        th:classappend="${dribble.getAttri().get(0).getCssClass()}"></span>
+                </td>
+                <td style="text-align: center;">
+                    <span th:text="${dribble.getHissatsuType().getNameByLang()}"
+                        class="hissatsuTypeIcon"
+                        th:classappend="${dribble.getHissatsuType().getCssClass()}"></span>
+                </td>
+                <td>
+                    <a th:text="${dribble.getNameByLang()}"
+                        th:href="@{hissatsu/{id}(id=${dribble.getItemId()})}"></a>
+                </td>
+                <td th:text="${dribble.getHissatsuDribbleTp()}"></td>
+                <td th:text="${dribble.getHissatsuDribbleMaxPower()}"></td>
+                <td th:text="${dribble.getHissatsuDribbleFoul()}"></td>
+                <td th:text="${dribble.getHissatsuEvolves().get(0).getGrowthType().getSymbolByLang()}"></td>
+                <td th:text="${dribble.getHissatsuEvolves().get(0).getGrowthRate().getNameByLang()}"></td>
+                <td th:text="${dribble.getHissatsuDribblePower()}"></td>
+                <td th:text="${dribble.getHissatsuDribbleAdditionalPower()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:fragment="hissatsu-block(blocks)" class="table-responsive">
+        <table class="table table-bordered table-sm table-hissatsu">
+            <tr>
+                <th colspan=2 th:text="#{hissatsu.type}"></th>
+                <th th:text="#{hissatsu.name}"></th>
+                <th th:text="#{hissatsu.tp}"></th>
+                <th th:text="#{hissatsu.maxPower}"></th>
+                <th th:text="#{hissatsu.foul}"></th>
+                <th th:text="#{hissatsu.isBlock}"></th>
+                <th th:text="#{hissatsu.growthType}"></th>
+                <th th:text="#{hissatsu.growthRate}"></th>
+                <th th:text="#{hissatsu.basePower}"></th>
+                <th th:text="#{hissatsu.additionalPower}"></th>
+            </tr>
+            <tr th:each="block : ${blocks}">
+                <td style="text-align: center;">
+                    <span th:text="${block.getAttri().get(0).getAttriNameJa()}"
+                        th:title="${block.getAttri().get(0).getNameByLang()}"
+                        class="attriIcon"
+                        th:classappend="${block.getAttri().get(0).getCssClass()}"></span>
+                </td>
+                <td style="text-align: center;">
+                    <span th:text="${block.getHissatsuType().getNameByLang()}"
+                        class="hissatsuTypeIcon"
+                        th:classappend="${block.getHissatsuType().getCssClass()}"></span>
+                </td>
+                <td>
+                    <a th:text="${block.getNameByLang()}"
+                        th:href="@{hissatsu/{id}(id=${block.getItemId()})}"></a>
+                </td>
+                <td th:text="${block.getHissatsuBlockTp()}"></td>
+                <td th:text="${block.getHissatsuBlockMaxPower()}"></td>
+                <td th:text="${block.getHissatsuBlockFoul()}"></td>
+
+                <td th:if="${block.isHissatsuBlockIsBlock()}" th:text="#{hissatsu.isBlock.yes}"></td>
+                <td th:unless="${block.isHissatsuBlockIsBlock()}"></td>
+
+                <td th:text="${block.getHissatsuEvolves().get(0).getGrowthType().getSymbolByLang()}"></td>
+                <td th:text="${block.getHissatsuEvolves().get(0).getGrowthRate().getNameByLang()}"></td>
+                <td th:text="${block.getHissatsuBlockPower()}"></td>
+                <td th:text="${block.getHissatsuBlockAdditionalPower()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:fragment="hissatsu-catch(catches)" class="table-responsive">
+        <table class="table table-bordered table-sm table-hissatsu">
+            <tr>
+                <th colspan=2 th:text="#{hissatsu.type}"></th>
+                <th th:text="#{hissatsu.name}"></th>
+                <th th:text="#{hissatsu.tp}"></th>
+                <th th:text="#{hissatsu.maxPower}"></th>
+                <th th:text="#{hissatsu.catchType}"></th>
+                <th th:text="#{hissatsu.growthType}"></th>
+                <th th:text="#{hissatsu.growthRate}"></th>
+                <th th:text="#{hissatsu.basePower}"></th>
+                <th th:text="#{hissatsu.additionalPower}"></th>
+            </tr>
+            <tr th:each="catch : ${catches}">
+                <td style="text-align: center;">
+                    <span th:text="${catch.getAttri().get(0).getAttriNameJa()}"
+                        th:title="${catch.getAttri().get(0).getNameByLang()}"
+                        class="attriIcon"
+                        th:classappend="${catch.getAttri().get(0).getCssClass()}"></span>
+                </td>
+                <td style="text-align: center;">
+                    <span th:text="${catch.getHissatsuType().getNameByLang()}"
+                        class="hissatsuTypeIcon"
+                        th:classappend="${catch.getHissatsuType().getCssClass()}"></span>
+                </td>
+                <td>
+                    <a th:text="${catch.getNameByLang()}"
+                        th:href="@{hissatsu/{id}(id=${catch.getItemId()})}"></a>
+                </td>
+                <td th:text="${catch.getHissatsuCatchTp()}"></td>
+                <td th:text="${catch.getHissatsuCatchMaxPower()}"></td>
+                <td th:text="${catch.getCatchType().getNameByLang()}"></td>
+                <td th:text="${catch.getHissatsuEvolves().get(0).getGrowthType().getSymbolByLang()}"></td>
+                <td th:text="${catch.getHissatsuEvolves().get(0).getGrowthRate().getNameByLang()}"></td>
+                <td th:text="${catch.getHissatsuCatchPower()}"></td>
+                <td th:text="${catch.getHissatsuCatchAdditionalPower()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:fragment="hissatsu-skill(skills)" class="table-responsive">
+        <table class="table table-bordered table-lg table-hissatsu">
+            <tr>
+                <th th:text="#{hissatsu.type}"></th>
+                <th th:text="#{hissatsu.name}"></th>
+                <th th:text="#{hissatsu.effect}"></th>
+            </tr>
+            <tr th:each="skill : ${skills}">
+                <td style="text-align: center;">
+                    <span th:text="${skill.getHissatsuType().getNameByLang()}"
+                        class="hissatsuTypeIcon"
+                        th:classappend="${skill.getHissatsuType().getCssClass()}"></span>
+                </td>
+                <td>
+                    <a th:text="${skill.getNameByLang()}"
+                        th:href="@{hissatsu/{id}(id=${skill.getItemId()})}"></a>
+                </td>
+                <td th:text="${skill.getEffectByLang()}"></td>
             </tr>
         </table>
     </div>
