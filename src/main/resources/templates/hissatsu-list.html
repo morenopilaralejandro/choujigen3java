@@ -20,7 +20,7 @@
 
         <div class="mainContainer">
             <h1 th:text="#{hissatsuList.title}"></h1>
-            <div id="toc">
+            <div class="toc">
                 <span class="tocTitle" th:text="#{toc.title}">Contents</span>
                 <ul class="tocList">
                     <li>
@@ -72,7 +72,14 @@
                 <h2 id="about" th:text="#{hissatsuList.about}"></h2>
                 <p th:text="#{hissatsuList.about.p1}"></p>
                 <div th:replace="~{fragments/hissatsu-tables.html :: 
-                    hissatsu-growth(achieveAll = ${achieveAll})}">
+                    hissatsu-growth-additional-power(
+                        growthTypeAll = ${growthTypeAll}, 
+                        growthRateAll = ${growthRateAll})}">
+                </div>
+                <div th:replace="~{fragments/hissatsu-tables.html :: 
+                    hissatsu-growth-number-of-uses(
+                        growthTypeAll = ${growthTypeAll}, 
+                        growthRateAll = ${growthRateAll})}">
                 </div>
             </section>
 

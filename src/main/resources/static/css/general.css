@@ -11,17 +11,58 @@
     --hissatsu-skill-color: #73398c;
 }
 
+div.mainContainer {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+/*table*/
 table td {
   empty-cells: hide;
 }
 
 table.table-hissatsu {
-    min-width: 600px;
+    min-width: 1100px;
 }
 
-div.mainContainer {
-    padding-left: 2%;
-    padding-right: 2%;
+@media only screen and (min-width: 768px) {
+    table.table-hissatsu {
+        min-width: auto;
+    }
+}
+
+table.table-growth {
+    max-width: 400px;
+}
+
+table.table-hissatsu th,
+table.table-growth th {
+    background-color: black;
+}
+
+/*toc*/
+div.toc {
+    border: 1px solid white;
+    width: fit-content;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.toc ul {
+    list-style: none;
+}
+
+.toc .tocTitle {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding: 2px;
+    margin-bottom: 5px;
+}
+
+.toc .tocList {
+    padding-right: 32px;
 }
 
 /*attriIcon*/

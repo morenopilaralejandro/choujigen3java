@@ -1,7 +1,6 @@
 package com.choujigen.ogre.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -10,23 +9,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.choujigen.ogre.domain.GrowthRate;
+import com.choujigen.ogre.domain.GrowthType;
 import com.choujigen.ogre.domain.HissatsuBlock;
 import com.choujigen.ogre.domain.HissatsuCatch;
 import com.choujigen.ogre.domain.HissatsuDribble;
 import com.choujigen.ogre.domain.HissatsuShoot;
 import com.choujigen.ogre.domain.HissatsuSkill;
-import com.choujigen.ogre.domain.ItemHissatsu;
+import com.choujigen.ogre.service.GrowthRateService;
+import com.choujigen.ogre.service.GrowthTypeService;
 import com.choujigen.ogre.service.HissatsuBlockService;
 import com.choujigen.ogre.service.HissatsuCatchService;
 import com.choujigen.ogre.service.HissatsuDribbleService;
 import com.choujigen.ogre.service.HissatsuShootService;
 import com.choujigen.ogre.service.HissatsuSkillService;
-import com.choujigen.ogre.service.ItemHissatsuService;
 
 @Controller
 public class WebController {
+	/*
 	@Autowired
 	private ItemHissatsuService itemHissatsuService;
+	*/
+	@Autowired
+	private GrowthTypeService growthTypeService;
+	
+	@Autowired
+	private GrowthRateService growthRateService;
 
 	@Autowired
 	private HissatsuShootService hissatsuShootService;
@@ -51,6 +59,9 @@ public class WebController {
 	@RequestMapping(value = "/hissatsu-list")
 	public String hissatsuList(Model model) {
 		String url = "hissatsu-list";
+		
+		List<GrowthType> growthTypeAll = growthTypeService.all();
+		List<GrowthRate> growthRateAll = growthRateService.all();
 		
 		List<HissatsuShoot> shootAll = hissatsuShootService.all();
 		List<HissatsuDribble> dribbleAll = hissatsuDribbleService.all();
@@ -167,7 +178,8 @@ public class WebController {
 		catchEarth.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
 		
 		model.addAttribute("url", url);
-		model.addAttribute("achieveAll", shootWind.get(0).getHissatsuEvolves().get(0).getGrowthType().getGrowthTypeAchieveGrowthRate());
+		model.addAttribute("growthTypeAll", growthTypeAll);
+		model.addAttribute("growthRateAll", growthRateAll);
 		model.addAttribute("shootWind", shootWind);
 		model.addAttribute("shootWood", shootWood);
 		model.addAttribute("shootFire", shootFire);

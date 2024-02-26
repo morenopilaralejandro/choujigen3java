@@ -3,14 +3,47 @@
 <head>
 </head>
 <body>
-    <div th:fragment="hissatsu-growth(achieveAll)" class="table-responsive">
-        <table class="table table-bordered table-sm">
-            <tr th:each="a : ${achieveAll}">
-                <td th:text="${a.getAdditionalPower()}"></td>
-            </tr>
+    <div class="table-responsive"
+        th:fragment="hissatsu-growth-additional-power(growthTypeAll, growthRateAll)">
+        <table class="table table-bordered table-sm table-growth">
+            <caption th:text="#{hissatsu.additionalPower}"></caption>
+            <thead>
+                <tr>
+                    <th th:text="#{general.type}" class="text-capitalize" scope="col"></th>
+                    <th th:each="growthRate : ${growthRateAll}" 
+                        th:text="${growthRate.getNameByLang()}" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="growthType : ${growthTypeAll}">
+                    <th th:text="${growthType.getSymbolByLang()}" scope="row"></th>
+                    <td th:each="achieve : ${growthType.getGrowthTypeAchieveGrowthRate()}"
+                        th:text="${achieve.getAdditionalPower()}"></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
+    <div class="table-responsive"
+        th:fragment="hissatsu-growth-number-of-uses(growthTypeAll, growthRateAll)">
+        <table class="table table-bordered table-sm table-growth">
+            <caption th:text="#{hissatsu.numberOfUses}"></caption>
+            <thead>
+                <tr>
+                    <th th:text="#{general.type}" class="text-capitalize" scope="col"></th>
+                    <th th:each="growthRate : ${growthRateAll}" 
+                        th:text="${growthRate.getNameByLang()}" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="growthType : ${growthTypeAll}">
+                    <th th:text="${growthType.getSymbolByLang()}" scope="row"></th>
+                    <td th:each="achieve : ${growthType.getGrowthTypeAchieveGrowthRate()}"
+                        th:text="${achieve.getNumberOfUses()}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div th:fragment="hissatsu-shoot(shoots)" class="table-responsive">
         <table class="table table-bordered table-sm table-hissatsu">
             <tr>
