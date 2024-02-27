@@ -1,10 +1,15 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
     <footer th:fragment="footer">
-        <span>footer</span>
+        <div>
+            <span th:text="#{meta.author}"></span>
+        </div>
+        <div>
+            <span th:text="#{footer.year}"></span>
+        </div>
     </footer>
 </body>
 </html>
