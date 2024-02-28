@@ -3,8 +3,10 @@ package com.choujigen.ogre.controller;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +61,7 @@ public class WebController {
 	@RequestMapping(value = "/hissatsu-list")
 	public String hissatsuList(Model model) {
 		String url = "hissatsu-list";
+		Locale locale = LocaleContextHolder.getLocale();
 		
 		List<GrowthType> growthTypeAll = growthTypeService.all();
 		List<GrowthRate> growthRateAll = growthRateService.all();
@@ -178,6 +181,7 @@ public class WebController {
 		catchEarth.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
 		
 		model.addAttribute("url", url);
+		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("growthTypeAll", growthTypeAll);
 		model.addAttribute("growthRateAll", growthRateAll);
 		model.addAttribute("shootWind", shootWind);

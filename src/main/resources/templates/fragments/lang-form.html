@@ -3,20 +3,27 @@
 <head>
 </head>
 <body>
-    <div th:fragment="lang-form(url)">
-        <form id="langForm" nane="langForm" 
-            th:action="${url}" method="post" 
+    <div th:fragment="lang-form(url)" class="langDiv">
+        <form id="langForm" name="langForm" 
+            action="#" method="post" 
             enctype="multipart/form-data">
             <div>
-                <i class="bi bi-translate"></i>
-                <select id="lang" nane="lang">
-                    <option value="en" th:text="#{lang.en}"
-                        th:selected="${#{lang.code} == 'en'}"></option>
-                    <option value="ja" th:text="#{lang.ja}"
-                        th:selected="${#{lang.code} == 'ja'}"></option>
-                    <option value="es" th:text="#{lang.es}" 
-                        th:selected="${#{lang.code} == 'es'}"></option>
-                </select>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <img th:src="@{/img/translate.svg}" alt="translate">
+                        </span>
+                    </div>
+                    <select id="lang" name="lang" class="form-select">
+                        <option value="en" th:text="#{lang.english}"
+                            th:selected="${currentLang == 'en'}"></option>
+                        <option value="ja" th:text="#{lang.japanese}"
+                            th:selected="${currentLang == 'ja'}"></option>
+                        <option value="es" th:text="#{lang.spanish}" 
+                            th:selected="${currentLang == 'es'}"></option>
+                    </select>
+                </div>
+                <input type="submit" id="langSubmit" name="langSubmit" style="display: none;">
             </div>
         </form>
     </div>

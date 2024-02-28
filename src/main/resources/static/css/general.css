@@ -21,7 +21,7 @@ div.mainContainer {
 /*header*/
 header {
     background-color: var(--bg-blue);
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 
 header div {
@@ -45,6 +45,25 @@ footer {
 
 footer div {
 
+}
+
+/*lang*/
+div.langDiv {
+    float: right;
+    margin-bottom: 10px;
+}
+
+div.langDiv span.input-group-text {
+    background-color: white;
+    display: block;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+div.langDiv select {
+    max-width: max-content;
+    border-radius: 0px;
 }
 
 /*table*/
