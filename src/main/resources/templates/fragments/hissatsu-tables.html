@@ -235,5 +235,91 @@
             </tr>
         </table>
     </div>
+
+    <div th:fragment="hissatsu-single(itemHissatsu, attri, hissatsuType, 
+        hissatsuTypeId, name, tp, basePower, maxPower, participants, foul, 
+        isBlock, shootSpecialPropertyName, catchTypeName)" 
+        class="table-responsive">
+        <table class="table table-bordered table-sm" style="max-width: 600px;">
+            <tr class="black-th">
+                <th colspan=2 th:text="#{hissatsu.type}"></th>
+                <th th:text="#{hissatsu.name}"></th>
+                <th th:text="#{hissatsu.tp}"></th>
+                <th th:text="#{hissatsu.maxPower}"></th>
+                <th th:text="#{hissatsu.basePower}"></th>
+                <th th:text="#{hissatsu.participants}"></th>
+
+                <th th:if="${hissatsuTypeId == 1}" 
+                    th:text="#{hissatsu.characteristic}"></th>
+
+                <th th:if="${hissatsuTypeId == 2}" 
+                    th:text="#{hissatsu.foul}"></th>
+                <th th:if="${hissatsuTypeId == 3}" 
+                    th:text="#{hissatsu.foul}"></th>
+
+                <th th:if="${hissatsuTypeId == 3}" 
+                    th:text="#{hissatsu.isBlock}"></th>
+
+                <th th:if="${hissatsuTypeId == 4}" 
+                    th:text="#{hissatsu.catchType}"></th>
+ 
+            </tr>
+            <tr>
+                <td style="text-align: center;">
+                    <span th:text="${attri.getAttriNameJa()}"
+                        th:title="${attri.getNameByLang()}"
+                        class="attriIcon"
+                        th:classappend="${attri.getCssClass()}"></span>
+                </td>
+                <td style="text-align: center;">
+                    <span th:text="${hissatsuType.getNameByLang()}"
+                        class="hissatsuTypeIcon"
+                        th:classappend="${hissatsuType.getCssClass()}"></span>
+                </td>
+                <td th:text="${name}"></td>
+                <td th:text="${tp}"></td>
+                <td th:text="${maxPower}"></td>
+                <td th:text="${basePower}"></td>
+                <td th:text="${participants}"></td>
+
+                <td th:if="${hissatsuTypeId == 1 and shootSpecialPropertyName != null}" 
+                    th:text="${shootSpecialPropertyName}"></td>
+                <td th:if="${hissatsuTypeId == 1 and shootSpecialPropertyName == null}" 
+                    th:text="#{general.none}"></td>
+
+                <td th:if="${hissatsuTypeId == 2}" 
+                    th:text="${foul}"></td>
+                <td th:if="${hissatsuTypeId == 3}" 
+                    th:text="${foul}"></td>
+
+                <td th:if="${hissatsuTypeId == 3 and isBlock}" 
+                    th:text="#{hissatsu.isBlock.yes}"></td>
+                <td th:if="${hissatsuTypeId == 3 and !isBlock}" 
+                    th:text="#{hissatsu.isBlock.no}"></td>
+
+                <td th:if="${hissatsuTypeId == 4}" 
+                    th:text="${catchTypeName}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="table-responsive"
+        th:fragment="hissatsu-growth-single(growthTypeName, growthRateName,
+        additionalPower, numberOfUses)">
+        <table class="table table-bordered table-sm table-growth">
+            <tr>
+                <th th:text="#{hissatsu.growthType}"></th>
+                <th th:text="#{hissatsu.growthRate}"></th>
+                <th th:text="#{hissatsu.additionalPower}"></th>
+                <th th:text="#{hissatsu.numberOfUses}"></th>
+            </tr>
+            <tr>
+                <td th:text="${growthTypeName}"></td>
+                <td th:text="${growthRateName}"></td>
+                <td th:text="${additionalPower}"></td>
+                <td th:text="${numberOfUses}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

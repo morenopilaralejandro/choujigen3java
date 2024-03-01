@@ -1,7 +1,10 @@
 package com.choujigen.ogre.domain;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,6 +42,14 @@ public class HissatsuBlock extends ItemHissatsu {
 		this.hissatsuBlockParticipants = hissatsuBlockParticipants;
 		this.hissatsuBlockFoul = hissatsuBlockFoul;
 		this.hissatsuBlockIsBlock = hissatsuBlockIsBlock;
+	}
+	
+	public String getIsBlockLetterByLang () {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		default:
+			return "B";
+		}
 	}
 
 	public Long getHissatsuBlockAdditionalPower() {

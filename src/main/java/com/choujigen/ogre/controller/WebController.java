@@ -9,15 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.choujigen.ogre.domain.Attri;
 import com.choujigen.ogre.domain.GrowthRate;
 import com.choujigen.ogre.domain.GrowthType;
+import com.choujigen.ogre.domain.GrowthTypeAchieveGrowthRate;
 import com.choujigen.ogre.domain.HissatsuBlock;
 import com.choujigen.ogre.domain.HissatsuCatch;
 import com.choujigen.ogre.domain.HissatsuDribble;
 import com.choujigen.ogre.domain.HissatsuShoot;
 import com.choujigen.ogre.domain.HissatsuSkill;
+import com.choujigen.ogre.domain.HissatsuType;
+import com.choujigen.ogre.domain.ItemHissatsu;
 import com.choujigen.ogre.service.GrowthRateService;
 import com.choujigen.ogre.service.GrowthTypeService;
 import com.choujigen.ogre.service.HissatsuBlockService;
@@ -25,31 +31,31 @@ import com.choujigen.ogre.service.HissatsuCatchService;
 import com.choujigen.ogre.service.HissatsuDribbleService;
 import com.choujigen.ogre.service.HissatsuShootService;
 import com.choujigen.ogre.service.HissatsuSkillService;
+import com.choujigen.ogre.service.ItemHissatsuService;
 
 @Controller
 public class WebController {
-	/*
 	@Autowired
 	private ItemHissatsuService itemHissatsuService;
-	*/
+
 	@Autowired
 	private GrowthTypeService growthTypeService;
-	
+
 	@Autowired
 	private GrowthRateService growthRateService;
 
 	@Autowired
 	private HissatsuShootService hissatsuShootService;
-	
+
 	@Autowired
 	private HissatsuDribbleService hissatsuDribbleService;
-	
+
 	@Autowired
 	private HissatsuBlockService hissatsuBlockService;
-	
+
 	@Autowired
 	private HissatsuCatchService hissatsuCatchService;
-	
+
 	@Autowired
 	private HissatsuSkillService hissatsuSkillService;
 
@@ -60,12 +66,11 @@ public class WebController {
 
 	@RequestMapping(value = "/hissatsu-list")
 	public String hissatsuList(Model model) {
-		String url = "hissatsu-list";
 		Locale locale = LocaleContextHolder.getLocale();
-		
+
 		List<GrowthType> growthTypeAll = growthTypeService.all();
 		List<GrowthRate> growthRateAll = growthRateService.all();
-		
+
 		List<HissatsuShoot> shootAll = hissatsuShootService.all();
 		List<HissatsuDribble> dribbleAll = hissatsuDribbleService.all();
 		List<HissatsuBlock> blockAll = hissatsuBlockService.all();
@@ -91,9 +96,9 @@ public class WebController {
 		List<HissatsuCatch> catchWood = new ArrayList<HissatsuCatch>();
 		List<HissatsuCatch> catchFire = new ArrayList<HissatsuCatch>();
 		List<HissatsuCatch> catchEarth = new ArrayList<HissatsuCatch>();
-		
+
 		for (HissatsuShoot h : shootAll) {
-			switch(h.getAttri().get(0).getAttriId().intValue()) {
+			switch (h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				shootWind.add(h);
 				break;
@@ -108,9 +113,9 @@ public class WebController {
 				break;
 			}
 		}
-		
+
 		for (HissatsuDribble h : dribbleAll) {
-			switch(h.getAttri().get(0).getAttriId().intValue()) {
+			switch (h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				dribbleWind.add(h);
 				break;
@@ -125,9 +130,9 @@ public class WebController {
 				break;
 			}
 		}
-		
+
 		for (HissatsuBlock h : blockAll) {
-			switch(h.getAttri().get(0).getAttriId().intValue()) {
+			switch (h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				blockWind.add(h);
 				break;
@@ -142,9 +147,9 @@ public class WebController {
 				break;
 			}
 		}
-		
+
 		for (HissatsuCatch h : catchAll) {
-			switch(h.getAttri().get(0).getAttriId().intValue()) {
+			switch (h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
 				catchWind.add(h);
 				break;
@@ -159,28 +164,28 @@ public class WebController {
 				break;
 			}
 		}
-		
+
 		shootWind.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
 		shootWood.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
 		shootFire.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
 		shootEarth.sort(Comparator.comparing(HissatsuShoot::getHissatsuShootMaxPower));
-		
+
 		dribbleWind.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
 		dribbleWood.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
 		dribbleFire.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
 		dribbleEarth.sort(Comparator.comparing(HissatsuDribble::getHissatsuDribbleMaxPower));
-		
+
 		blockWind.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
 		blockWood.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
 		blockFire.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
 		blockEarth.sort(Comparator.comparing(HissatsuBlock::getHissatsuBlockMaxPower));
-		
+
 		catchWind.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
 		catchWood.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
 		catchFire.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
 		catchEarth.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
-		
-		model.addAttribute("url", url);
+
+		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("growthTypeAll", growthTypeAll);
 		model.addAttribute("growthRateAll", growthRateAll);
@@ -202,5 +207,126 @@ public class WebController {
 		model.addAttribute("catchEarth", catchEarth);
 		model.addAttribute("skillAll", skillAll);
 		return "/hissatsu-list";
+	}
+
+	@RequestMapping(value = "/hissatsu/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String hissatsu(Model model, @PathVariable("id") Long id) {
+		Locale locale = LocaleContextHolder.getLocale();
+
+		ItemHissatsu itemHissatsu = itemHissatsuService.one(id);
+		int hissatsuTypeId = itemHissatsu.getHissatsuType().getHissatsuTypeId().intValue();
+
+		String anchor = null;
+		if (hissatsuTypeId == 5) {
+			anchor = "skills";
+		} else {
+			String hissatsuTypeNameEn = itemHissatsu.getHissatsuType().getHissatsuTypeNameEn();
+			String hissatsuTypeAttriNameEn = itemHissatsu.getAttri().get(0).getAttriNameEn();
+			anchor = hissatsuTypeNameEn + "-" + hissatsuTypeAttriNameEn;
+			anchor = anchor.toLowerCase();
+		}
+
+		Attri attri = null;
+		HissatsuType hissatsuType = itemHissatsu.getHissatsuType();
+		String name = itemHissatsu.getNameByLang();
+		int tp = 0;
+		int basePower = 0;
+		int maxPower = 0;
+		int participants = 0;
+		int foul = 0;
+		boolean isBlock = false;
+		String shootSpecialPropertyName = null;
+		String catchTypeName = null;
+		String effect = null;
+		String growthTypeName = null;
+		String growthRateName = null;
+		int additionalPower = 0;
+		int numberOfUses = 0;
+		List<String> inOtherLanguages = new ArrayList<String>();
+		inOtherLanguages.add(itemHissatsu.getItemNameEn());
+		inOtherLanguages.add(itemHissatsu.getItemNameJa());
+		inOtherLanguages.add(itemHissatsu.getItemNameEs());
+
+		switch (hissatsuTypeId) {
+		case 1:
+			HissatsuShoot hissatsuShoot = hissatsuShootService.one(id);
+			tp = hissatsuShoot.getHissatsuShootTp().intValue();
+			basePower = hissatsuShoot.getHissatsuShootPower().intValue();
+			maxPower = hissatsuShoot.getHissatsuShootMaxPower().intValue();
+			participants = hissatsuShoot.getHissatsuShootParticipants().intValue();
+			if (!hissatsuShoot.getShootSpecialProperty().isEmpty()) {
+				shootSpecialPropertyName = hissatsuShoot.getShootSpecialProperty().get(0).getNameByLang();
+			}
+			break;
+		case 2:
+			HissatsuDribble hissatsuDribble = hissatsuDribbleService.one(id);
+			tp = hissatsuDribble.getHissatsuDribbleTp().intValue();
+			basePower = hissatsuDribble.getHissatsuDribblePower().intValue();
+			maxPower = hissatsuDribble.getHissatsuDribbleMaxPower().intValue();
+			participants = hissatsuDribble.getHissatsuDribbleParticipants().intValue();
+			foul = hissatsuDribble.getHissatsuDribbleFoul().intValue();
+			break;
+		case 3:
+			HissatsuBlock hissatsuBlock = hissatsuBlockService.one(id);
+			tp = hissatsuBlock.getHissatsuBlockTp().intValue();
+			basePower = hissatsuBlock.getHissatsuBlockPower().intValue();
+			maxPower = hissatsuBlock.getHissatsuBlockMaxPower().intValue();
+			participants = hissatsuBlock.getHissatsuBlockParticipants().intValue();
+			foul = hissatsuBlock.getHissatsuBlockFoul().intValue();
+			isBlock = hissatsuBlock.isHissatsuBlockIsBlock();
+			break;
+		case 4:
+			HissatsuCatch hissatsuCatch = hissatsuCatchService.one(id);
+			tp = hissatsuCatch.getHissatsuCatchTp().intValue();
+			basePower = hissatsuCatch.getHissatsuCatchPower().intValue();
+			maxPower = hissatsuCatch.getHissatsuCatchMaxPower().intValue();
+			participants = hissatsuCatch.getHissatsuCatchParticipants().intValue();
+			catchTypeName = hissatsuCatch.getCatchType().getNameByLang();
+			break;
+		case 5:
+			HissatsuSkill hissatsuSkill = hissatsuSkillService.one(id);
+			effect = hissatsuSkill.getEffectByLang();
+		}
+
+		if (hissatsuTypeId != 5) {
+			attri = itemHissatsu.getAttri().get(0);
+
+			List<GrowthTypeAchieveGrowthRate> achieveList = itemHissatsu.getHissatsuEvolves().get(0).getGrowthType()
+					.getGrowthTypeAchieveGrowthRate();
+			GrowthType growthType = itemHissatsu.getHissatsuEvolves().get(0).getGrowthType();
+			GrowthRate growthRate = itemHissatsu.getHissatsuEvolves().get(0).getGrowthRate();
+			growthTypeName = growthType.getSymbolByLang();
+			growthRateName = growthRate.getNameByLang();
+			for (GrowthTypeAchieveGrowthRate a : achieveList) {
+				if (a.getGrowthType().equals(growthType) && a.getGrowthRate().equals(growthRate)) {
+					additionalPower = a.getAdditionalPower().intValue();
+					numberOfUses = a.getNumberOfUses().intValue();
+				}
+			}
+		}
+
+		model.addAttribute("url", null);
+		model.addAttribute("currentLang", locale.getLanguage());
+		model.addAttribute("anchor", anchor);
+		model.addAttribute("itemHissatsu", itemHissatsu);
+		model.addAttribute("attri", attri);
+		model.addAttribute("hissatsuType", hissatsuType);
+		model.addAttribute("hissatsuTypeId", hissatsuTypeId);
+		model.addAttribute("name", name);
+		model.addAttribute("tp", tp);
+		model.addAttribute("basePower", basePower);
+		model.addAttribute("maxPower", maxPower);
+		model.addAttribute("participants", participants);
+		model.addAttribute("foul", foul);
+		model.addAttribute("isBlock", isBlock);
+		model.addAttribute("shootSpecialPropertyName", shootSpecialPropertyName);
+		model.addAttribute("catchTypeName", catchTypeName);
+		model.addAttribute("effect", effect);
+		model.addAttribute("growthTypeName", growthTypeName);
+		model.addAttribute("growthRateName", growthRateName);
+		model.addAttribute("additionalPower", additionalPower);
+		model.addAttribute("numberOfUses", numberOfUses);
+		model.addAttribute("inOtherLanguages", inOtherLanguages);
+		return "/hissatsu";
 	}
 }

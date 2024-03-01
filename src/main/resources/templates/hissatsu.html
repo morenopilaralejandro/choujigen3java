@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html th:lang="#{lang.code}" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="keywords" th:content="#{hissatsu.keywords}">
+	    <meta name="description" th:content="#{hissatsu.description}">
+	    <meta name="author" th:content="#{meta.author}">
+        <title th:text="${itemHissatsu.getNameByLang()}"></title>
+
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/css/general.css}">
+    </head>
+    <body>
+        <header th:replace="~{fragments/header.html :: header}"></header>
+
+        <div th:replace="~{fragments/lang-form.html :: lang-form(url = ${url})}"></div>
+        <br style="clear: both;">
+
+        <div class="mainContainer">
+            <h1 th:text="${itemHissatsu.getNameByLang()}"></h1>
+            <div class="toc">
+                <span class="tocTitle" th:text="#{toc.title}"></span>
+                <ul class="tocList">
+                    <li th:if="${hissatsuTypeId == 5}">
+                        <a href="#effect">1. <span th:text="#{hissatsu.effect}"></span></a>
+                    </li>
+                   <li th:unless="${hissatsuTypeId == 5}">
+                        <a href="#basic">1. <span th:text="#{hissatsu.basicInformation}"></span></a>
+                    </li>
+
+                   <li>
+                        <a href="#restriction">2. <span th:text="#{hissatsu.restriction}"></span></a>
+                    </li>
+                   <li>
+                        <a href="#comparison">3. <span th:text="#{hissatsu.comparison}"></span></a>
+                    </li>
+                   <li>
+                        <a href="#obtention">4. <span th:text="#{general.obtention}"></span></a>
+                    </li>
+                   <li>
+                        <a href="#learners">5. <span th:text="#{hissatsu.learners}"></span></a>
+                    </li>
+                   <li>
+                        <a href="#other-languages">6. <span th:text="#{general.inOtherLanguages}"></span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <section th:if="${hissatsuTypeId == 5}">
+                <h2 id="effect" th:text="#{hissatsu.effect}"></h2>
+                <p th:text="${effect}"></p>
+            </section>
+            <section th:unless="${hissatsuTypeId == 5}">
+                <h2 id="basic" th:text="#{hissatsu.basicInformation}"></h2>
+                <div th:replace="~{fragments/hissatsu-tables.html :: 
+                    hissatsu-single(
+                        itemHissatsu = ${itemHissatsu}, 
+                        attri = ${attri}, 
+                        hissatsuType = ${hissatsuType}, 
+                        hissatsuTypeId = ${hissatsuTypeId}, 
+                        name = ${name}, 
+                        tp = ${tp}, 
+                        basePower = ${basePower}, 
+                        maxPower = ${maxPower},
+                        participants = ${participants}, 
+                        foul = ${foul}, 
+                        isBlock = ${isBlock}, 
+                        shootSpecialPropertyName = ${shootSpecialPropertyName}, 
+                        catchTypeName = ${catchTypeName}
+                    )}">
+                </div>
+                <div th:replace="~{fragments/hissatsu-tables.html :: 
+                    hissatsu-growth-single(
+                        growthTypeName = ${growthTypeName}, 
+                        growthRateName = ${growthRateName}, 
+                        additionalPower = ${additionalPower}, 
+                        numberOfUses = ${numberOfUses}
+                    )}">
+                </div>
+            </section>
+
+            <section>
+                <h2 id="restriction" th:text="#{hissatsu.restriction}"></h2>
+                <p th:text="#{general.noData}"></p>
+            </section>
+
+            <section>
+                <h2 id="comparison" th:text="#{hissatsu.comparison}"></h2>
+                <p><a th:text="#{hissatsu.comparison.link}"
+                    th:href="'/hissatsu-list#' + ${anchor}"></a>
+                </p>
+            </section>
+
+            <section>
+                <h2 id="obtention" th:text="#{general.obtention}"></h2>
+                <p th:text="#{general.noData}"></p>
+            </section>
+
+            <section>
+                <h2 id="learners" th:text="#{hissatsu.learners}"></h2>
+                <p th:text="#{general.noData}"></p>
+            </section>
+
+            <section>
+                <h2 id="other-languages" th:text="#{general.inOtherLanguages}"></h2>
+                <div th:replace="~{fragments/other-languages.html :: 
+                    other-languages(names = ${inOtherLanguages})}">
+                </div>
+            </section>
+        </div>
+
+        <footer th:replace="~{fragments/footer.html :: footer}"></footer>
+        <script 
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+            crossorigin="anonymous"></script>
+        <script th:src="@{/script/langForm.js}"></script>
+        <script th:src="@{/script/preventFormResubmission.js}"></script>
+    </body>
+</html>

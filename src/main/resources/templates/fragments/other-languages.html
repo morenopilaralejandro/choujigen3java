@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div th:fragment="other-languages(names)">
+        <table class="table table-bordered table-sm other-languages" style="max-width: 500px">
+            <tr class="black-th">
+                <th th:text="#{lang.language}"></th>
+                <th th:text="#{lang.name}"></th>
+            </tr>
+            <tr>
+                <th th:text="#{lang.english}"></th>  
+                <td th:text="${names.get(0)}"></td>
+            </tr>
+            <tr>
+                <th th:text="#{lang.japanese}"></th>  
+                <td th:text="${names.get(1)}"></td>
+            </tr>
+            <tr>
+                <th th:text="#{lang.spanish}"></th>  
+                <td th:text="${names.get(2)}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

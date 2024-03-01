@@ -90,6 +90,10 @@ table.table-growth th {
     background-color: black;
 }
 
+tr.black-th th {
+    background-color: black;
+}
+
 /*toc*/
 div.toc {
     border: 1px solid white;

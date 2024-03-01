@@ -5,7 +5,7 @@
 <body>
     <div th:fragment="lang-form(url)" class="langDiv">
         <form id="langForm" name="langForm" 
-            action="#" method="post" 
+            th:action="${url != null ? url : '#'}" method="post" 
             enctype="multipart/form-data">
             <div>
                 <div class="input-group">
@@ -15,11 +15,11 @@
                         </span>
                     </div>
                     <select id="lang" name="lang" class="form-select">
-                        <option value="en" th:text="#{lang.english}"
+                        <option value="en" th:text="#{lang.english.native}"
                             th:selected="${currentLang == 'en'}"></option>
-                        <option value="ja" th:text="#{lang.japanese}"
+                        <option value="ja" th:text="#{lang.japanese.native}"
                             th:selected="${currentLang == 'ja'}"></option>
-                        <option value="es" th:text="#{lang.spanish}" 
+                        <option value="es" th:text="#{lang.spanish.native}" 
                             th:selected="${currentLang == 'es'}"></option>
                     </select>
                 </div>
