@@ -71,7 +71,7 @@
                 </td>
                 <td>
                     <a th:text="${shoot.getNameByLang()}"
-                        th:href="@{hissatsu/{id}(id=${shoot.getItemId()})}"></a>
+                        th:href="@{/hissatsu/{id}(id=${shoot.getItemId()})}"></a>
                 </td>
                 <td th:text="${shoot.getHissatsuShootTp()}"></td>
                 <td th:text="${shoot.getHissatsuShootMaxPower()}"></td>
@@ -116,7 +116,7 @@
                 </td>
                 <td>
                     <a th:text="${dribble.getNameByLang()}"
-                        th:href="@{hissatsu/{id}(id=${dribble.getItemId()})}"></a>
+                        th:href="@{/hissatsu/{id}(id=${dribble.getItemId()})}"></a>
                 </td>
                 <td th:text="${dribble.getHissatsuDribbleTp()}"></td>
                 <td th:text="${dribble.getHissatsuDribbleMaxPower()}"></td>
@@ -157,7 +157,7 @@
                 </td>
                 <td>
                     <a th:text="${block.getNameByLang()}"
-                        th:href="@{hissatsu/{id}(id=${block.getItemId()})}"></a>
+                        th:href="@{/hissatsu/{id}(id=${block.getItemId()})}"></a>
                 </td>
                 <td th:text="${block.getHissatsuBlockTp()}"></td>
                 <td th:text="${block.getHissatsuBlockMaxPower()}"></td>
@@ -201,7 +201,7 @@
                 </td>
                 <td>
                     <a th:text="${catch.getNameByLang()}"
-                        th:href="@{hissatsu/{id}(id=${catch.getItemId()})}"></a>
+                        th:href="@{/hissatsu/{id}(id=${catch.getItemId()})}"></a>
                 </td>
                 <td th:text="${catch.getHissatsuCatchTp()}"></td>
                 <td th:text="${catch.getHissatsuCatchMaxPower()}"></td>
@@ -229,7 +229,7 @@
                 </td>
                 <td>
                     <a th:text="${skill.getNameByLang()}"
-                        th:href="@{hissatsu/{id}(id=${skill.getItemId()})}"></a>
+                        th:href="@{/hissatsu/{id}(id=${skill.getItemId()})}"></a>
                 </td>
                 <td th:text="${skill.getEffectByLang()}"></td>
             </tr>
@@ -320,6 +320,64 @@
                 <td th:text="${numberOfUses}"></td>
             </tr>
         </table>
+    </div>
+
+    <div th:fragment="hissatsu-restric(restricGenre, restricBodyType,
+        restricPositi, restricAttriUser, restricAttriHelper, restricHissatsu)">
+        <ul>
+            <li th:unless="${restricGenre.isEmpty()}">
+                <span th:text="#{hissatsu.restriction.genre}"></span>
+                <ul>
+                    <li th:each="r : ${restricGenre}"
+                        th:text="${r.getGenreSymbol()}"></li>
+                </ul>
+            </li>
+            <li th:unless="${restricBodyType.isEmpty()}">
+                <span th:text="#{hissatsu.restriction.bodyType}"></span>
+                <ul>
+                    <li th:each="r : ${restricBodyType}"
+                        th:text="${r.getNameByLang()}"></li>
+                </ul>
+            </li>
+            <li th:unless="${restricPositi.isEmpty()}">
+                <span th:text="#{hissatsu.restriction.positi}"></span>
+                <ul>
+                    <li th:each="r : ${restricPositi}"
+                        th:text="${r.getNameByLang()}"></li>
+                </ul>
+            </li>
+            <li th:unless="${restricAttriUser.isEmpty()}">
+                <span th:text="#{hissatsu.restriction.attriUser}"></span>
+                <ul>
+                    <li th:each="r : ${restricAttriUser}">
+                        <span th:text="${r.getAttriNameJa()}"
+                            th:title="${r.getNameByLang()}"
+                            class="attriIcon"
+                            th:classappend="${r.getCssClass()}"></span>
+                    </li>
+                </ul>
+            </li>
+            <li th:unless="${restricAttriHelper.isEmpty()}">
+                <span th:text="#{hissatsu.restriction.attriHelper}"></span>
+                <ul>
+                    <li th:each="r : ${restricAttriHelper}">
+                        <span th:text="${r.getAttriNameJa()}"
+                            th:title="${r.getNameByLang()}"
+                            class="attriIcon"
+                            th:classappend="${r.getCssClass()}"></span>
+                    </li>
+                </ul>
+            </li>
+            <li th:unless="${restricHissatsu.isEmpty()}">
+                <span th:text="#{hissatsu.restriction.hissatsu}"></span>
+                <ul>
+                    <li th:each="r : ${restricHissatsu}">
+                        <a th:text="${r.getNameByLang()}"
+                            th:href="@{/hissatsu/{id}(id=${r.getItemId()})}"></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </body>
 </html>

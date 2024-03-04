@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.choujigen.ogre.domain.Genre;
+import com.choujigen.ogre.domain.Gender;
 import com.choujigen.ogre.exception.GenreNotFoundException;
 import com.choujigen.ogre.repository.GenreRepository;
 
@@ -15,22 +15,22 @@ public class GenreServiceImpl implements GenreService {
 	private GenreRepository genreRepository;
 
 	@Override
-	public List<Genre> all() {
+	public List<Gender> all() {
 		return genreRepository.findAll();
 	}
 
 	@Override
-	public Genre one(Long id) {
+	public Gender one(Long id) {
 		return genreRepository.findById(id).orElseThrow(() -> new GenreNotFoundException(id));
 	}
 
 	@Override
-	public Genre insert(Genre newObj) {
+	public Gender insert(Gender newObj) {
 		return genreRepository.save(newObj);
 	}
 
 	@Override
-	public Genre replace(Genre newObj, Long id) {
+	public Gender replace(Gender newObj, Long id) {
 		return genreRepository.findById(id).map(oldObj -> {
 			oldObj.setGenreNameJa(newObj.getGenreNameJa());
 			oldObj.setGenreNameEn(newObj.getGenreNameEn());

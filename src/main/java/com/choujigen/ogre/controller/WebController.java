@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.choujigen.ogre.domain.Attri;
+import com.choujigen.ogre.domain.BodyType;
+import com.choujigen.ogre.domain.Gender;
 import com.choujigen.ogre.domain.GrowthRate;
 import com.choujigen.ogre.domain.GrowthType;
 import com.choujigen.ogre.domain.GrowthTypeAchieveGrowthRate;
@@ -24,6 +26,7 @@ import com.choujigen.ogre.domain.HissatsuShoot;
 import com.choujigen.ogre.domain.HissatsuSkill;
 import com.choujigen.ogre.domain.HissatsuType;
 import com.choujigen.ogre.domain.ItemHissatsu;
+import com.choujigen.ogre.domain.Positi;
 import com.choujigen.ogre.service.GrowthRateService;
 import com.choujigen.ogre.service.GrowthTypeService;
 import com.choujigen.ogre.service.HissatsuBlockService;
@@ -216,6 +219,19 @@ public class WebController {
 		ItemHissatsu itemHissatsu = itemHissatsuService.one(id);
 		int hissatsuTypeId = itemHissatsu.getHissatsuType().getHissatsuTypeId().intValue();
 
+		boolean showRestric = true;
+		List<Gender> restricGenre = itemHissatsu.getRestricGenre();
+		List<BodyType> restricBodyType = itemHissatsu.getRestricBodyType();
+		List<Positi> restricPositi = itemHissatsu.getRestricPositi();
+		List<Attri> restricAttriUser = itemHissatsu.getRestricAttriUser();
+		List<Attri> restricAttriHelper = itemHissatsu.getRestricAttriHelper();
+		List<ItemHissatsu> restricHissatsu = itemHissatsu.getRestricHissatsu();
+		if (restricGenre.isEmpty() && restricBodyType.isEmpty() &&
+				restricPositi.isEmpty() && restricAttriUser.isEmpty() &&
+				restricAttriHelper.isEmpty() && restricHissatsu.isEmpty()) {
+			showRestric = false;
+		}
+		
 		String anchor = null;
 		if (hissatsuTypeId == 5) {
 			anchor = "skills";
@@ -308,6 +324,7 @@ public class WebController {
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("anchor", anchor);
+		
 		model.addAttribute("itemHissatsu", itemHissatsu);
 		model.addAttribute("attri", attri);
 		model.addAttribute("hissatsuType", hissatsuType);
@@ -326,6 +343,15 @@ public class WebController {
 		model.addAttribute("growthRateName", growthRateName);
 		model.addAttribute("additionalPower", additionalPower);
 		model.addAttribute("numberOfUses", numberOfUses);
+		
+		model.addAttribute("showRestric", showRestric);
+		model.addAttribute("restricGenre", restricGenre);
+		model.addAttribute("restricBodyType", restricBodyType);
+		model.addAttribute("restricPositi", restricPositi);
+		model.addAttribute("restricAttriUser", restricAttriUser);
+		model.addAttribute("restricAttriHelper", restricAttriHelper);
+		model.addAttribute("restricHissatsu", restricHissatsu);
+		
 		model.addAttribute("inOtherLanguages", inOtherLanguages);
 		return "/hissatsu";
 	}

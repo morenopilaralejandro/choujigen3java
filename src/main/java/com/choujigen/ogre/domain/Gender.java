@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "genre")
-public class Genre {
+public class Gender {
 	@Column(name = "genre_id")
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long genreId;
 	@Column(name = "genre_name_ja")
@@ -31,10 +31,10 @@ public class Genre {
 	@ManyToMany(mappedBy = "restricGenre")
 	private List<ItemHissatsu> itemHissatsuAll;
 
-	public Genre() {
+	public Gender() {
 	}
 
-	public Genre(Long genreId, String genreNameJa, String genreNameEn, String genreNameEs, String genreSymbol) {
+	public Gender(Long genreId, String genreNameJa, String genreNameEn, String genreNameEs, String genreSymbol) {
 		super();
 		this.genreId = genreId;
 		this.genreNameJa = genreNameJa;
@@ -118,7 +118,7 @@ public class Genre {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Genre other = (Genre) obj;
+		Gender other = (Gender) obj;
 		return Objects.equals(genreId, other.genreId) && Objects.equals(genreNameEn, other.genreNameEn)
 				&& Objects.equals(genreNameEs, other.genreNameEs) && Objects.equals(genreNameJa, other.genreNameJa)
 				&& Objects.equals(genreSymbol, other.genreSymbol);

@@ -28,7 +28,7 @@ public class ItemHissatsu extends Item {
 
 	@ManyToMany
 	@JoinTable(name = "hissatsu_limited_by_genre", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
-	private List<Genre> restricGenre;
+	private List<Gender> restricGenre;
 
 	@ManyToMany
 	@JoinTable(name = "hissatsu_constrained_by_body_type", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "body_type_id"))
@@ -81,11 +81,11 @@ public class ItemHissatsu extends Item {
 		HissatsuEvolves = hissatsuEvolves;
 	}
 
-	public List<Genre> getRestricGenre() {
+	public List<Gender> getRestricGenre() {
 		return restricGenre;
 	}
 
-	public void setRestricGenre(List<Genre> restricGenre) {
+	public void setRestricGenre(List<Gender> restricGenre) {
 		this.restricGenre = restricGenre;
 	}
 

@@ -2,16 +2,16 @@ package com.choujigen.ogre.service;
 
 import java.util.List;
 
-import com.choujigen.ogre.domain.Genre;
+import com.choujigen.ogre.domain.Gender;
 
 public interface GenreService {
-	List<Genre> all();
+	List<Gender> all();
 
-	Genre one(Long id);
+	Gender one(Long id);
 
-	Genre insert(Genre newObj);
+	Gender insert(Gender newObj);
 
-	Genre replace(Genre newObj, Long id);
+	Gender replace(Gender newObj, Long id);
 
 	void delete(Long id);
 }

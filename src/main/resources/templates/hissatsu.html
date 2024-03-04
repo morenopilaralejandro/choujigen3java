@@ -86,7 +86,19 @@
 
             <section>
                 <h2 id="restriction" th:text="#{hissatsu.restriction}"></h2>
-                <p th:text="#{general.noData}"></p>
+                <div th:if="${showRestric}" 
+                    th:replace="~{fragments/hissatsu-tables.html :: 
+                    hissatsu-restric(
+                        restricGenre = ${restricGenre}, 
+                        restricBodyType = ${restricBodyType}, 
+                        restricPositi = ${restricPositi}, 
+                        restricAttriUser = ${restricAttriUser},
+                        restricAttriHelper = ${restricAttriHelper},
+                        restricHissatsu = ${restricHissatsu}
+                    )}">
+                </div>
+                <p th:unless="${showRestric}" 
+                    th:text="#{hissatsu.restriction.no}"></p>
             </section>
 
             <section>
