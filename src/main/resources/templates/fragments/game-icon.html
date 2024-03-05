@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <span th:fragment="attri-icon(attri)"
+        th:text="${attri.getAttriNameJa()}"
+        th:title="${attri.getNameByLang()}"
+        class="attri-icon"
+        th:classappend="${attri.getCssClass()}">
+    </span>
+
+    <span th:fragment="hissatsu-type-icon(hissatsuType)" 
+        th:text="${hissatsuType.getNameByLang()}"
+        class="hissatsu-type-icon"
+        th:classappend="${hissatsuType.getCssClass()}">
+    </span>
+
+    <span th:fragment="gender-icon(gender)" 
+        th:text="${gender.getGenderNameJa()}"
+        th:title="${gender.getNameByLang()}"
+        class="gender-icon"
+        th:classappend="${gender.getCssClass()}">
+    </span>
+
+    <span th:fragment="positi-icon(positi)" 
+        th:text="${positi.getNameByLang()}"
+        class="positi-icon"
+        th:classappend="${positi.getCssClass()}">
+    </span>
+</body>
+</html>

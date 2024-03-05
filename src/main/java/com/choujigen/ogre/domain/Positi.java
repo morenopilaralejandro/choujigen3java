@@ -53,6 +53,10 @@ public class Positi {
 			return this.getPositiNameEn();
 		}
 	}
+	
+	public String getCssClass() {
+		return this.positiNameJa.toLowerCase();
+	}
 
 	public Long getPositiId() {
 		return positiId;

@@ -3,8 +3,8 @@
 <head>
 </head>
 <body>
-    <div th:fragment="lang-form(url)" class="langDiv">
-        <form id="langForm" name="langForm" 
+    <div th:fragment="form-lang(url)" class="div-lang">
+        <form id="formLang" name="formLang" 
             th:action="${url != null ? url : '#'}" method="post" 
             enctype="multipart/form-data">
             <div>
@@ -23,7 +23,7 @@
                             th:selected="${currentLang == 'es'}"></option>
                     </select>
                 </div>
-                <input type="submit" id="langSubmit" name="langSubmit" style="display: none;">
+                <input type="submit" id="submitLang" name="submitLang" style="display: none;">
             </div>
         </form>
     </div>

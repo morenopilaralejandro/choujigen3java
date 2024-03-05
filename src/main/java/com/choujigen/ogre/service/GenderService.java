@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.choujigen.ogre.domain.Gender;
 
-public interface GenreService {
+public interface GenderService {
 	List<Gender> all();
 
 	Gender one(Long id);

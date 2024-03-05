@@ -59,15 +59,18 @@
             </tr>
             <tr th:each="shoot : ${shoots}">
                 <td style="text-align: center;">
-                    <span th:text="${shoot.getAttri().get(0).getAttriNameJa()}"
-                        th:title="${shoot.getAttri().get(0).getNameByLang()}"
-                        class="attriIcon"
-                        th:classappend="${shoot.getAttri().get(0).getCssClass()}"></span>
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        attri-icon(
+                            attri = ${shoot.getAttri().get(0)}
+                        )}">
+                    </span>
                 </td>
-                <td style="text-align: center;">
-                    <span th:text="${shoot.getHissatsuType().getNameByLang()}"
-                        class="hissatsuTypeIcon"
-                        th:classappend="${shoot.getHissatsuType().getCssClass()}"></span>
+                <td style="text-align: center; vertical-align: middle;">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        hissatsu-type-icon(
+                            hissatsuType = ${shoot.getHissatsuType()}
+                        )}">
+                    </span>
                 </td>
                 <td>
                     <a th:text="${shoot.getNameByLang()}"
@@ -104,15 +107,18 @@
             </tr>
             <tr th:each="dribble : ${dribbles}">
                 <td style="text-align: center;">
-                    <span th:text="${dribble.getAttri().get(0).getAttriNameJa()}"
-                        th:title="${dribble.getAttri().get(0).getNameByLang()}"
-                        class="attriIcon"
-                        th:classappend="${dribble.getAttri().get(0).getCssClass()}"></span>
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        attri-icon(
+                            attri = ${dribble.getAttri().get(0)}
+                        )}">
+                    </span>
                 </td>
-                <td style="text-align: center;">
-                    <span th:text="${dribble.getHissatsuType().getNameByLang()}"
-                        class="hissatsuTypeIcon"
-                        th:classappend="${dribble.getHissatsuType().getCssClass()}"></span>
+                <td style="text-align: center; vertical-align: middle;">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        hissatsu-type-icon(
+                            hissatsuType = ${dribble.getHissatsuType()}
+                        )}">
+                    </span>
                 </td>
                 <td>
                     <a th:text="${dribble.getNameByLang()}"
@@ -145,15 +151,18 @@
             </tr>
             <tr th:each="block : ${blocks}">
                 <td style="text-align: center;">
-                    <span th:text="${block.getAttri().get(0).getAttriNameJa()}"
-                        th:title="${block.getAttri().get(0).getNameByLang()}"
-                        class="attriIcon"
-                        th:classappend="${block.getAttri().get(0).getCssClass()}"></span>
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        attri-icon(
+                            attri = ${block.getAttri().get(0)}
+                        )}">
+                    </span>
                 </td>
-                <td style="text-align: center;">
-                    <span th:text="${block.getHissatsuType().getNameByLang()}"
-                        class="hissatsuTypeIcon"
-                        th:classappend="${block.getHissatsuType().getCssClass()}"></span>
+                <td style="text-align: center; vertical-align: middle;">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        hissatsu-type-icon(
+                            hissatsuType = ${block.getHissatsuType()}
+                        )}">
+                    </span>
                 </td>
                 <td>
                     <a th:text="${block.getNameByLang()}"
@@ -189,15 +198,18 @@
             </tr>
             <tr th:each="catch : ${catches}">
                 <td style="text-align: center;">
-                    <span th:text="${catch.getAttri().get(0).getAttriNameJa()}"
-                        th:title="${catch.getAttri().get(0).getNameByLang()}"
-                        class="attriIcon"
-                        th:classappend="${catch.getAttri().get(0).getCssClass()}"></span>
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        attri-icon(
+                            attri = ${catch.getAttri().get(0)}
+                        )}">
+                    </span>
                 </td>
-                <td style="text-align: center;">
-                    <span th:text="${catch.getHissatsuType().getNameByLang()}"
-                        class="hissatsuTypeIcon"
-                        th:classappend="${catch.getHissatsuType().getCssClass()}"></span>
+                <td style="text-align: center; vertical-align: middle;">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        hissatsu-type-icon(
+                            hissatsuType = ${catch.getHissatsuType()}
+                        )}">
+                    </span>
                 </td>
                 <td>
                     <a th:text="${catch.getNameByLang()}"
@@ -222,11 +234,14 @@
                 <th th:text="#{hissatsu.effect}"></th>
             </tr>
             <tr th:each="skill : ${skills}">
-                <td style="text-align: center;">
-                    <span th:text="${skill.getHissatsuType().getNameByLang()}"
-                        class="hissatsuTypeIcon"
-                        th:classappend="${skill.getHissatsuType().getCssClass()}"></span>
+                <td style="text-align: center; vertical-align: middle;">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        hissatsu-type-icon(
+                            hissatsuType = ${skill.getHissatsuType()}
+                        )}">
+                    </span>
                 </td>
+
                 <td>
                     <a th:text="${skill.getNameByLang()}"
                         th:href="@{/hissatsu/{id}(id=${skill.getItemId()})}"></a>
@@ -322,14 +337,17 @@
         </table>
     </div>
 
-    <div th:fragment="hissatsu-restric(restricGenre, restricBodyType,
+    <div th:fragment="hissatsu-restric(restricGender, restricBodyType,
         restricPositi, restricAttriUser, restricAttriHelper, restricHissatsu)">
         <ul>
-            <li th:unless="${restricGenre.isEmpty()}">
-                <span th:text="#{hissatsu.restriction.genre}"></span>
+            <li th:unless="${restricGender.isEmpty()}">
+                <span th:text="#{hissatsu.restriction.gender}"></span>
                 <ul>
-                    <li th:each="r : ${restricGenre}"
-                        th:text="${r.getGenreSymbol()}"></li>
+                    <li th:each="r : ${restricGender}">
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            gender-icon(gender = ${r})}">
+                        </span>
+                    </li>
                 </ul>
             </li>
             <li th:unless="${restricBodyType.isEmpty()}">
@@ -342,18 +360,20 @@
             <li th:unless="${restricPositi.isEmpty()}">
                 <span th:text="#{hissatsu.restriction.positi}"></span>
                 <ul>
-                    <li th:each="r : ${restricPositi}"
-                        th:text="${r.getNameByLang()}"></li>
+                    <li th:each="r : ${restricPositi}">
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            positi-icon(positi = ${r})}">
+                        </span>
+                    </li>
                 </ul>
             </li>
             <li th:unless="${restricAttriUser.isEmpty()}">
                 <span th:text="#{hissatsu.restriction.attriUser}"></span>
                 <ul>
                     <li th:each="r : ${restricAttriUser}">
-                        <span th:text="${r.getAttriNameJa()}"
-                            th:title="${r.getNameByLang()}"
-                            class="attriIcon"
-                            th:classappend="${r.getCssClass()}"></span>
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            attri-icon(attri = ${r})}">
+                        </span>
                     </li>
                 </ul>
             </li>
@@ -361,10 +381,9 @@
                 <span th:text="#{hissatsu.restriction.attriHelper}"></span>
                 <ul>
                     <li th:each="r : ${restricAttriHelper}">
-                        <span th:text="${r.getAttriNameJa()}"
-                            th:title="${r.getNameByLang()}"
-                            class="attriIcon"
-                            th:classappend="${r.getCssClass()}"></span>
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            attri-icon(attri = ${r})}">
+                        </span>
                     </li>
                 </ul>
             </li>

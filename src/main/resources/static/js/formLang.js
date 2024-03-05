@@ -1,6 +1,6 @@
 function changeLang() {
-    const langForm = document.getElementById("langForm");
-    langForm.submit();
+    const formLang = document.getElementById("formLang");
+    formLang.submit();
 }
 
 const langSelect = document.getElementById("lang");

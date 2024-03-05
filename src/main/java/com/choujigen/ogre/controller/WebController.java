@@ -220,13 +220,13 @@ public class WebController {
 		int hissatsuTypeId = itemHissatsu.getHissatsuType().getHissatsuTypeId().intValue();
 
 		boolean showRestric = true;
-		List<Gender> restricGenre = itemHissatsu.getRestricGenre();
+		List<Gender> restricGender = itemHissatsu.getRestricGender();
 		List<BodyType> restricBodyType = itemHissatsu.getRestricBodyType();
 		List<Positi> restricPositi = itemHissatsu.getRestricPositi();
 		List<Attri> restricAttriUser = itemHissatsu.getRestricAttriUser();
 		List<Attri> restricAttriHelper = itemHissatsu.getRestricAttriHelper();
 		List<ItemHissatsu> restricHissatsu = itemHissatsu.getRestricHissatsu();
-		if (restricGenre.isEmpty() && restricBodyType.isEmpty() &&
+		if (restricGender.isEmpty() && restricBodyType.isEmpty() &&
 				restricPositi.isEmpty() && restricAttriUser.isEmpty() &&
 				restricAttriHelper.isEmpty() && restricHissatsu.isEmpty()) {
 			showRestric = false;
@@ -345,7 +345,7 @@ public class WebController {
 		model.addAttribute("numberOfUses", numberOfUses);
 		
 		model.addAttribute("showRestric", showRestric);
-		model.addAttribute("restricGenre", restricGenre);
+		model.addAttribute("restricGender", restricGender);
 		model.addAttribute("restricBodyType", restricBodyType);
 		model.addAttribute("restricPositi", restricPositi);
 		model.addAttribute("restricAttriUser", restricAttriUser);

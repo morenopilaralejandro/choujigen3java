@@ -15,86 +15,90 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "genre")
+@Table(name = "gender")
 public class Gender {
-	@Column(name = "genre_id")
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long genreId;
-	@Column(name = "genre_name_ja")
-	private String genreNameJa;
-	@Column(name = "genre_name_en")
-	private String genreNameEn;
-	@Column(name = "genre_name_es")
-	private String genreNameEs;
-	@Column(name = "genre_symbol")
-	private String genreSymbol;
+	@Column(name = "gender_id")
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long genderId;
+	@Column(name = "gender_name_ja")
+	private String genderNameJa;
+	@Column(name = "gender_name_en")
+	private String genderNameEn;
+	@Column(name = "gender_name_es")
+	private String genderNameEs;
+	@Column(name = "gender_symbol")
+	private String genderSymbol;
 
-	@ManyToMany(mappedBy = "restricGenre")
+	@ManyToMany(mappedBy = "restricGender")
 	private List<ItemHissatsu> itemHissatsuAll;
 
 	public Gender() {
 	}
 
-	public Gender(Long genreId, String genreNameJa, String genreNameEn, String genreNameEs, String genreSymbol) {
+	public Gender(Long genderId, String genderNameJa, String genderNameEn, String genderNameEs, String genderSymbol) {
 		super();
-		this.genreId = genreId;
-		this.genreNameJa = genreNameJa;
-		this.genreNameEn = genreNameEn;
-		this.genreNameEs = genreNameEs;
-		this.genreSymbol = genreSymbol;
+		this.genderId = genderId;
+		this.genderNameJa = genderNameJa;
+		this.genderNameEn = genderNameEn;
+		this.genderNameEs = genderNameEs;
+		this.genderSymbol = genderSymbol;
 	}
 
 	public String getNameByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
 		switch (locale.getLanguage()) {
 		case "ja":
-			return this.getGenreNameJa();
+			return this.getGenderNameJa();
 		case "en":
-			return this.getGenreNameEn();
+			return this.getGenderNameEn();
 		case "es":
-			return this.getGenreNameEs();
+			return this.getGenderNameEs();
 		default:
-			return this.getGenreNameEn();
+			return this.getGenderNameEn();
 		}
 	}
-
-	public Long getGenreId() {
-		return genreId;
+	
+	public String getCssClass() {
+		return this.genderNameEn.toLowerCase();
 	}
 
-	public void setGenreId(Long genreId) {
-		this.genreId = genreId;
+	public Long getGenderId() {
+		return genderId;
 	}
 
-	public String getGenreNameJa() {
-		return genreNameJa;
+	public void setGenderId(Long genderId) {
+		this.genderId = genderId;
 	}
 
-	public void setGenreNameJa(String genreNameJa) {
-		this.genreNameJa = genreNameJa;
+	public String getGenderNameJa() {
+		return genderNameJa;
 	}
 
-	public String getGenreNameEn() {
-		return genreNameEn;
+	public void setGenderNameJa(String genderNameJa) {
+		this.genderNameJa = genderNameJa;
 	}
 
-	public void setGenreNameEn(String genreNameEn) {
-		this.genreNameEn = genreNameEn;
+	public String getGenderNameEn() {
+		return genderNameEn;
 	}
 
-	public String getGenreNameEs() {
-		return genreNameEs;
+	public void setGenderNameEn(String genderNameEn) {
+		this.genderNameEn = genderNameEn;
 	}
 
-	public void setGenreNameEs(String genreNameEs) {
-		this.genreNameEs = genreNameEs;
+	public String getGenderNameEs() {
+		return genderNameEs;
 	}
 
-	public String getGenreSymbol() {
-		return genreSymbol;
+	public void setGenderNameEs(String genderNameEs) {
+		this.genderNameEs = genderNameEs;
 	}
 
-	public void setGenreSymbol(String genreSymbol) {
-		this.genreSymbol = genreSymbol;
+	public String getGenderSymbol() {
+		return genderSymbol;
+	}
+
+	public void setGenderSymbol(String genderSymbol) {
+		this.genderSymbol = genderSymbol;
 	}
 
 	public List<ItemHissatsu> getItemHissatsuAll() {
@@ -107,7 +111,7 @@ public class Gender {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(genreId, genreNameEn, genreNameEs, genreNameJa, genreSymbol);
+		return Objects.hash(genderId, genderNameEn, genderNameEs, genderNameJa, genderSymbol);
 	}
 
 	@Override
@@ -119,15 +123,15 @@ public class Gender {
 		if (getClass() != obj.getClass())
 			return false;
 		Gender other = (Gender) obj;
-		return Objects.equals(genreId, other.genreId) && Objects.equals(genreNameEn, other.genreNameEn)
-				&& Objects.equals(genreNameEs, other.genreNameEs) && Objects.equals(genreNameJa, other.genreNameJa)
-				&& Objects.equals(genreSymbol, other.genreSymbol);
+		return Objects.equals(genderId, other.genderId) && Objects.equals(genderNameEn, other.genderNameEn)
+				&& Objects.equals(genderNameEs, other.genderNameEs) && Objects.equals(genderNameJa, other.genderNameJa)
+				&& Objects.equals(genderSymbol, other.genderSymbol);
 	}
 
 	@Override
 	public String toString() {
-		return "Genre [genreId=" + genreId + ", genreNameJa=" + genreNameJa + ", genreNameEn=" + genreNameEn
-				+ ", genreNameEs=" + genreNameEs + ", genreSymbol=" + genreSymbol + "]";
+		return "Gender [genderId=" + genderId + ", genderNameJa=" + genderNameJa + ", genderNameEn=" + genderNameEn
+				+ ", genderNameEs=" + genderNameEs + ", genderSymbol=" + genderSymbol + "]";
 	}
 
 }

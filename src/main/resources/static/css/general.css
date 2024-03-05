@@ -11,6 +11,16 @@
     --hissatsu-block-color: #39b529;
     --hissatsu-catch-color: #de8c00;
     --hissatsu-skill-color: #73398c;
+
+    --positi-fw-color: #da1818;
+    --positi-mf-color: #1e3eba;
+    --positi-df-color: #027a04;
+    --positi-gk-color: #e27800;
+    
+    --gender-male-color: #9cdeff;
+    --gender-male-bg: #055cc5;
+    --gender-female-color: #ff94a5;
+    --gender-female-bg: #bd1831;
 }
 
 div.mainContainer {
@@ -48,12 +58,12 @@ footer div {
 }
 
 /*lang*/
-div.langDiv {
+div.div-lang {
     float: right;
     margin-bottom: 10px;
 }
 
-div.langDiv span.input-group-text {
+div.div-lang span.input-group-text {
     background-color: white;
     display: block;
     border-bottom-right-radius: 0px;
@@ -61,7 +71,7 @@ div.langDiv span.input-group-text {
     border-top-left-radius: 0px;
 }
 
-div.langDiv select {
+div.div-lang select {
     max-width: max-content;
     border-radius: 0px;
 }
@@ -106,7 +116,7 @@ div.toc {
     list-style: none;
 }
 
-.toc .tocTitle {
+.toc .toc-title {
     font-weight: bold;
     display: block;
     text-align: center;
@@ -115,12 +125,12 @@ div.toc {
     margin-bottom: 5px;
 }
 
-.toc .tocList {
+.toc .toc-list {
     padding-right: 32px;
 }
 
-/*attriIcon*/
-.attriIcon {
+/*attri-icon*/
+.attri-icon {
     font-size: 16px;
     color: white;
     background-color: black;
@@ -128,49 +138,97 @@ div.toc {
     padding: 1px;
 }
 
-.attriIcon.wind{
+.attri-icon.wind{
     border: 1px solid var(--attri-wind-color);
 }
 
-.attriIcon.wood{
+.attri-icon.wood{
     border: 1px solid var(--attri-wood-color);
 }
 
-.attriIcon.fire{
+.attri-icon.fire{
     border: 1px solid var(--attri-fire-color);
 }
 
-.attriIcon.earth{
+.attri-icon.earth{
     border: 1px solid var(--attri-earth-color);
 }
 
-/*hissatsuTypeIcon*/
-.hissatsuTypeIcon {
+/*hissatsu-type-icon*/
+.hissatsu-type-icon {
     display: inline-block;
     width: max-content;
     font-size: 10px;
     color: white;
     box-sizing: border-box;
     border: 1px solid white;
-    padding: 2px 1px 2px 1px;
+    padding: 2px;
 }
 
-.hissatsuTypeIcon.shoot {
-        background-color: var(--hissatsu-shoot-color);
+table.table-hissatsu .hissatsu-type-icon {
+    display: block;
+    margin: auto;
 }
 
-.hissatsuTypeIcon.dribble {
-        background-color: var(--hissatsu-dribble-color);
+.hissatsu-type-icon.shoot {
+    background-color: var(--hissatsu-shoot-color);
 }
 
-.hissatsuTypeIcon.block {
-        background-color: var(--hissatsu-block-color);
+.hissatsu-type-icon.dribble {
+    background-color: var(--hissatsu-dribble-color);
 }
 
-.hissatsuTypeIcon.catch {
-        background-color: var(--hissatsu-catch-color);
+.hissatsu-type-icon.block {
+    background-color: var(--hissatsu-block-color);
 }
 
-.hissatsuTypeIcon.skill {
-        background-color: var(--hissatsu-skill-color);
+.hissatsu-type-icon.catch {
+    background-color: var(--hissatsu-catch-color);
+}
+
+.hissatsu-type-icon.skill {
+    background-color: var(--hissatsu-skill-color);
+}
+
+/*gender-icon*/
+.gender-icon {
+    border: 1px solid white;
+    padding: 1px;
+}
+
+.gender-icon.male {
+    color: var(--gender-male-color);
+    background-color: var(--gender-male-bg);
+}
+
+.gender-icon.female {
+    color: var(--gender-female-color);
+    background-color: var(--gender-female-bg);
+}
+
+/*positi-icon*/
+.positi-icon {
+    display: inline-block;
+    padding: 0px 4px 0px 4px;
+    border: 1px solid white;
+    box-sizing: border-box;
+    width: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.positi-icon.fw {
+    background-color: var(--positi-fw-color);
+}
+
+.positi-icon.mf {
+    background-color: var(--positi-mf-color);
+}
+
+.positi-icon.df {
+    background-color: var(--positi-df-color);
+}
+
+.positi-icon.gk {
+    background-color: var(--positi-gk-color);
 }
