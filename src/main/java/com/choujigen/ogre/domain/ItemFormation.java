@@ -25,7 +25,7 @@ public class ItemFormation extends Item {
 	private FormationScheme formationScheme;
 
 	@ManyToOne
-	@JoinColumn(name = "item_formation_id", referencedColumnName = "item_formation_id")
+	@JoinColumn(name = "original_version", referencedColumnName = "item_formation_id")
 	private ItemFormation originalVersion;
 
 	public ItemFormation() {
