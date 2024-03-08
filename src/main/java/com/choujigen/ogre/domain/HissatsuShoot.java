@@ -32,9 +32,10 @@ public class HissatsuShoot extends ItemHissatsu {
 	public HissatsuShoot() {
 	}
 
-	public HissatsuShoot(Long hissatsuShootPower, Long hissatsuShootTp, Long hissatsuShootParticipants,
-			List<ShootSpecialProperty> shootSpecialProperty) {
-		super();
+	public HissatsuShoot(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, HissatsuType hissatsuType, Long hissatsuShootPower,
+			Long hissatsuShootTp, Long hissatsuShootParticipants, List<ShootSpecialProperty> shootSpecialProperty) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType, hissatsuType);
 		this.hissatsuShootPower = hissatsuShootPower;
 		this.hissatsuShootTp = hissatsuShootTp;
 		this.hissatsuShootParticipants = hissatsuShootParticipants;

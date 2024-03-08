@@ -34,17 +34,19 @@ public class HissatsuBlock extends ItemHissatsu {
 	public HissatsuBlock() {
 	}
 
-	public HissatsuBlock(Long hissatsuBlockPower, Long hissatsuBlockTp, Long hissatsuBlockParticipants,
-			Long hissatsuBlockFoul, boolean hissatsuBlockIsBlock) {
-		super();
+	public HissatsuBlock(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, HissatsuType hissatsuType, Long hissatsuBlockPower,
+			Long hissatsuBlockTp, Long hissatsuBlockParticipants, Long hissatsuBlockFoul,
+			boolean hissatsuBlockIsBlock) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType, hissatsuType);
 		this.hissatsuBlockPower = hissatsuBlockPower;
 		this.hissatsuBlockTp = hissatsuBlockTp;
 		this.hissatsuBlockParticipants = hissatsuBlockParticipants;
 		this.hissatsuBlockFoul = hissatsuBlockFoul;
 		this.hissatsuBlockIsBlock = hissatsuBlockIsBlock;
 	}
-	
-	public String getIsBlockLetterByLang () {
+
+	public String getIsBlockLetterByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
 		switch (locale.getLanguage()) {
 		default:

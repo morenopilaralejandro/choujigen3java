@@ -31,8 +31,10 @@ public class ItemFormation extends Item {
 	public ItemFormation() {
 	}
 
-	public ItemFormation(FormationType formationType, FormationScheme formationScheme, ItemFormation originalVersion) {
-		super();
+	public ItemFormation(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, FormationType formationType, FormationScheme formationScheme,
+			ItemFormation originalVersion) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType);
 		this.formationType = formationType;
 		this.formationScheme = formationScheme;
 		this.originalVersion = originalVersion;

@@ -32,6 +32,10 @@ public class ZoneBuildingServiceImpl implements ZoneBuildingService {
 	@Override
 	public ZoneBuilding replace(ZoneBuilding newObj, Long id) {
 		return zoneBuildingRepository.findById(id).map(oldObj -> {
+			oldObj.setZoneNameJa(newObj.getZoneNameJa());
+			oldObj.setZoneNameEn(newObj.getZoneNameEn());
+			oldObj.setZoneNameEs(newObj.getZoneNameEs());
+			oldObj.setZoneType(newObj.getZoneType());
 			oldObj.setZoneLevel(newObj.getZoneLevel());
 			return zoneBuildingRepository.save(oldObj);
 		}).orElseGet(() -> {

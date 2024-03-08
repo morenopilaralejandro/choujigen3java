@@ -27,13 +27,15 @@ public class HissatsuSkill extends ItemHissatsu {
 	public HissatsuSkill() {
 	}
 
-	public HissatsuSkill(String hissatsuSkillEffectJa, String hissatsuSkillEffectEn, String hissatsuSkillEffectEs) {
-		super();
+	public HissatsuSkill(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, HissatsuType hissatsuType, String hissatsuSkillEffectJa,
+			String hissatsuSkillEffectEn, String hissatsuSkillEffectEs) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType, hissatsuType);
 		this.hissatsuSkillEffectJa = hissatsuSkillEffectJa;
 		this.hissatsuSkillEffectEn = hissatsuSkillEffectEn;
 		this.hissatsuSkillEffectEs = hissatsuSkillEffectEs;
 	}
-	
+
 	public String getEffectByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
 		switch (locale.getLanguage()) {

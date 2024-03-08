@@ -32,6 +32,13 @@ public class HissatsuSkillServiceImpl implements HissatsuSkillService {
 	@Override
 	public HissatsuSkill replace(HissatsuSkill newObj, Long id) {
 		return hissatsuSkillRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
+			oldObj.setHissatsuType(newObj.getHissatsuType());
 			oldObj.setHissatsuSkillEffectJa(newObj.getHissatsuSkillEffectJa());
 			oldObj.setHissatsuSkillEffectEn(newObj.getHissatsuSkillEffectEn());
 			oldObj.setHissatsuSkillEffectEs(newObj.getHissatsuSkillEffectEs());

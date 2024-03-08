@@ -32,6 +32,10 @@ public class ZoneInnerServiceImpl implements ZoneInnerService {
 	@Override
 	public ZoneInner replace(ZoneInner newObj, Long id) {
 		return zoneInnerRepository.findById(id).map(oldObj -> {
+			oldObj.setZoneNameJa(newObj.getZoneNameJa());
+			oldObj.setZoneNameEn(newObj.getZoneNameEn());
+			oldObj.setZoneNameEs(newObj.getZoneNameEs());
+			oldObj.setZoneType(newObj.getZoneType());
 			oldObj.setZoneOuter(newObj.getZoneOuter());
 			return zoneInnerRepository.save(oldObj);
 		}).orElseGet(() -> {

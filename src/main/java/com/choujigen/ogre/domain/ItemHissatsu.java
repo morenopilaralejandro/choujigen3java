@@ -60,8 +60,9 @@ public class ItemHissatsu extends Item {
 	public ItemHissatsu() {
 	}
 
-	public ItemHissatsu(HissatsuType hissatsuType) {
-		super();
+	public ItemHissatsu(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, HissatsuType hissatsuType) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType);
 		this.hissatsuType = hissatsuType;
 	}
 

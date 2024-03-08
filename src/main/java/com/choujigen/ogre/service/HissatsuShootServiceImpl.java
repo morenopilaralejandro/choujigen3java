@@ -32,6 +32,13 @@ public class HissatsuShootServiceImpl implements HissatsuShootService {
 	@Override
 	public HissatsuShoot replace(HissatsuShoot newObj, Long id) {
 		return hissatsuShootRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
+			oldObj.setHissatsuType(newObj.getHissatsuType());
 			oldObj.setHissatsuShootPower(newObj.getHissatsuShootPower());
 			oldObj.setHissatsuShootTp(newObj.getHissatsuShootTp());
 			oldObj.setHissatsuShootParticipants(newObj.getHissatsuShootParticipants());

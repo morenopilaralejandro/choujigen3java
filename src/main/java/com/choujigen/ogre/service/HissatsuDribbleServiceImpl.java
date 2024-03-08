@@ -32,6 +32,13 @@ public class HissatsuDribbleServiceImpl implements HissatsuDribbleService {
 	@Override
 	public HissatsuDribble replace(HissatsuDribble newObj, Long id) {
 		return hissatsuDribbleRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
+			oldObj.setHissatsuType(newObj.getHissatsuType());
 			oldObj.setHissatsuDribblePower(newObj.getHissatsuDribblePower());
 			oldObj.setHissatsuDribbleTp(newObj.getHissatsuDribbleTp());
 			oldObj.setHissatsuDribbleParticipants(newObj.getHissatsuDribbleParticipants());

@@ -22,8 +22,9 @@ public class ZoneBuildingFloor extends Zone {
 	public ZoneBuildingFloor() {
 	}
 
-	public ZoneBuildingFloor(ZoneBuilding zoneBuilding) {
-		super();
+	public ZoneBuildingFloor(Long zoneId, String zoneNameJa, String zoneNameEn, String zoneNameEs, ZoneType zoneType,
+			ZoneBuilding zoneBuilding) {
+		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.zoneBuilding = zoneBuilding;
 	}
 

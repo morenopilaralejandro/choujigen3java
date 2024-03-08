@@ -32,6 +32,12 @@ public class ItemHissatsuServiceImpl implements ItemHissatsuService {
 	@Override
 	public ItemHissatsu replace(ItemHissatsu newObj, Long id) {
 		return itemRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
 			oldObj.setHissatsuType(newObj.getHissatsuType());
 			return itemRepository.save(oldObj);
 		}).orElseGet(() -> {

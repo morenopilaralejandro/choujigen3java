@@ -32,6 +32,10 @@ public class ZoneLevelServiceImpl implements ZoneLevelService {
 	@Override
 	public ZoneLevel replace(ZoneLevel newObj, Long id) {
 		return zoneLevelRepository.findById(id).map(oldObj -> {
+			oldObj.setZoneNameJa(newObj.getZoneNameJa());
+			oldObj.setZoneNameEn(newObj.getZoneNameEn());
+			oldObj.setZoneNameEs(newObj.getZoneNameEs());
+			oldObj.setZoneType(newObj.getZoneType());
 			oldObj.setZoneInner(newObj.getZoneInner());
 			return zoneLevelRepository.save(oldObj);
 		}).orElseGet(() -> {

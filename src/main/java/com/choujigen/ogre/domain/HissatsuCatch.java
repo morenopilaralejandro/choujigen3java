@@ -31,9 +31,10 @@ public class HissatsuCatch extends ItemHissatsu {
 	public HissatsuCatch() {
 	}
 
-	public HissatsuCatch(Long hissatsuCatchPower, Long hissatsuCatchTp, Long hissatsuCatchParticipants,
-			CatchType catchType) {
-		super();
+	public HissatsuCatch(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, HissatsuType hissatsuType, Long hissatsuCatchPower,
+			Long hissatsuCatchTp, Long hissatsuCatchParticipants, CatchType catchType) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType, hissatsuType);
 		this.hissatsuCatchPower = hissatsuCatchPower;
 		this.hissatsuCatchTp = hissatsuCatchTp;
 		this.hissatsuCatchParticipants = hissatsuCatchParticipants;

@@ -32,6 +32,13 @@ public class HissatsuBlockServiceImpl implements HissatsuBlockService {
 	@Override
 	public HissatsuBlock replace(HissatsuBlock newObj, Long id) {
 		return hissatsuBlockRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
+			oldObj.setHissatsuType(newObj.getHissatsuType());
 			oldObj.setHissatsuBlockPower(newObj.getHissatsuBlockPower());
 			oldObj.setHissatsuBlockTp(newObj.getHissatsuBlockTp());
 			oldObj.setHissatsuBlockParticipants(newObj.getHissatsuBlockParticipants());

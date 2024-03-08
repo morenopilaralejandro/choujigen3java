@@ -22,8 +22,9 @@ public class ZoneOuter extends Zone {
 	public ZoneOuter() {
 	}
 
-	public ZoneOuter(Region region) {
-		super();
+	public ZoneOuter(Long zoneId, String zoneNameJa, String zoneNameEn, String zoneNameEs, ZoneType zoneType,
+			Region region) {
+		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.region = region;
 	}
 

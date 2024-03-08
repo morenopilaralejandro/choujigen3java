@@ -32,6 +32,13 @@ public class HissatsuCatchServiceImpl implements HissatsuCatchService {
 	@Override
 	public HissatsuCatch replace(HissatsuCatch newObj, Long id) {
 		return hissatsuCatchRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
+			oldObj.setHissatsuType(newObj.getHissatsuType());
 			oldObj.setHissatsuCatchPower(newObj.getHissatsuCatchPower());
 			oldObj.setHissatsuCatchTp(newObj.getHissatsuCatchTp());
 			oldObj.setHissatsuCatchParticipants(newObj.getHissatsuCatchParticipants());

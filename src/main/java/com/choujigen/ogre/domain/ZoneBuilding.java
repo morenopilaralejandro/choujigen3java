@@ -22,8 +22,9 @@ public class ZoneBuilding extends Zone {
 	public ZoneBuilding() {
 	}
 
-	public ZoneBuilding(ZoneLevel zoneLevel) {
-		super();
+	public ZoneBuilding(Long zoneId, String zoneNameJa, String zoneNameEn, String zoneNameEs, ZoneType zoneType,
+			ZoneLevel zoneLevel) {
+		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.zoneLevel = zoneLevel;
 	}
 

@@ -22,8 +22,9 @@ public class ZoneInner extends Zone {
 	public ZoneInner() {
 	}
 
-	public ZoneInner(ZoneOuter zoneOuter) {
-		super();
+	public ZoneInner(Long zoneId, String zoneNameJa, String zoneNameEn, String zoneNameEs, ZoneType zoneType,
+			ZoneOuter zoneOuter) {
+		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.zoneOuter = zoneOuter;
 	}
 

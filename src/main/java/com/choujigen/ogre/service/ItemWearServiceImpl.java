@@ -32,6 +32,12 @@ public class ItemWearServiceImpl implements ItemWearService {
 	@Override
 	public ItemWear replace(ItemWear newObj, Long id) {
 		return itemWearRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
 			oldObj.setItemWearHex(newObj.getItemWearHex());
 			return itemWearRepository.save(oldObj);
 		}).orElseGet(() -> {

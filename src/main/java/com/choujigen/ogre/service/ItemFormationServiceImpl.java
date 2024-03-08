@@ -32,6 +32,12 @@ public class ItemFormationServiceImpl implements ItemFormationService {
 	@Override
 	public ItemFormation replace(ItemFormation newObj, Long id) {
 		return itemFormationRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
 			oldObj.setFormationType(newObj.getFormationType());
 			oldObj.setFormationScheme(newObj.getFormationScheme());
 			oldObj.setOriginalVersion(newObj.getOriginalVersion());

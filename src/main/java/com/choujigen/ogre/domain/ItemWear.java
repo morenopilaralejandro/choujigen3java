@@ -20,8 +20,9 @@ public class ItemWear extends Item {
 	public ItemWear() {
 	}
 
-	public ItemWear(String itemWearHex) {
-		super();
+	public ItemWear(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, String itemWearHex) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType);
 		this.itemWearHex = itemWearHex;
 	}
 

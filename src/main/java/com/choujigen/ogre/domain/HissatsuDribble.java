@@ -28,9 +28,10 @@ public class HissatsuDribble extends ItemHissatsu {
 	public HissatsuDribble() {
 	}
 
-	public HissatsuDribble(Long hissatsuDribblePower, Long hissatsuDribbleTp, Long hissatsuDribbleParticipants,
-			Long hissatsuDribbleFoul) {
-		super();
+	public HissatsuDribble(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, HissatsuType hissatsuType, Long hissatsuDribblePower,
+			Long hissatsuDribbleTp, Long hissatsuDribbleParticipants, Long hissatsuDribbleFoul) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType, hissatsuType);
 		this.hissatsuDribblePower = hissatsuDribblePower;
 		this.hissatsuDribbleTp = hissatsuDribbleTp;
 		this.hissatsuDribbleParticipants = hissatsuDribbleParticipants;

@@ -39,9 +39,10 @@ public class ItemTactic extends Item {
 	public ItemTactic() {
 	}
 
-	public ItemTactic(Long itemTacticTtp, String itemTacticEffectJa, String itemTacticEffectEn,
-			String itemTacticEffectEs, TacticType tacticType, TacticSide tacticSide) {
-		super();
+	public ItemTactic(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, Long itemTacticTtp, String itemTacticEffectJa,
+			String itemTacticEffectEn, String itemTacticEffectEs, TacticType tacticType, TacticSide tacticSide) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType);
 		this.itemTacticTtp = itemTacticTtp;
 		this.itemTacticEffectJa = itemTacticEffectJa;
 		this.itemTacticEffectEn = itemTacticEffectEn;

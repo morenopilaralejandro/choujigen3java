@@ -32,6 +32,12 @@ public class ItemTacticServiceImpl implements ItemTacticService {
 	@Override
 	public ItemTactic replace(ItemTactic newObj, Long id) {
 		return itemTacticRepository.findById(id).map(oldObj -> {
+			oldObj.setItemNameJa(newObj.getItemNameJa());
+			oldObj.setItemNameEn(newObj.getItemNameEn());
+			oldObj.setItemNameEs(newObj.getItemNameEs());
+			oldObj.setItemPriceBuy(newObj.getItemPriceBuy());
+			oldObj.setItemPriceSell(newObj.getItemPriceSell());
+			oldObj.setItemType(newObj.getItemType());
 			oldObj.setItemTacticTtp(newObj.getItemTacticTtp());
 			oldObj.setItemTacticEffectJa(newObj.getItemTacticEffectJa());
 			oldObj.setItemTacticEffectEn(newObj.getItemTacticEffectEn());

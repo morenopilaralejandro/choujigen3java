@@ -22,8 +22,9 @@ public class ZoneLevel extends Zone {
 	public ZoneLevel() {
 	}
 
-	public ZoneLevel(ZoneInner zoneInner) {
-		super();
+	public ZoneLevel(Long zoneId, String zoneNameJa, String zoneNameEn, String zoneNameEs, ZoneType zoneType,
+			ZoneInner zoneInner) {
+		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.zoneInner = zoneInner;
 	}
 
