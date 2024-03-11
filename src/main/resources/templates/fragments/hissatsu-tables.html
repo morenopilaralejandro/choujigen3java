@@ -58,14 +58,14 @@
                 <th th:text="#{hissatsu.additionalPower}"></th>
             </tr>
             <tr th:each="shoot : ${shoots}">
-                <td style="text-align: center;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         attri-icon(
                             attri = ${shoot.getAttri().get(0)}
                         )}">
                     </span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         hissatsu-type-icon(
                             hissatsuType = ${shoot.getHissatsuType()}
@@ -106,14 +106,14 @@
                 <th th:text="#{hissatsu.additionalPower}"></th>
             </tr>
             <tr th:each="dribble : ${dribbles}">
-                <td style="text-align: center;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         attri-icon(
                             attri = ${dribble.getAttri().get(0)}
                         )}">
                     </span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         hissatsu-type-icon(
                             hissatsuType = ${dribble.getHissatsuType()}
@@ -150,14 +150,14 @@
                 <th th:text="#{hissatsu.additionalPower}"></th>
             </tr>
             <tr th:each="block : ${blocks}">
-                <td style="text-align: center;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         attri-icon(
                             attri = ${block.getAttri().get(0)}
                         )}">
                     </span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         hissatsu-type-icon(
                             hissatsuType = ${block.getHissatsuType()}
@@ -197,14 +197,14 @@
                 <th th:text="#{hissatsu.additionalPower}"></th>
             </tr>
             <tr th:each="catch : ${catches}">
-                <td style="text-align: center;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         attri-icon(
                             attri = ${catch.getAttri().get(0)}
                         )}">
                     </span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         hissatsu-type-icon(
                             hissatsuType = ${catch.getHissatsuType()}
@@ -234,7 +234,7 @@
                 <th th:text="#{hissatsu.effect}"></th>
             </tr>
             <tr th:each="skill : ${skills}">
-                <td style="text-align: center; vertical-align: middle;">
+                <td class="td-icon">
                     <span th:replace="~{fragments/game-icon.html :: 
                         hissatsu-type-icon(
                             hissatsuType = ${skill.getHissatsuType()}
@@ -255,7 +255,8 @@
         hissatsuTypeId, name, tp, basePower, maxPower, participants, foul, 
         isBlock, shootSpecialPropertyName, catchTypeName)" 
         class="table-responsive">
-        <table class="table table-bordered table-sm" style="max-width: 600px;">
+        <table class="table table-bordered table-sm table-hissatsu-single" 
+            style="max-width: 600px;">
             <tr class="black-th">
                 <th colspan=2 th:text="#{hissatsu.type}"></th>
                 <th th:text="#{hissatsu.name}"></th>
@@ -280,16 +281,17 @@
  
             </tr>
             <tr>
-                <td style="text-align: center;">
-                    <span th:text="${attri.getAttriNameJa()}"
-                        th:title="${attri.getNameByLang()}"
-                        class="attriIcon"
-                        th:classappend="${attri.getCssClass()}"></span>
+                <td class="td-icon">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        attri-icon(attri = ${attri})}">
+                    </span>
                 </td>
-                <td style="text-align: center;">
-                    <span th:text="${hissatsuType.getNameByLang()}"
-                        class="hissatsuTypeIcon"
-                        th:classappend="${hissatsuType.getCssClass()}"></span>
+                <td class="td-icon">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        hissatsu-type-icon(
+                            hissatsuType = ${hissatsuType}
+                        )}">
+                    </span>
                 </td>
                 <td th:text="${name}"></td>
                 <td th:text="${tp}"></td>

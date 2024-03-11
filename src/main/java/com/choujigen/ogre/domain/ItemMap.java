@@ -1,0 +1,64 @@
+package com.choujigen.ogre.domain;
+
+import java.util.Objects;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "item_map")
+@Inheritance(strategy = InheritanceType.JOINED)
+@PrimaryKeyJoinColumn(name = "item_map_id")
+public class ItemMap extends Item {
+	@ManyToOne
+	@JoinColumn(name = "zone_id", referencedColumnName = "zone_id")
+	private Zone zone;
+
+	public ItemMap() {
+	}
+
+	public ItemMap(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
+			Long itemPriceSell, ItemType itemType, Zone zone) {
+		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType);
+		this.zone = zone;
+	}
+
+	public Zone getZone() {
+		return zone;
+	}
+
+	public void setZone(Zone zone) {
+		this.zone = zone;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(zone);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemMap other = (ItemMap) obj;
+		return Objects.equals(zone, other.zone);
+	}
+
+	@Override
+	public String toString() {
+		return "ItemMap [zone=" + zone + "]";
+	}
+
+}

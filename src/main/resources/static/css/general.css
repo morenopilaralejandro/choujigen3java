@@ -130,6 +130,11 @@ div.toc {
 }
 
 /*attri-icon*/
+td.td-icon {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .attri-icon {
     font-size: 16px;
     color: white;
@@ -165,7 +170,8 @@ div.toc {
     padding: 2px;
 }
 
-table.table-hissatsu .hissatsu-type-icon {
+table.table-hissatsu .hissatsu-type-icon,
+table.table-hissatsu-single .hissatsu-type-icon {
     display: block;
     margin: auto;
 }
