@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -7,6 +8,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
@@ -19,6 +21,9 @@ public class ItemEquipment extends Item {
 	@ManyToOne
 	@JoinColumn(name = "equipment_type_id", referencedColumnName = "equipment_type_id")
 	private EquipmentType equipmentType;
+
+	@OneToMany(mappedBy = "itemEquipment")
+	private List<EquipmentStrengthensStat> equipmentStrengthensStat;
 
 	public ItemEquipment() {
 	}
@@ -55,6 +60,14 @@ public class ItemEquipment extends Item {
 			return false;
 		ItemEquipment other = (ItemEquipment) obj;
 		return Objects.equals(equipmentType, other.equipmentType);
+	}
+
+	public List<EquipmentStrengthensStat> getEquipmentStrengthensStat() {
+		return equipmentStrengthensStat;
+	}
+
+	public void setEquipmentStrengthensStat(List<EquipmentStrengthensStat> equipmentStrengthensStat) {
+		this.equipmentStrengthensStat = equipmentStrengthensStat;
 	}
 
 	@Override

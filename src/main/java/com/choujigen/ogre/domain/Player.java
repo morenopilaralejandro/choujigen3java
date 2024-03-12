@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -96,6 +97,9 @@ public class Player {
 	@ManyToOne
 	@JoinColumn(name = "original_version", referencedColumnName = "player_id")
 	private Player originalVersion;
+
+	@OneToMany(mappedBy = "player")
+	private List<PlayerLearnsHissatsu> playerLearnsHissatsu;
 
 	public Player() {
 	}
@@ -358,6 +362,14 @@ public class Player {
 
 	public void setOriginalVersion(Player originalVersion) {
 		this.originalVersion = originalVersion;
+	}
+
+	public List<PlayerLearnsHissatsu> getPlayerLearnsHissatsu() {
+		return playerLearnsHissatsu;
+	}
+
+	public void setPlayerLearnsHissatsu(List<PlayerLearnsHissatsu> playerLearnsHissatsu) {
+		this.playerLearnsHissatsu = playerLearnsHissatsu;
 	}
 
 	@Override

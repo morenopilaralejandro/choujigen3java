@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -13,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -35,6 +38,10 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name = "item_type_id", referencedColumnName = "item_type_id")
 	private ItemType itemType;
+
+	@ManyToMany
+	@JoinTable(name = "item_sold_at_stor", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "stor_id"))
+	private List<Stor> stors;
 
 	public Item() {
 	}
@@ -105,6 +112,14 @@ public class Item {
 
 	public void setItemType(ItemType itemType) {
 		this.itemType = itemType;
+	}
+
+	public List<Stor> getStors() {
+		return stors;
+	}
+
+	public void setStors(List<Stor> stors) {
+		this.stors = stors;
 	}
 
 	public String getNameByLang() {

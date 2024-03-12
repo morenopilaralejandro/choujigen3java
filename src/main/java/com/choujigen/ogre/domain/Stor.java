@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -24,6 +26,9 @@ public class Stor {
 	@ManyToOne
 	@JoinColumn(name = "zone_id", referencedColumnName = "zone_id")
 	private Zone zone;
+	
+	@ManyToMany(mappedBy = "stors")
+	private List<Item> items;
 
 	public Stor(Long storId, StorType storType, Zone zone) {
 		super();
