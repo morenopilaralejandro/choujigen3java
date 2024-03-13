@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -7,6 +8,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
@@ -27,6 +29,9 @@ public class ItemFormation extends Item {
 	@ManyToOne
 	@JoinColumn(name = "original_version", referencedColumnName = "item_formation_id")
 	private ItemFormation originalVersion;
+	
+	@OneToMany(mappedBy = "itemFormation")
+	private List<FormationOrganizedAsPositi> formationOrganizedAsPositi;
 
 	public ItemFormation() {
 	}
@@ -62,6 +67,14 @@ public class ItemFormation extends Item {
 
 	public void setOriginalVersion(ItemFormation originalVersion) {
 		this.originalVersion = originalVersion;
+	}
+
+	public List<FormationOrganizedAsPositi> getFormationOrganizedAsPositi() {
+		return formationOrganizedAsPositi;
+	}
+
+	public void setFormationOrganizedAsPositi(List<FormationOrganizedAsPositi> formationOrganizedAsPositi) {
+		this.formationOrganizedAsPositi = formationOrganizedAsPositi;
 	}
 
 	@Override

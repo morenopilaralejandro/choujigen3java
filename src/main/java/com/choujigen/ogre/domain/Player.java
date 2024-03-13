@@ -12,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -23,55 +25,38 @@ public class Player {
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long playerId;
 	@Column(name = "player_name_ja")
 	private String playerNameJa;
-
 	@Column(name = "player_name_hiragana")
 	private String playerNameHiragana;
-
 	@Column(name = "player_name_kanji")
 	private String playerNameKanji;
-
 	@Column(name = "player_name_romanji")
 	private String playerNameRomanji;
-
 	@Column(name = "player_name_en")
 	private String playerNameEn;
-
 	@Column(name = "player_name_en_full")
 	private String playerNameEnFull;
-
 	@Column(name = "player_initial_lv")
 	private String playerInitialLv;
-
 	@Column(name = "player_gp_99")
 	private Long playerGp99;
-
 	@Column(name = "player_tp_99")
 	private Long playerTp99;
-
 	@Column(name = "player_kick_99")
 	private Long playerKick99;
-
 	@Column(name = "player_body_99")
 	private Long playerBody99;
-
 	@Column(name = "player_control_99")
 	private Long playerControl99;
-
 	@Column(name = "player_guard_99")
 	private Long playerGuard99;
-
 	@Column(name = "player_speed_99")
 	private Long playerSpeed99;
-
 	@Column(name = "player_stamina_99")
 	private Long playerStamina99;
-
 	@Column(name = "player_guts_99")
 	private Long playerGuts99;
-
 	@Column(name = "player_freedom_99")
 	private Long playerFreedom99;
-
 	private List<Long> playerStats;
 
 	@ManyToOne
@@ -100,6 +85,29 @@ public class Player {
 
 	@OneToMany(mappedBy = "player")
 	private List<PlayerLearnsHissatsu> playerLearnsHissatsu;
+
+	@ManyToMany
+	@JoinTable(name = "player_has_recommended_slot_hissatsu", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "item_hissatsu_id"))
+	private List<ItemHissatsu> playerRecommendedHissatsu;
+
+	@ManyToMany
+	@JoinTable(name = "player_has_recommended_gear_equipment", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "item_equipment_id"))
+	private List<ItemEquipment> playerRecommendedEquipment;
+
+	@ManyToMany
+	@JoinTable(name = "player_has_recommended_routine_tm", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "training_method_id"))
+	private List<TrainingMethod> playerRecommendedRoutine;
+
+	@ManyToMany
+	@JoinTable(name = "player_decrypted_with_passwd", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "passwd_id"))
+	private List<Passwd> playerPasswd;
+	
+	@OneToMany(mappedBy = "player")
+	private List<PlayerIsPartOfTeam> teams;
+	
+	@ManyToMany
+	@JoinTable(name = "player_plays_during_story_team", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "team_id"))
+	private List<Team> storyTeam;
 
 	public Player() {
 	}
@@ -370,6 +378,55 @@ public class Player {
 
 	public void setPlayerLearnsHissatsu(List<PlayerLearnsHissatsu> playerLearnsHissatsu) {
 		this.playerLearnsHissatsu = playerLearnsHissatsu;
+	}
+
+	public List<ItemHissatsu> getPlayerRecommendedHissatsu() {
+		return playerRecommendedHissatsu;
+	}
+
+	public void setPlayerRecommendedHissatsu(List<ItemHissatsu> playerRecommendedHissatsu) {
+		this.playerRecommendedHissatsu = playerRecommendedHissatsu;
+	}
+
+	public List<ItemEquipment> getPlayerRecommendedEquipment() {
+		return playerRecommendedEquipment;
+	}
+
+	public void setPlayerRecommendedEquipment(List<ItemEquipment> playerRecommendedEquipment) {
+		this.playerRecommendedEquipment = playerRecommendedEquipment;
+	}
+
+	public List<TrainingMethod> getPlayerRecommendedRoutine() {
+		return playerRecommendedRoutine;
+	}
+
+	public void setPlayerRecommendedRoutine(List<TrainingMethod> playerRecommendedRoutine) {
+		this.playerRecommendedRoutine = playerRecommendedRoutine;
+	}
+
+	public List<Passwd> getPlayerPasswd() {
+		return playerPasswd;
+	}
+
+	public void setPlayerPasswd(List<Passwd> playerPasswd) {
+		this.playerPasswd = playerPasswd;
+	}
+	
+
+	public List<PlayerIsPartOfTeam> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<PlayerIsPartOfTeam> teams) {
+		this.teams = teams;
+	}
+
+	public List<Team> getStoryTeam() {
+		return storyTeam;
+	}
+
+	public void setStoryTeam(List<Team> storyTeam) {
+		this.storyTeam = storyTeam;
 	}
 
 	@Override

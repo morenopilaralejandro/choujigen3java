@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -35,6 +38,10 @@ public class ItemTactic extends Item {
 	@ManyToOne
 	@JoinColumn(name = "tactic_side_id", referencedColumnName = "tactic_side_id")
 	private TacticSide tacticSide;
+
+	@ManyToMany
+	@JoinTable(name = "tactic_executed_by_team", joinColumns = @JoinColumn(name = "item_tactic_id"), inverseJoinColumns = @JoinColumn(name = "team_id"))
+	private List<Team> teams;
 
 	public ItemTactic() {
 	}
@@ -97,6 +104,14 @@ public class ItemTactic extends Item {
 
 	public void setTacticSide(TacticSide tacticSide) {
 		this.tacticSide = tacticSide;
+	}
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
 
 	@Override
