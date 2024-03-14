@@ -17,6 +17,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "player")
@@ -57,6 +58,7 @@ public class Player {
 	private Long playerGuts99;
 	@Column(name = "player_freedom_99")
 	private Long playerFreedom99;
+	@Transient
 	private List<Long> playerStats;
 
 	@ManyToOne

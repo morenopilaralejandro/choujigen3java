@@ -400,5 +400,72 @@
             </li>
         </ul>
     </div>
+
+    <div class="table-responsive" 
+        th:fragment="hissatsu-player(playerLearnsHissatsu, shootArray, 
+        dribbleArray, blockArray, catchArray, skillArray)" >
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th colspan=2 th:text="#{hissatsu.type}"></th>
+                    <th th:text="#{hissatsu.name}"></th>
+                    <th th:text="#{hissatsu.tp}"></th>
+                    <th th:text="#{hissatsu.maxPower}"></th>
+                    <th th:text="#{player.learnLv}"></th>
+                </tr>
+            </thead>
+            <tbody th:each="plh, iStat : ${playerLearnsHissatsu}" 
+                th:with="auxHissatsu = ${plh.getItemHissatsu()}">
+                <th:block th:switch="${auxHissatsu.getHissatsuType().getHissatsuTypeId().intValue()}">
+                    <tr th:case="1" 
+                        th:with="shootHissatsu = ${shootArray[iStat.index]}">
+                        <td>
+                            <a th:text="${shootHissatsu.getNameByLang()}"
+                                th:href="@{/hissatsu/{id}(id=${shootHissatsu.getItemId()})}"></a>
+                        </td>
+                    </tr>
+                    <tr th:case="4" 
+                        th:with="catchHissatsu = ${catchArray[iStat.index]}">
+                        <td>
+                            <a th:text="${catchHissatsu.getNameByLang()}"
+                                th:href="@{/hissatsu/{id}(id=${catchHissatsu.getItemId()})}"></a>
+                        </td>
+                    </tr>
+                </th:block>
+
+ 
+            </tbody>
+
+<!--
+            <tr >
+                <td th:unless="" class="td-icon">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        attri-icon(
+                            attri = ${catch.getAttri().get(0)}
+                        )}">
+                    </span>
+                </td>
+                <td class="td-icon">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        hissatsu-type-icon(
+                            hissatsuType = ${catch.getHissatsuType()}
+                        )}">
+                    </span>
+                </td>
+                <td>
+                    <a th:text="${catch.getNameByLang()}"
+                        th:href="@{/hissatsu/{id}(id=${catch.getItemId()})}"></a>
+                </td>
+                <td th:text="${catch.getHissatsuCatchTp()}"></td>
+                <td th:text="${catch.getHissatsuCatchMaxPower()}"></td>
+                <td th:text="${catch.getCatchType().getNameByLang()}"></td>
+                <td th:text="${catch.getHissatsuEvolves().get(0).getGrowthType().getSymbolByLang()}"></td>
+                <td th:text="${catch.getHissatsuEvolves().get(0).getGrowthRate().getNameByLang()}"></td>
+                <td th:text="${catch.getHissatsuCatchPower()}"></td>
+                <td th:text="${catch.getHissatsuCatchAdditionalPower()}"></td>
+            </tr>
+-->
+        </table>
+    </div>
 </body>
 </html>

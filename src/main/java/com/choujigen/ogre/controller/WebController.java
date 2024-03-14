@@ -26,6 +26,8 @@ import com.choujigen.ogre.domain.HissatsuShoot;
 import com.choujigen.ogre.domain.HissatsuSkill;
 import com.choujigen.ogre.domain.HissatsuType;
 import com.choujigen.ogre.domain.ItemHissatsu;
+import com.choujigen.ogre.domain.Player;
+import com.choujigen.ogre.domain.PlayerLearnsHissatsu;
 import com.choujigen.ogre.domain.Positi;
 import com.choujigen.ogre.service.GrowthRateService;
 import com.choujigen.ogre.service.GrowthTypeService;
@@ -35,6 +37,7 @@ import com.choujigen.ogre.service.HissatsuDribbleService;
 import com.choujigen.ogre.service.HissatsuShootService;
 import com.choujigen.ogre.service.HissatsuSkillService;
 import com.choujigen.ogre.service.ItemHissatsuService;
+import com.choujigen.ogre.service.PlayerService;
 
 @Controller
 public class WebController {
@@ -62,6 +65,14 @@ public class WebController {
 	@Autowired
 	private HissatsuSkillService hissatsuSkillService;
 
+	@Autowired
+	private PlayerService playerService;
+
+	/*
+	 * @Autowired private TeamService teamService;
+	 * 
+	 * @Autowired private ItemTacticService itemTacticService;
+	 */
 	@RequestMapping(value = "/")
 	public String index(Model model) {
 		return "/index";
@@ -226,12 +237,11 @@ public class WebController {
 		List<Attri> restricAttriUser = itemHissatsu.getRestricAttriUser();
 		List<Attri> restricAttriHelper = itemHissatsu.getRestricAttriHelper();
 		List<ItemHissatsu> restricHissatsu = itemHissatsu.getRestricHissatsu();
-		if (restricGender.isEmpty() && restricBodyType.isEmpty() &&
-				restricPositi.isEmpty() && restricAttriUser.isEmpty() &&
-				restricAttriHelper.isEmpty() && restricHissatsu.isEmpty()) {
+		if (restricGender.isEmpty() && restricBodyType.isEmpty() && restricPositi.isEmpty()
+				&& restricAttriUser.isEmpty() && restricAttriHelper.isEmpty() && restricHissatsu.isEmpty()) {
 			showRestric = false;
 		}
-		
+
 		String anchor = null;
 		if (hissatsuTypeId == 5) {
 			anchor = "skills";
@@ -324,7 +334,7 @@ public class WebController {
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("anchor", anchor);
-		
+
 		model.addAttribute("itemHissatsu", itemHissatsu);
 		model.addAttribute("attri", attri);
 		model.addAttribute("hissatsuType", hissatsuType);
@@ -343,7 +353,7 @@ public class WebController {
 		model.addAttribute("growthRateName", growthRateName);
 		model.addAttribute("additionalPower", additionalPower);
 		model.addAttribute("numberOfUses", numberOfUses);
-		
+
 		model.addAttribute("showRestric", showRestric);
 		model.addAttribute("restricGender", restricGender);
 		model.addAttribute("restricBodyType", restricBodyType);
@@ -351,8 +361,61 @@ public class WebController {
 		model.addAttribute("restricAttriUser", restricAttriUser);
 		model.addAttribute("restricAttriHelper", restricAttriHelper);
 		model.addAttribute("restricHissatsu", restricHissatsu);
-		
+
 		model.addAttribute("inOtherLanguages", inOtherLanguages);
 		return "/hissatsu";
+	}
+
+	@RequestMapping(value = "/player/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String player(Model model, @PathVariable("id") Long id) {
+		Locale locale = LocaleContextHolder.getLocale();
+		List<String> inOtherLanguages = new ArrayList<String>();
+		Player player = playerService.one(id);
+
+		List<PlayerLearnsHissatsu> playerLearnsHissatsu = player.getPlayerLearnsHissatsu();
+		playerLearnsHissatsu.sort(Comparator.comparing(PlayerLearnsHissatsu::getLearnOrder));
+
+		int arrayLength = playerLearnsHissatsu.size();
+		ItemHissatsu auxHissatsu = null;
+
+		HissatsuShoot[] shootArray = new HissatsuShoot[arrayLength];
+		HissatsuDribble[] dribbleArray = new HissatsuDribble[arrayLength];
+		HissatsuBlock[] blockArray = new HissatsuBlock[arrayLength];
+		HissatsuCatch[] catchArray = new HissatsuCatch[arrayLength];
+		HissatsuSkill[] skillArray = new HissatsuSkill[arrayLength];
+
+		for (int i = 0; i < playerLearnsHissatsu.size(); i++) {
+			auxHissatsu = playerLearnsHissatsu.get(i).getItemHissatsu();
+			switch (auxHissatsu.getHissatsuType().getHissatsuTypeId().intValue()) {
+			case 1:
+				shootArray[i] = (HissatsuShoot) auxHissatsu;
+				break;
+			case 2:
+				dribbleArray[i] = (HissatsuDribble) auxHissatsu;
+				break;
+			case 3:
+				blockArray[i] = (HissatsuBlock) auxHissatsu;
+				break;
+			case 4:
+				catchArray[i] = (HissatsuCatch) auxHissatsu;
+				break;
+			case 5:
+				skillArray[i] = (HissatsuSkill) auxHissatsu;
+				break;
+			}
+
+		}
+
+		model.addAttribute("url", null);
+		model.addAttribute("currentLang", locale.getLanguage());
+		model.addAttribute("player", player);
+		model.addAttribute("playerLearnsHissatsu", playerLearnsHissatsu);
+		model.addAttribute("shootArray", shootArray);
+		model.addAttribute("dribbleArray", dribbleArray);
+		model.addAttribute("blockArray", blockArray);
+		model.addAttribute("catchArray", catchArray);
+		model.addAttribute("skillArray", skillArray);
+		model.addAttribute("inOtherLanguages", inOtherLanguages);
+		return "/player";
 	}
 }
