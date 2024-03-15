@@ -1,5 +1,6 @@
 package com.choujigen.ogre.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -103,10 +104,10 @@ public class Player {
 	@ManyToMany
 	@JoinTable(name = "player_decrypted_with_passwd", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "passwd_id"))
 	private List<Passwd> playerPasswd;
-	
+
 	@OneToMany(mappedBy = "player")
 	private List<PlayerIsPartOfTeam> teams;
-	
+
 	@ManyToMany
 	@JoinTable(name = "player_plays_during_story_team", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "team_id"))
 	private List<Team> storyTeam;
@@ -150,18 +151,26 @@ public class Player {
 		this.originalVersion = originalVersion;
 	}
 
+	public String getPlayerNameRomanjiCapitalize() {
+		return this.playerNameRomanji.substring(0, 1).toUpperCase() + this.playerNameRomanji.substring(1);
+	}
+
 	public String getNameByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
 		switch (locale.getLanguage()) {
 		case "ja":
 			return this.playerNameJa;
 		default:
-			return this.playerNameRomanji;
+			return getPlayerNameRomanjiCapitalize();
 		}
 	}
 
 	public void updatePlayerStats() {
-		this.playerStats.clear();
+		if (this.playerStats == null) {
+			this.playerStats = new ArrayList<Long>();
+		} else {
+			this.playerStats.clear();
+		}
 		this.playerStats.add(playerGp99);
 		this.playerStats.add(playerTp99);
 		this.playerStats.add(playerKick99);
@@ -413,7 +422,6 @@ public class Player {
 	public void setPlayerPasswd(List<Passwd> playerPasswd) {
 		this.playerPasswd = playerPasswd;
 	}
-	
 
 	public List<PlayerIsPartOfTeam> getTeams() {
 		return teams;

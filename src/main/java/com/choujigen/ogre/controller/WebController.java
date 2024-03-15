@@ -371,6 +371,7 @@ public class WebController {
 		Locale locale = LocaleContextHolder.getLocale();
 		List<String> inOtherLanguages = new ArrayList<String>();
 		Player player = playerService.one(id);
+		player.updatePlayerStats();
 
 		List<PlayerLearnsHissatsu> playerLearnsHissatsu = player.getPlayerLearnsHissatsu();
 		playerLearnsHissatsu.sort(Comparator.comparing(PlayerLearnsHissatsu::getLearnOrder));

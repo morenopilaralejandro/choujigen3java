@@ -21,6 +21,11 @@
     --gender-male-bg: #055cc5;
     --gender-female-color: #ff94a5;
     --gender-female-bg: #bd1831;
+
+    /*white shadow*/
+    --property-chain-color: #4a6bd6;
+    --property-long-color: #399431;
+    --property-block-color: #9c394a;
 }
 
 div.mainContainer {

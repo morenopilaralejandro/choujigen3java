@@ -40,6 +40,20 @@ public class ShootSpecialProperty {
 		this.shootSpecialPropertyNameEn = shootSpecialPropertyNameEn;
 		this.shootSpecialPropertyNameEs = shootSpecialPropertyNameEs;
 	}
+	
+	public String getCssClass() {
+		switch (this.shootSpecialPropertyId.intValue()) {
+		case 1:
+			return "chain";
+		case 2:
+			return "long";
+		case 3:
+			return "block";
+		default:
+			return "";
+		}
+	}
+
 
 	public String getOneLetterByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
