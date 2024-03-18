@@ -3,31 +3,99 @@
 <head>
 </head>
 <body>
-    <div th:fragment="player-table">
-        table
-        hi fw gouengi
-        ya gk endou
+    <div th:fragment="player-table(players)" class="table-responsive">
+        <table class="table table-bordered table-sm" style="max-width: 250px;"
+            th:unless="${players.isEmpty()}">
+            <tbody>
+                <tr th:each="player : ${players}">
+                    <td class="td-icon">
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            attri-icon(
+                                attri = ${player.getAttri()}
+                            )}">
+                        </span>
+                    </td>
+                    <td class="td-icon">
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            positi-icon(
+                                positi = ${player.getPositi()}
+                            )}">
+                        </span>
+                    </td>
+                    <td class="td-icon">
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            gender-icon(
+                                gender = ${player.getGender()}
+                            )}">
+                        </span>
+                    </td>
+                    <td>
+                        <a th:text="${player.getNameByLang()}"
+                            th:href="@{/player/{id}(id=${player.getPlayerId()})}"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p th:if="${players.isEmpty()}" 
+            th:text="#{general.noData}"></p>
     </div>
 
-    <ul th:fragment="player-detail(player)">
-        <th:block th:if="${currentLang = 'ja'}">
+    <ul th:fragment="player-detail(player, currentLang)" class="player-detail">
+        <th:block th:if="${currentLang} == 'ja'">
             <li>
-                <span th:text="#{player.name}"></span>
+                <span th:text="#{player.name}" class="font-weight-bold"></span>
                 <span th:text="${player.getNameByLang()}"></span>
             </li>    
             <li>
-                <span th:text="#{player.englishName}"></span>
+                <span th:text="#{player.englishName}" class="font-weight-bold"></span>
                 <span th:text="${player.getPlayerNameRomanjiCapitalize()}"></span>
             </li>     
-       
+        </th:block>
+        <th:block th:unless="${currentLang} == 'ja'">
+            <li>
+                <span th:text="#{player.name}" class="font-weight-bold"></span>
+                <span th:text="${player.getNameByLang()}"></span>
+            </li>    
+            <li>
+                <span th:text="#{player.japanseName}" class="font-weight-bold"></span>
+                <span th:text="${player.getPlayerNameJa()}"></span>
+            </li>     
         </th:block>
 
-font-weight-bold
+        <li>
+            <span th:text="#{player.element}" class="font-weight-bold"></span>
+            <span th:replace="~{fragments/game-icon.html :: 
+                attri-icon(
+                    attri = ${player.getAttri()}
+                )}">
+            </span>
+        </li>
+        <li>
+            <span th:text="#{player.position}" class="font-weight-bold"></span>
+            <span th:replace="~{fragments/game-icon.html :: 
+                positi-icon(
+                    positi = ${player.getPositi()}
+                )}">
+            </span>
+        </li>
+        <li>
+            <span th:text="#{player.gender}" class="font-weight-bold"></span>
+            <span th:replace="~{fragments/game-icon.html :: 
+                gender-icon(
+                    gender = ${player.getGender()}
+                )}">
+            </span>
+        </li>
+        <li>
+            <span th:text="#{player.bodyType}" class="font-weight-bold"></span>
+            <span th:text="${player.getBodyType().getNameByLang()}"></span>
+        </li>
 
-        name
-        jp name
-        attri
-        possi
+        <li th:unless="${player.getStoryTeam().isEmpty()}">
+            <span th:text="#{player.storyTeam}" class="font-weight-bold"></span>
+            <a th:text="${player.getStoryTeam().get(0).getNameByLang()}"
+                th:href="@{/team/{id}(id=${player.getStoryTeam().get(0).getTeamId()})}"></a>
+        </li>
     </ul>
 
     <div th:fragment="player-stats(playerStats)" class="table-responsive">
@@ -74,6 +142,16 @@ font-weight-bold
             </tr>
         </table>
     </div>
+
+    <ul th:fragment="player-teams(playerIsPartOfTeam)">
+        <li th:each="ppt : ${playerIsPartOfTeam}">
+            <a th:text="${ppt.getTeam().getNameByLang()}"
+                th:href="@{/team/{id}(id=${ppt.getTeam().getTeamId()})}"></a>
+        </li>
+        <li th:if="${playerIsPartOfTeam.isEmpty()}" 
+            th:text="#{general.noData}">
+        </li>
+    </ul>
 <!--
     learn hissatsu in the other file hissatsu-tables(hissatsu-player)
 -->

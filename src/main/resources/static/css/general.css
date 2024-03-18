@@ -22,7 +22,6 @@
     --gender-female-color: #ff94a5;
     --gender-female-bg: #bd1831;
 
-    /*white shadow*/
     --property-chain-color: #4a6bd6;
     --property-long-color: #399431;
     --property-block-color: #9c394a;
@@ -134,6 +133,15 @@ div.toc {
     padding-right: 32px;
 }
 
+/*player*/
+ul.player-detail li {
+    margin-bottom: 5px;
+}
+
+table.hissatsu-player .hissatsu-type-icon {
+    width: 50px;
+}
+
 /*attri-icon*/
 td.td-icon {
     text-align: center;
@@ -242,4 +250,21 @@ table.table-hissatsu-single .hissatsu-type-icon {
 
 .positi-icon.gk {
     background-color: var(--positi-gk-color);
+}
+
+/*sup-icon*/
+sup.sup-icon {
+    text-shadow: 0px 0px 2px black;
+}
+
+sup.sup-icon.chain {
+    color: var(--property-chain-color);
+}
+
+sup.sup-icon.long {
+    color: var(--property-long-color);
+}
+
+sup.sup-icon.block {
+    color: var(--property-block-color);
 }

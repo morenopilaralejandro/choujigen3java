@@ -29,43 +29,30 @@
                     <li>
                         <a href="#basic">1. <span th:text="#{hissatsu.basicInformation}"></span></a>
                     </li>
-
                     <li>
-                        <a href="#stats">2. <span th:text="#{hissatsu.restriction}"></span></a>
+                        <a href="#stats">2. <span th:text="#{player.stats}"></span></a>
                     </li>
                     <li>
-                        <a href="#hissatsu">3. <span th:text="#{hissatsu.comparison}"></span></a>
+                        <a href="#hissatsu">3. <span th:text="#{player.hissatsu}"></span></a>
                     </li>
                     <li>
-                        <a href="#friend">4. <span th:text="#{general.obtention}"></span></a>
+                        <a href="#friend">4. <span th:text="#{player.makeFriends}"></span></a>
                     </li>
                     <li>
-                        <a href="#teams">4. <span th:text="#{general.obtention}"></span></a>
+                        <a href="#teams">5. <span th:text="#{player.teams}"></span></a>
                     </li>
                 </ul>
             </div>
-<!--
+
             <section>
                 <h2 id="basic" th:text="#{hissatsu.basicInformation}"></h2>
-                <div th:replace="~{fragments/hissatsu-tables.html :: 
-                    hissatsu-single(
-                        itemHissatsu = ${itemHissatsu}, 
-                        attri = ${attri}, 
-                        hissatsuType = ${hissatsuType}, 
-                        hissatsuTypeId = ${hissatsuTypeId}, 
-                        name = ${name}, 
-                        tp = ${tp}, 
-                        basePower = ${basePower}, 
-                        maxPower = ${maxPower},
-                        participants = ${participants}, 
-                        foul = ${foul}, 
-                        isBlock = ${isBlock}, 
-                        shootSpecialPropertyName = ${shootSpecialPropertyName}, 
-                        catchTypeName = ${catchTypeName}
+                <ul th:replace="~{fragments/player-fragments.html :: 
+                    player-detail(
+                        player = ${player},
+                        currentLang = ${currentLang}
                     )}">
-                </div>
+                </ul>
             </section>
--->
 
             <section>
                 <h2 id="stats" th:text="#{player.stats}"></h2>
@@ -90,6 +77,19 @@
                 </div>
             </section>
 
+            <section>
+                <h2 id="friend" th:text="#{player.makeFriends}"></h2>
+                <p th:text="#{general.noData}"></p>
+            </section>
+
+            <section>
+                <h2 id="teams" th:text="#{player.teams}"></h2>
+                <ul th:replace="~{fragments/player-fragments.html :: 
+                    player-teams(
+                        playerIsPartOfTeam = ${player.getTeams()}
+                    )}">
+                </ul>
+            </section>
 
 <!--
 

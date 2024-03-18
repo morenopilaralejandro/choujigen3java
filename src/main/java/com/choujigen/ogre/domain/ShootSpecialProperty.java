@@ -54,7 +54,6 @@ public class ShootSpecialProperty {
 		}
 	}
 
-
 	public String getOneLetterByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
 		switch (locale.getLanguage()) {

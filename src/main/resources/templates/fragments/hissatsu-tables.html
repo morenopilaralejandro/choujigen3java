@@ -44,6 +44,7 @@
             </tbody>
         </table>
     </div>
+
     <div th:fragment="hissatsu-shoot(shoots)" class="table-responsive">
         <table class="table table-bordered table-sm table-hissatsu">
             <tr>
@@ -404,7 +405,7 @@
     <div class="table-responsive" 
         th:fragment="hissatsu-player(playerLearnsHissatsu, shootArray, 
         dribbleArray, blockArray, catchArray, skillArray)" >
-        <table class="table table-bordered table-sm" style="max-width:400px;">
+        <table class="table table-bordered table-sm hissatsu-player" style="max-width:400px;">
             <thead>
                 <tr class="black-th">
                     <th colspan=2 th:text="#{hissatsu.type}"></th>
@@ -437,9 +438,12 @@
                             <td>
                                 <a th:href="@{/hissatsu/{id}(id=${shoot.getItemId()})}">
                                     <span th:text="${shoot.getNameByLang()}"></span>
-                                    <sup th:unless="${shoot.getShootSpecialProperty().isEmpty()}"
-                                        th:text="${shoot.getShootSpecialProperty().get(0).getOneLetterByLang()}"></sup>
                                 </a>
+                                <sup th:replace="~{fragments/game-icon.html :: 
+                                    sup-shoot-icon(
+                                        shootSpecialProperty = ${shoot.getShootSpecialProperty()}
+                                    )}">
+                                </sup>
                             </td>
                             <td th:text="${shoot.getHissatsuShootTp()}"></td>
                             <td th:text="${shoot.getHissatsuShootMaxPower()}"></td>
@@ -488,9 +492,12 @@
                             <td>
                                 <a th:href="@{/hissatsu/{id}(id=${block.getItemId()})}">
                                     <span th:text="${block.getNameByLang()}"></span>
-                                    <sup th:if="${block.isHissatsuBlockIsBlock()}"
-                                        th:text="${block.getIsBlockLetterByLang()}"></sup>
                                 </a>
+                                <sup th:replace="~{fragments/game-icon.html :: 
+                                    sup-block-icon(
+                                        block = ${block}
+                                    )}">
+                                </sup>
                             </td>
                             <td th:text="${block.getHissatsuBlockTp()}"></td>
                             <td th:text="${block.getHissatsuBlockMaxPower()}"></td>
@@ -529,10 +536,11 @@
                                     )}">
                                 </span>
                             </td>
-                            <td colspan="4">
+                            <td colspan="3">
                                 <a th:href="@{/hissatsu/{id}(id=${skill.getItemId()})}"
                                     th:text="${skill.getNameByLang()}"></a>
                             </td>
+                            <td th:text="${plh.getLearnLv()}"></td>
                         </tr>
                     </th:block>
                 </th:block>

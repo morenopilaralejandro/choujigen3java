@@ -115,7 +115,11 @@
 
             <section>
                 <h2 id="learners" th:text="#{hissatsu.learners}"></h2>
-                <p th:text="#{general.noData}"></p>
+                <div th:replace="~{fragments/player-fragments.html :: 
+                    player-table(
+                        players = ${learners}
+                    )}">
+                </div>
             </section>
 
             <section>

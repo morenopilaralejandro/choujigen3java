@@ -53,7 +53,7 @@ public class HissatsuBlock extends ItemHissatsu {
 			return "B";
 		}
 	}
-
+	
 	public Long getHissatsuBlockAdditionalPower() {
 		List<GrowthTypeAchieveGrowthRate> achieveList = getHissatsuEvolves().get(0).getGrowthType()
 				.getGrowthTypeAchieveGrowthRate();

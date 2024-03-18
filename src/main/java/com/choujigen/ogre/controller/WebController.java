@@ -251,6 +251,11 @@ public class WebController {
 			anchor = hissatsuTypeNameEn + "-" + hissatsuTypeAttriNameEn;
 			anchor = anchor.toLowerCase();
 		}
+		
+		List<Player> learners = new ArrayList<Player>();
+		for (PlayerLearnsHissatsu plh : itemHissatsu.getPlayerLearnsHissatsu()) {
+			learners.add(plh.getPlayer());
+		}
 
 		Attri attri = null;
 		HissatsuType hissatsuType = itemHissatsu.getHissatsuType();
@@ -361,7 +366,9 @@ public class WebController {
 		model.addAttribute("restricAttriUser", restricAttriUser);
 		model.addAttribute("restricAttriHelper", restricAttriHelper);
 		model.addAttribute("restricHissatsu", restricHissatsu);
-
+		
+		model.addAttribute("learners", learners);
+		
 		model.addAttribute("inOtherLanguages", inOtherLanguages);
 		return "/hissatsu";
 	}
@@ -406,7 +413,7 @@ public class WebController {
 			}
 
 		}
-
+		
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("player", player);

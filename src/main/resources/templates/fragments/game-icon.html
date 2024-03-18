@@ -28,5 +28,19 @@
         class="positi-icon"
         th:classappend="${positi.getCssClass()}">
     </span>
+
+    <sup th:fragment="sup-shoot-icon(shootSpecialProperty)"
+        th:unless="${shootSpecialProperty.isEmpty()}"
+        th:text="${shootSpecialProperty.get(0).getOneLetterByLang()}"
+        class="sup-icon"
+        th:classappend="${shootSpecialProperty.get(0).getCssClass()}">
+    </sup>
+
+    <sup th:fragment="sup-block-icon(block)"
+        th:if="${block.isHissatsuBlockIsBlock()}"
+        th:text="${block.getIsBlockLetterByLang()}"
+        class="sup-icon"
+        th:classappend="block">
+    </sup>
 </body>
 </html>

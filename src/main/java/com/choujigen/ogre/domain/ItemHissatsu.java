@@ -56,6 +56,9 @@ public class ItemHissatsu extends Item {
 	@ManyToMany
 	@JoinTable(name = "hissatsu_evokes_attri", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "attri_id"))
 	private List<Attri> attri;
+	
+	@OneToMany(mappedBy = "itemHissatsu")
+	private List<PlayerLearnsHissatsu> playerLearnsHissatsu;
 
 	public ItemHissatsu() {
 	}
@@ -144,6 +147,14 @@ public class ItemHissatsu extends Item {
 
 	public void setAttri(List<Attri> attri) {
 		this.attri = attri;
+	}
+
+	public List<PlayerLearnsHissatsu> getPlayerLearnsHissatsu() {
+		return playerLearnsHissatsu;
+	}
+
+	public void setPlayerLearnsHissatsu(List<PlayerLearnsHissatsu> playerLearnsHissatsu) {
+		this.playerLearnsHissatsu = playerLearnsHissatsu;
 	}
 
 	@Override
