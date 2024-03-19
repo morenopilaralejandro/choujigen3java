@@ -382,6 +382,8 @@ public class WebController {
 
 		List<PlayerLearnsHissatsu> playerLearnsHissatsu = player.getPlayerLearnsHissatsu();
 		playerLearnsHissatsu.sort(Comparator.comparing(PlayerLearnsHissatsu::getLearnOrder));
+		
+		List<Player> versions = new ArrayList<Player>();
 
 		int arrayLength = playerLearnsHissatsu.size();
 		ItemHissatsu auxHissatsu = null;
@@ -418,6 +420,7 @@ public class WebController {
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("player", player);
 		model.addAttribute("playerLearnsHissatsu", playerLearnsHissatsu);
+		model.addAttribute("versions", versions);
 		model.addAttribute("shootArray", shootArray);
 		model.addAttribute("dribbleArray", dribbleArray);
 		model.addAttribute("blockArray", blockArray);

@@ -3,6 +3,14 @@
 <head>
 </head>
 <body>
+    <a th:fragment="player-name(player)"
+        th:href="@{/player/{id}(id=${player.getPlayerId()})}">
+        <span th:text="${player.getNameByLang()}"></span>
+        <sup th:if="${player.getOriginalVersion()} != null"
+            th:text="2">
+        </sup>  
+    </a>
+
     <div th:fragment="player-table(players)" class="table-responsive">
         <table class="table table-bordered table-sm" style="max-width: 250px;"
             th:unless="${players.isEmpty()}">
@@ -30,8 +38,9 @@
                         </span>
                     </td>
                     <td>
-                        <a th:text="${player.getNameByLang()}"
-                            th:href="@{/player/{id}(id=${player.getPlayerId()})}"></a>
+                        <a th:replace="~{fragments/player-fragments.html :: 
+                            player-name(player = ${player})}">                 
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -147,9 +156,6 @@
         <li th:each="ppt : ${playerIsPartOfTeam}">
             <a th:text="${ppt.getTeam().getNameByLang()}"
                 th:href="@{/team/{id}(id=${ppt.getTeam().getTeamId()})}"></a>
-        </li>
-        <li th:if="${playerIsPartOfTeam.isEmpty()}" 
-            th:text="#{general.noData}">
         </li>
     </ul>
 <!--

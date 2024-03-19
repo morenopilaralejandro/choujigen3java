@@ -9,6 +9,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -85,6 +86,9 @@ public class Player {
 	@ManyToOne
 	@JoinColumn(name = "original_version", referencedColumnName = "player_id")
 	private Player originalVersion;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "originalVersion")
+	private List<Player> altVersion;
 
 	@OneToMany(mappedBy = "player")
 	private List<PlayerLearnsHissatsu> playerLearnsHissatsu;
@@ -381,6 +385,14 @@ public class Player {
 
 	public void setOriginalVersion(Player originalVersion) {
 		this.originalVersion = originalVersion;
+	}
+
+	public List<Player> getAltVersion() {
+		return altVersion;
+	}
+
+	public void setAltVersion(List<Player> altVersion) {
+		this.altVersion = altVersion;
 	}
 
 	public List<PlayerLearnsHissatsu> getPlayerLearnsHissatsu() {

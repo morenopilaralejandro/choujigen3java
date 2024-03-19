@@ -22,7 +22,13 @@
         <br style="clear: both;">
 
         <div class="mainContainer">
-            <h1 th:text="${player.getNameByLang()}"></h1>
+            <h1>
+                <span th:text="${player.getNameByLang()}"></span>
+                <sup th:if="${player.getOriginalVersion()} != null"
+                    th:text="2">
+                </sup>  
+            </h1>
+
             <div class="toc">
                 <span class="toc-title" th:text="#{toc.title}"></span>
                 <ul class="toc-list">
@@ -84,7 +90,11 @@
 
             <section>
                 <h2 id="teams" th:text="#{player.teams}"></h2>
-                <ul th:replace="~{fragments/player-fragments.html :: 
+                <p th:if="${player.teams.isEmpty()}" 
+                    th:text="#{general.noData}">
+                </p>
+                <ul th:unless="${player.teams.isEmpty()"
+                    th:replace="~{fragments/player-fragments.html :: 
                     player-teams(
                         playerIsPartOfTeam = ${player.getTeams()}
                     )}">
