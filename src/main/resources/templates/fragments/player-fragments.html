@@ -49,7 +49,9 @@
             th:text="#{general.noData}"></p>
     </div>
 
-    <ul th:fragment="player-detail(player, currentLang)" class="player-detail">
+    <ul th:fragment="player-detail(player, versions, currentLang)" 
+        class="player-detail">
+        <!-- name -->
         <th:block th:if="${currentLang} == 'ja'">
             <li>
                 <span th:text="#{player.name}" class="font-weight-bold"></span>
@@ -70,7 +72,7 @@
                 <span th:text="${player.getPlayerNameJa()}"></span>
             </li>     
         </th:block>
-
+        <!-- attributes -->
         <li>
             <span th:text="#{player.element}" class="font-weight-bold"></span>
             <span th:replace="~{fragments/game-icon.html :: 
@@ -99,11 +101,22 @@
             <span th:text="#{player.bodyType}" class="font-weight-bold"></span>
             <span th:text="${player.getBodyType().getNameByLang()}"></span>
         </li>
-
+        <!-- story-team -->
         <li th:unless="${player.getStoryTeam().isEmpty()}">
             <span th:text="#{player.storyTeam}" class="font-weight-bold"></span>
             <a th:text="${player.getStoryTeam().get(0).getNameByLang()}"
                 th:href="@{/team/{id}(id=${player.getStoryTeam().get(0).getTeamId()})}"></a>
+        </li>
+        <!-- versions -->
+        <li th:unless="${versions.isEmpty()}">
+            <span th:text="#{player.versions}" class="font-weight-bold"></span>
+            <ul>
+                <li th:each="p : ${versions}">
+                    <a th:replace="~{fragments/player-fragments.html :: 
+                        player-name(player = ${p})}">                 
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 

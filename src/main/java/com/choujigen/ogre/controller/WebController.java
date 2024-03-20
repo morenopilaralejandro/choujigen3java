@@ -29,6 +29,7 @@ import com.choujigen.ogre.domain.ItemHissatsu;
 import com.choujigen.ogre.domain.Player;
 import com.choujigen.ogre.domain.PlayerLearnsHissatsu;
 import com.choujigen.ogre.domain.Positi;
+import com.choujigen.ogre.domain.Team;
 import com.choujigen.ogre.service.GrowthRateService;
 import com.choujigen.ogre.service.GrowthTypeService;
 import com.choujigen.ogre.service.HissatsuBlockService;
@@ -38,6 +39,7 @@ import com.choujigen.ogre.service.HissatsuShootService;
 import com.choujigen.ogre.service.HissatsuSkillService;
 import com.choujigen.ogre.service.ItemHissatsuService;
 import com.choujigen.ogre.service.PlayerService;
+import com.choujigen.ogre.service.TeamService;
 
 @Controller
 public class WebController {
@@ -67,9 +69,12 @@ public class WebController {
 
 	@Autowired
 	private PlayerService playerService;
+	
+	@Autowired 
+	private TeamService teamService;
 
 	/*
-	 * @Autowired private TeamService teamService;
+	 * 
 	 * 
 	 * @Autowired private ItemTacticService itemTacticService;
 	 */
@@ -80,8 +85,10 @@ public class WebController {
 
 	@RequestMapping(value = "/hissatsu-list")
 	public String hissatsuList(Model model) {
+		/* declare */
+		/* general */
 		Locale locale = LocaleContextHolder.getLocale();
-
+		/* table */
 		List<GrowthType> growthTypeAll = growthTypeService.all();
 		List<GrowthRate> growthRateAll = growthRateService.all();
 
@@ -111,6 +118,8 @@ public class WebController {
 		List<HissatsuCatch> catchFire = new ArrayList<HissatsuCatch>();
 		List<HissatsuCatch> catchEarth = new ArrayList<HissatsuCatch>();
 
+		/* do */
+		/* table */
 		for (HissatsuShoot h : shootAll) {
 			switch (h.getAttri().get(0).getAttriId().intValue()) {
 			case 1:
@@ -199,8 +208,11 @@ public class WebController {
 		catchFire.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
 		catchEarth.sort(Comparator.comparing(HissatsuCatch::getHissatsuCatchMaxPower));
 
+		/* model-add */
+		/* general */
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
+		/* table */
 		model.addAttribute("growthTypeAll", growthTypeAll);
 		model.addAttribute("growthRateAll", growthRateAll);
 		model.addAttribute("shootWind", shootWind);
@@ -225,38 +237,16 @@ public class WebController {
 
 	@RequestMapping(value = "/hissatsu/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String hissatsu(Model model, @PathVariable("id") Long id) {
+		/* declare */
+		/* general */
 		Locale locale = LocaleContextHolder.getLocale();
-
 		ItemHissatsu itemHissatsu = itemHissatsuService.one(id);
 		int hissatsuTypeId = itemHissatsu.getHissatsuType().getHissatsuTypeId().intValue();
-
-		boolean showRestric = true;
-		List<Gender> restricGender = itemHissatsu.getRestricGender();
-		List<BodyType> restricBodyType = itemHissatsu.getRestricBodyType();
-		List<Positi> restricPositi = itemHissatsu.getRestricPositi();
-		List<Attri> restricAttriUser = itemHissatsu.getRestricAttriUser();
-		List<Attri> restricAttriHelper = itemHissatsu.getRestricAttriHelper();
-		List<ItemHissatsu> restricHissatsu = itemHissatsu.getRestricHissatsu();
-		if (restricGender.isEmpty() && restricBodyType.isEmpty() && restricPositi.isEmpty()
-				&& restricAttriUser.isEmpty() && restricAttriHelper.isEmpty() && restricHissatsu.isEmpty()) {
-			showRestric = false;
-		}
-
-		String anchor = null;
-		if (hissatsuTypeId == 5) {
-			anchor = "skills";
-		} else {
-			String hissatsuTypeNameEn = itemHissatsu.getHissatsuType().getHissatsuTypeNameEn();
-			String hissatsuTypeAttriNameEn = itemHissatsu.getAttri().get(0).getAttriNameEn();
-			anchor = hissatsuTypeNameEn + "-" + hissatsuTypeAttriNameEn;
-			anchor = anchor.toLowerCase();
-		}
-		
-		List<Player> learners = new ArrayList<Player>();
-		for (PlayerLearnsHissatsu plh : itemHissatsu.getPlayerLearnsHissatsu()) {
-			learners.add(plh.getPlayer());
-		}
-
+		List<String> inOtherLanguages = new ArrayList<String>();
+		inOtherLanguages.add(itemHissatsu.getItemNameEn());
+		inOtherLanguages.add(itemHissatsu.getItemNameJa());
+		inOtherLanguages.add(itemHissatsu.getItemNameEs());
+		/* basic */
 		Attri attri = null;
 		HissatsuType hissatsuType = itemHissatsu.getHissatsuType();
 		String name = itemHissatsu.getNameByLang();
@@ -273,11 +263,21 @@ public class WebController {
 		String growthRateName = null;
 		int additionalPower = 0;
 		int numberOfUses = 0;
-		List<String> inOtherLanguages = new ArrayList<String>();
-		inOtherLanguages.add(itemHissatsu.getItemNameEn());
-		inOtherLanguages.add(itemHissatsu.getItemNameJa());
-		inOtherLanguages.add(itemHissatsu.getItemNameEs());
+		/* restrictions */
+		boolean showRestric = true;
+		List<Gender> restricGender = itemHissatsu.getRestricGender();
+		List<BodyType> restricBodyType = itemHissatsu.getRestricBodyType();
+		List<Positi> restricPositi = itemHissatsu.getRestricPositi();
+		List<Attri> restricAttriUser = itemHissatsu.getRestricAttriUser();
+		List<Attri> restricAttriHelper = itemHissatsu.getRestricAttriHelper();
+		List<ItemHissatsu> restricHissatsu = itemHissatsu.getRestricHissatsu();
+		/* comparison */
+		String anchor = null;
+		/* learners */
+		List<Player> learners = new ArrayList<Player>();
 
+		/* do */
+		/* basic */
 		switch (hissatsuTypeId) {
 		case 1:
 			HissatsuShoot hissatsuShoot = hissatsuShootService.one(id);
@@ -335,11 +335,31 @@ public class WebController {
 				}
 			}
 		}
+		/* restrictions */
+		if (restricGender.isEmpty() && restricBodyType.isEmpty() && restricPositi.isEmpty()
+				&& restricAttriUser.isEmpty() && restricAttriHelper.isEmpty() && restricHissatsu.isEmpty()) {
+			showRestric = false;
+		}
+		/* comparison */
+		if (hissatsuTypeId == 5) {
+			anchor = "skills";
+		} else {
+			String hissatsuTypeNameEn = itemHissatsu.getHissatsuType().getHissatsuTypeNameEn();
+			String hissatsuTypeAttriNameEn = itemHissatsu.getAttri().get(0).getAttriNameEn();
+			anchor = hissatsuTypeNameEn + "-" + hissatsuTypeAttriNameEn;
+			anchor = anchor.toLowerCase();
+		}
+		/* learners */
+		for (PlayerLearnsHissatsu plh : itemHissatsu.getPlayerLearnsHissatsu()) {
+			learners.add(plh.getPlayer());
+		}
 
+		/* model-add */
+		/* general */
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
-		model.addAttribute("anchor", anchor);
-
+		model.addAttribute("inOtherLanguages", inOtherLanguages);
+		/* basic */
 		model.addAttribute("itemHissatsu", itemHissatsu);
 		model.addAttribute("attri", attri);
 		model.addAttribute("hissatsuType", hissatsuType);
@@ -358,7 +378,7 @@ public class WebController {
 		model.addAttribute("growthRateName", growthRateName);
 		model.addAttribute("additionalPower", additionalPower);
 		model.addAttribute("numberOfUses", numberOfUses);
-
+		/* restrictions */
 		model.addAttribute("showRestric", showRestric);
 		model.addAttribute("restricGender", restricGender);
 		model.addAttribute("restricBodyType", restricBodyType);
@@ -366,34 +386,51 @@ public class WebController {
 		model.addAttribute("restricAttriUser", restricAttriUser);
 		model.addAttribute("restricAttriHelper", restricAttriHelper);
 		model.addAttribute("restricHissatsu", restricHissatsu);
-		
+		/* comparison */
+		model.addAttribute("anchor", anchor);
+		/* learners */
 		model.addAttribute("learners", learners);
-		
-		model.addAttribute("inOtherLanguages", inOtherLanguages);
 		return "/hissatsu";
 	}
 
 	@RequestMapping(value = "/player/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String player(Model model, @PathVariable("id") Long id) {
+		/* declare */
+		/* general */
 		Locale locale = LocaleContextHolder.getLocale();
 		List<String> inOtherLanguages = new ArrayList<String>();
 		Player player = playerService.one(id);
 		player.updatePlayerStats();
-
+		/* versions */
+		List<Player> versions = new ArrayList<Player>();
+		/* hissatsu */
 		List<PlayerLearnsHissatsu> playerLearnsHissatsu = player.getPlayerLearnsHissatsu();
 		playerLearnsHissatsu.sort(Comparator.comparing(PlayerLearnsHissatsu::getLearnOrder));
-		
-		List<Player> versions = new ArrayList<Player>();
-
 		int arrayLength = playerLearnsHissatsu.size();
 		ItemHissatsu auxHissatsu = null;
-
 		HissatsuShoot[] shootArray = new HissatsuShoot[arrayLength];
 		HissatsuDribble[] dribbleArray = new HissatsuDribble[arrayLength];
 		HissatsuBlock[] blockArray = new HissatsuBlock[arrayLength];
 		HissatsuCatch[] catchArray = new HissatsuCatch[arrayLength];
 		HissatsuSkill[] skillArray = new HissatsuSkill[arrayLength];
 
+		/* do */
+		/* versions */
+		if (player.getOriginalVersion() == null) {
+			if (!player.getAltVersion().isEmpty()) {
+				versions = player.getAltVersion();
+			}
+		} else {
+			/* exclude current player */
+			versions.add(player.getOriginalVersion());
+			for (Player p : player.getOriginalVersion().getAltVersion()) {
+				if (p.getPlayerId() != player.getPlayerId()) {
+					versions.add(p);
+				}
+			}
+		}
+
+		/* hissatsu */
 		for (int i = 0; i < playerLearnsHissatsu.size(); i++) {
 			auxHissatsu = playerLearnsHissatsu.get(i).getItemHissatsu();
 			switch (auxHissatsu.getHissatsuType().getHissatsuTypeId().intValue()) {
@@ -415,18 +452,69 @@ public class WebController {
 			}
 
 		}
-		
+
+		/* model-add */
+		/* general */
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
+		model.addAttribute("inOtherLanguages", inOtherLanguages);
 		model.addAttribute("player", player);
-		model.addAttribute("playerLearnsHissatsu", playerLearnsHissatsu);
+		/* versions */
 		model.addAttribute("versions", versions);
+		/* hissatsu */
+		model.addAttribute("playerLearnsHissatsu", playerLearnsHissatsu);
 		model.addAttribute("shootArray", shootArray);
 		model.addAttribute("dribbleArray", dribbleArray);
 		model.addAttribute("blockArray", blockArray);
 		model.addAttribute("catchArray", catchArray);
 		model.addAttribute("skillArray", skillArray);
-		model.addAttribute("inOtherLanguages", inOtherLanguages);
 		return "/player";
+	}
+	
+	@RequestMapping(value = "/team-list")
+	public String teamList(Model model) {
+		/* declare */
+		/* general */
+		Locale locale = LocaleContextHolder.getLocale();
+		List<Team> teams = teamService.all();
+		/* list */
+		
+		/* do */
+		/* general */
+		/* list */
+		
+		
+		/* model-add */
+		/* general */
+		model.addAttribute("url", null);
+		model.addAttribute("currentLang", locale.getLanguage());
+		/* list */
+
+		return "/team-list";
+	}
+	
+	@RequestMapping(value = "/team/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String team(Model model, @PathVariable("id") Long id) {
+		/* declare */
+		/* general */
+		Locale locale = LocaleContextHolder.getLocale();
+		List<String> inOtherLanguages = new ArrayList<String>();
+		/* tactics */
+		/* players */
+		
+		/* do */
+		/* tactics */
+		/* players */
+		
+		
+		/* model-add */
+		/* general */
+		model.addAttribute("url", null);
+		model.addAttribute("currentLang", locale.getLanguage());
+		model.addAttribute("inOtherLanguages", inOtherLanguages);
+		/* tactics */
+		/* players */
+
+		return "/team";
 	}
 }
