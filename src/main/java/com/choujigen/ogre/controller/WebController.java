@@ -26,6 +26,7 @@ import com.choujigen.ogre.domain.HissatsuShoot;
 import com.choujigen.ogre.domain.HissatsuSkill;
 import com.choujigen.ogre.domain.HissatsuType;
 import com.choujigen.ogre.domain.ItemHissatsu;
+import com.choujigen.ogre.domain.ItemTactic;
 import com.choujigen.ogre.domain.Player;
 import com.choujigen.ogre.domain.PlayerLearnsHissatsu;
 import com.choujigen.ogre.domain.Positi;
@@ -38,6 +39,7 @@ import com.choujigen.ogre.service.HissatsuDribbleService;
 import com.choujigen.ogre.service.HissatsuShootService;
 import com.choujigen.ogre.service.HissatsuSkillService;
 import com.choujigen.ogre.service.ItemHissatsuService;
+import com.choujigen.ogre.service.ItemTacticService;
 import com.choujigen.ogre.service.PlayerService;
 import com.choujigen.ogre.service.TeamService;
 
@@ -69,15 +71,13 @@ public class WebController {
 
 	@Autowired
 	private PlayerService playerService;
-	
-	@Autowired 
+
+	@Autowired
 	private TeamService teamService;
 
-	/*
-	 * 
-	 * 
-	 * @Autowired private ItemTacticService itemTacticService;
-	 */
+	@Autowired
+	private ItemTacticService itemTacticService;
+
 	@RequestMapping(value = "/")
 	public String index(Model model) {
 		return "/index";
@@ -240,11 +240,17 @@ public class WebController {
 		/* declare */
 		/* general */
 		Locale locale = LocaleContextHolder.getLocale();
-		ItemHissatsu itemHissatsu = itemHissatsuService.one(id);
+		ItemHissatsu itemHissatsu = new ItemHissatsu();
+		try {
+			itemHissatsu = itemHissatsuService.one(id);
+		} catch (Exception e) {
+			return hissatsuList(model);
+		}
+
 		int hissatsuTypeId = itemHissatsu.getHissatsuType().getHissatsuTypeId().intValue();
 		List<String> inOtherLanguages = new ArrayList<String>();
-		inOtherLanguages.add(itemHissatsu.getItemNameEn());
 		inOtherLanguages.add(itemHissatsu.getItemNameJa());
+		inOtherLanguages.add(itemHissatsu.getItemNameEn());
 		inOtherLanguages.add(itemHissatsu.getItemNameEs());
 		/* basic */
 		Attri attri = null;
@@ -470,7 +476,55 @@ public class WebController {
 		model.addAttribute("skillArray", skillArray);
 		return "/player";
 	}
-	
+
+	@RequestMapping(value = "/tactics-list")
+	public String tacticsList(Model model) {
+		/* declare */
+		/* general */
+		Locale locale = LocaleContextHolder.getLocale();
+		List<ItemTactic> itemTacticAll = itemTacticService.all();
+
+		/* do */
+
+		/* model-add */
+		/* general */
+		model.addAttribute("url", null);
+		model.addAttribute("currentLang", locale.getLanguage());
+		model.addAttribute("itemTacticAll", itemTacticAll);
+		return "/tactics-list";
+	}
+
+	@RequestMapping(value = "/tactics/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String tactics(Model model, @PathVariable("id") Long id) {
+		/* declare */
+		/* general */
+		Locale locale = LocaleContextHolder.getLocale();
+		ItemTactic itemTactic = new ItemTactic();
+		try {
+			itemTactic = itemTacticService.one(id);
+		} catch (Exception e) {
+			return tacticsList(model);
+		}
+		List<String> inOtherLanguages = new ArrayList<String>();
+		inOtherLanguages.add(itemTactic.getItemNameJa());
+		inOtherLanguages.add(itemTactic.getItemNameEn());
+		inOtherLanguages.add(itemTactic.getItemNameEs());
+
+		/* do */
+
+		/* model-add */
+		/* general */
+		model.addAttribute("url", null);
+		model.addAttribute("currentLang", locale.getLanguage());
+		model.addAttribute("inOtherLanguages", inOtherLanguages);
+		model.addAttribute("itemTactic", itemTactic);
+		model.addAttribute("effect", itemTactic.getEffectByLang());
+		model.addAttribute("teams", itemTactic.getTeams());
+
+		return "/tactics";
+	}
+
+	// TODO
 	@RequestMapping(value = "/team-list")
 	public String teamList(Model model) {
 		/* declare */
@@ -478,12 +532,11 @@ public class WebController {
 		Locale locale = LocaleContextHolder.getLocale();
 		List<Team> teams = teamService.all();
 		/* list */
-		
+
 		/* do */
 		/* general */
 		/* list */
-		
-		
+
 		/* model-add */
 		/* general */
 		model.addAttribute("url", null);
@@ -492,21 +545,31 @@ public class WebController {
 
 		return "/team-list";
 	}
-	
+
+	// TODO
 	@RequestMapping(value = "/team/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String team(Model model, @PathVariable("id") Long id) {
 		/* declare */
 		/* general */
 		Locale locale = LocaleContextHolder.getLocale();
+		Team team = new Team();
+		try {
+			team = teamService.one(id);
+		} catch (Exception e) {
+			return teamList(model);
+		}
 		List<String> inOtherLanguages = new ArrayList<String>();
+		inOtherLanguages.add(team.getTeamNameJa());
+		inOtherLanguages.add(team.getTeamNameEn());
+		inOtherLanguages.add(team.getTeamNameEs());
+		
 		/* tactics */
 		/* players */
-		
+
 		/* do */
 		/* tactics */
 		/* players */
-		
-		
+
 		/* model-add */
 		/* general */
 		model.addAttribute("url", null);

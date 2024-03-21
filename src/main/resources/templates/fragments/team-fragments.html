@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <ul th:fragment="team-list(teams)">
+        <li th:each="team : ${teams}">
+            <a th:text="${team.getNameByLang()}"
+                th:href="@{/team/{id}(id=${team.getTeamId()})}"></a>
+        </li>
+    </ul>
+</body>
+</html>

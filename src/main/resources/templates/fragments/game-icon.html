@@ -42,5 +42,11 @@
         class="sup-icon"
         th:classappend="block">
     </sup>
+
+    <span th:fragment="tactic-icon(tactic)" 
+        th:text="${tactic.getTacticType().getNameByLang()}"
+        class="tactic-icon"
+        th:classappend="${tactic.getTacticType().getCssClass()}">
+    </span>
 </body>
 </html>

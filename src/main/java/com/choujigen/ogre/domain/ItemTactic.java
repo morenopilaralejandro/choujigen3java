@@ -1,7 +1,10 @@
 package com.choujigen.ogre.domain;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +24,9 @@ import jakarta.persistence.Table;
 public class ItemTactic extends Item {
 	@Column(name = "item_tactic_ttp")
 	private Long itemTacticTtp;
+
+	@Column(name = "item_tactic_power")
+	private Long itemTacticPower;
 
 	@Column(name = "item_tactic_effect_ja")
 	private String itemTacticEffectJa;
@@ -46,16 +52,30 @@ public class ItemTactic extends Item {
 	public ItemTactic() {
 	}
 
-	public ItemTactic(Long itemId, String itemNameJa, String itemNameEn, String itemNameEs, Long itemPriceBuy,
-			Long itemPriceSell, ItemType itemType, Long itemTacticTtp, String itemTacticEffectJa,
-			String itemTacticEffectEn, String itemTacticEffectEs, TacticType tacticType, TacticSide tacticSide) {
-		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType);
+	public ItemTactic(Long itemTacticTtp, Long itemTacticPower, String itemTacticEffectJa, String itemTacticEffectEn,
+			String itemTacticEffectEs, TacticType tacticType, TacticSide tacticSide) {
+		super();
 		this.itemTacticTtp = itemTacticTtp;
+		this.itemTacticPower = itemTacticPower;
 		this.itemTacticEffectJa = itemTacticEffectJa;
 		this.itemTacticEffectEn = itemTacticEffectEn;
 		this.itemTacticEffectEs = itemTacticEffectEs;
 		this.tacticType = tacticType;
 		this.tacticSide = tacticSide;
+	}
+
+	public String getEffectByLang() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			return this.itemTacticEffectJa;
+		case "en":
+			return this.itemTacticEffectEn;
+		case "es":
+			return this.itemTacticEffectEs;
+		default:
+			return this.itemTacticEffectEn;
+		}
 	}
 
 	public Long getItemTacticTtp() {
@@ -64,6 +84,14 @@ public class ItemTactic extends Item {
 
 	public void setItemTacticTtp(Long itemTacticTtp) {
 		this.itemTacticTtp = itemTacticTtp;
+	}
+
+	public Long getItemTacticPower() {
+		return itemTacticPower;
+	}
+
+	public void setItemTacticPower(Long itemTacticPower) {
+		this.itemTacticPower = itemTacticPower;
 	}
 
 	public String getItemTacticEffectJa() {
@@ -119,7 +147,7 @@ public class ItemTactic extends Item {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + Objects.hash(itemTacticEffectEn, itemTacticEffectEs, itemTacticEffectJa,
-				itemTacticTtp, tacticSide, tacticType);
+				itemTacticPower, itemTacticTtp, tacticSide, tacticType);
 		return result;
 	}
 
@@ -135,15 +163,17 @@ public class ItemTactic extends Item {
 		return Objects.equals(itemTacticEffectEn, other.itemTacticEffectEn)
 				&& Objects.equals(itemTacticEffectEs, other.itemTacticEffectEs)
 				&& Objects.equals(itemTacticEffectJa, other.itemTacticEffectJa)
+				&& Objects.equals(itemTacticPower, other.itemTacticPower)
 				&& Objects.equals(itemTacticTtp, other.itemTacticTtp) && Objects.equals(tacticSide, other.tacticSide)
 				&& Objects.equals(tacticType, other.tacticType);
 	}
 
 	@Override
 	public String toString() {
-		return "ItemTactic [itemTacticTtp=" + itemTacticTtp + ", itemTacticEffectJa=" + itemTacticEffectJa
-				+ ", itemTacticEffectEn=" + itemTacticEffectEn + ", itemTacticEffectEs=" + itemTacticEffectEs
-				+ ", tacticType=" + tacticType + ", tacticSide=" + tacticSide + "]";
+		return "ItemTactic [itemTacticTtp=" + itemTacticTtp + ", itemTacticPower=" + itemTacticPower
+				+ ", itemTacticEffectJa=" + itemTacticEffectJa + ", itemTacticEffectEn=" + itemTacticEffectEn
+				+ ", itemTacticEffectEs=" + itemTacticEffectEs + ", tacticType=" + tacticType + ", tacticSide="
+				+ tacticSide + "]";
 	}
 
 }

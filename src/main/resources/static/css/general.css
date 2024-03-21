@@ -25,6 +25,10 @@
     --property-chain-color: #4a6bd6;
     --property-long-color: #399431;
     --property-block-color: #9c394a;
+
+    --tactic-att-color: #b71626;
+    --tactic-def-color: #209bd2;
+    --tactic-kick-color: #99cb3b;
 }
 
 div.mainContainer {
@@ -268,3 +272,42 @@ sup.sup-icon.long {
 sup.sup-icon.block {
     color: var(--property-block-color);
 }
+
+/*tactic-icon*/
+.tactic-icon {
+    display: inline-block;
+    width: 50px;
+    font-size: 14px;
+    color: white;
+    box-sizing: border-box;
+    border: 1px solid white;
+    padding: 2px;
+}
+
+.tactic-icon.att {
+    background-color: var(--tactic-att-color);
+}
+
+.tactic-icon.def {
+    background-color: var(--tactic-def-color);
+}
+
+.tactic-icon.attdef {
+    background-color: var(--tactic-att-color);
+    background: linear-gradient(
+        to right, 
+        var(--tactic-att-color) 50%, 
+        var(--tactic-def-color) 50%
+    );
+}
+
+.tactic-icon.kick {
+    background-color: var(--tactic-kick-color);
+}
+
+td.td-icon .tactic-icon,
+td.td-icon .tactic-icon {
+    display: block;
+    margin: auto;
+}
+

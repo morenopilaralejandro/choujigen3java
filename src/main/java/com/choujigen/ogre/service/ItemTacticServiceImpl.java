@@ -39,6 +39,7 @@ public class ItemTacticServiceImpl implements ItemTacticService {
 			oldObj.setItemPriceSell(newObj.getItemPriceSell());
 			oldObj.setItemType(newObj.getItemType());
 			oldObj.setItemTacticTtp(newObj.getItemTacticTtp());
+			oldObj.setItemTacticPower(newObj.getItemTacticPower());
 			oldObj.setItemTacticEffectJa(newObj.getItemTacticEffectJa());
 			oldObj.setItemTacticEffectEn(newObj.getItemTacticEffectEn());
 			oldObj.setItemTacticEffectEs(newObj.getItemTacticEffectEs());

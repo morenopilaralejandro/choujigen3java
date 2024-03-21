@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div th:fragment="tactics-table(itemTacticAll, showLink)" class="table-responsive">
+        <table class="table table-bordered table-sm" style="max-width: 550px;">
+            <tr>
+                <th th:text="#{tactics.type}"></th>
+                <th th:text="#{tactics.name}"></th>
+                <th th:text="#{tactics.ttp}"></th>
+                <th th:text="#{tactics.power}"></th>
+                <th th:text="#{tactics.side}"></th>
+            </tr>
+            <tr th:each="tactic : ${itemTacticAll}">
+                <td class="td-icon">
+                    <span th:replace="~{fragments/game-icon.html :: 
+                        tactic-icon(
+                            tactic = ${tactic}
+                        )}">
+                    </span>
+                </td>
+                <td th:if="${showLink}">
+                    <a th:text="${tactic.getNameByLang()}"
+                        th:href="@{/tactics/{id}(id=${tactic.getItemId()})}"></a>
+                </td>
+                <td th:unless="${showLink}" 
+                    th:text="${tactic.getNameByLang()}">
+                </td>
+                <td th:text="${tactic.getItemTacticTtp()}"></td>
+                <td th:text="${tactic.getItemTacticPower()}"></td>
+                <td th:text="${tactic.getTacticSide().getNameByLang()}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
