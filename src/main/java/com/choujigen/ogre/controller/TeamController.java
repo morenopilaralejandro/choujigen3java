@@ -2,6 +2,7 @@ package com.choujigen.ogre.controller;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -18,6 +19,7 @@ import com.choujigen.ogre.domain.ItemFormation;
 import com.choujigen.ogre.domain.ItemTactic;
 import com.choujigen.ogre.domain.Player;
 import com.choujigen.ogre.domain.PlayerIsPartOfTeam;
+import com.choujigen.ogre.domain.Positi;
 import com.choujigen.ogre.domain.Team;
 import com.choujigen.ogre.service.TeamService;
 
@@ -105,8 +107,9 @@ public class TeamController {
 		List<Player> players = new ArrayList<Player>();
 		/* formation */
 		ItemFormation formation = team.getItemFormation();
-		List<FormationOrganizedAsPositi> formationOrganizedAsPositi = formation.getFormationOrganizedAsPositi();
 		ItemFormation originalFormation;
+		List<FormationOrganizedAsPositi> formationOrganizedAsPositi;
+		List<Positi> positiOrderByPlace = new ArrayList<Positi>();
 		/* tactics */
 		List<ItemTactic> tactics = team.getTactics();
 
@@ -121,7 +124,14 @@ public class TeamController {
 		} else {
 			originalFormation = formation.getOriginalVersion();
 		}
-
+		formationOrganizedAsPositi = originalFormation.getFormationOrganizedAsPositi();
+		for (int i = 0; i < 11; i++) {
+			positiOrderByPlace.add();
+		}
+		for (FormationOrganizedAsPositi fop : formationOrganizedAsPositi) {
+			positiOrderByPlace.set(fop.getId().getPlaceId().intValue()-1, fop.getPositi());
+		}
+		
 		/* model-add */
 		/* general */
 		model.addAttribute("url", null);
@@ -133,7 +143,7 @@ public class TeamController {
 		model.addAttribute("playerIsPartOfTeam", playerIsPartOfTeam);
 		/* formation */
 		model.addAttribute("formation", formation);
-		model.addAttribute("formationOrganizedAsPositi", formationOrganizedAsPositi);
+		model.addAttribute("positiOrderByPlace", positiOrderByPlace);
 		model.addAttribute("originalFormation", originalFormation);
 		/* tactics */
 		model.addAttribute("tactics", tactics);

@@ -11,47 +11,141 @@
             bench
 
     -->
-    <div th:fragment="formation-player(player)" 
-        class="formation-player">
+    <div th:fragment="formation-player(player, positiClass)"
+        class = "formation-player"
+        th:classappend="${positiClass}">
         <div>
-            atrri
+            <span th:replace="~{fragments/game-icon.html :: 
+                attri-icon(
+                    attri = ${player.getAttri()}
+                )}">
+            </span>
         </div>
         <div>
-            name
+            <a th:replace="~{fragments/player-fragments.html :: 
+                player-name(player = ${player})}">                 
+            </a>
         </div>
     </div>
 
     <div th:fragment="formation-bench(playerIsPartOfTeam)"
+        th:if="${playerIsPartOfTeam.size() > 10}"
         class="formation-bench">
-        <div>
-            for each playerIsPartOfTeam
-            if place > 11
-        </div>
+        <th:block th:each="ppt, iStat : ${playerIsPartOfTeam}">
+            <th:block th:if="${iStat.index} > 10">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-player(
+                        player = ${ppt.getPlayer()},
+                        positiClass = ''
+                    )}">
+                </div>
+            </th:block>
+        </th:block>
     </div>
 
     <div th:fragment="formation-scheme(
             originalFormation,
             playerIsPartOfTeam, 
-            formationOrganizedAsPositi)"
+            positiOrderByPlace)"
         class="formation-scheme">
+
         <th:block th:switch="${originalFormation.getItemId().intValue()}">
-            <div th:case="737"
-                th:insert="~{fragments/formation-fragments.html :: 
-                formation-basic(
-                    playerIsPartOfTeam = ${playerIsPartOfTeam},
-                    formationOrganizedAsPositi = ${formationOrganizedAsPositi}
-                )}">
-            </div>
+            <th:block th:case="737">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-basic(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+
+            </th:block>
         </th:block>
+
+        <div th:replace="~{fragments/formation-fragments.html :: 
+            formation-bench(
+                playerIsPartOfTeam = ${playerIsPartOfTeam}
+            )}">
+        </div>
     </div>
 
-    <div th:fragment="formation-basic(
+    <div th:fragment="formation-field-basic(
             playerIsPartOfTeam, 
-            formationOrganizedAsPositi)"
+            positiOrderByPlace)"
         class="formation-field">
-        <div class="formation-row">
-
-        </div> 
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(10).getCssClass()}
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(9).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(9).getCssClass()}
+                )}">
+            </div>
+        </div>
+        <div class="formation-row 2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(5).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(5).getCssClass()}
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(6).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(6).getCssClass()}
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(8).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(8).getCssClass()}
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(7).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(7).getCssClass()}
+                )}">
+            </div>
+        </div>
+        <div class="formation-row 3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(1).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(1).getCssClass()}
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(2).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(2).getCssClass()}
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(3).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(3).getCssClass()}
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(4).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(4).getCssClass()}
+                )}">
+            </div>
+        </div>
+        <div class="formation-row 4">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(0).getPlayer()},
+                    positiClass = ${positiOrderByPlace.get(0).getCssClass()}
+                )}">
+            </div>
+        </div>
     </div>
 </body>
 </html>

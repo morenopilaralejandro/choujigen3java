@@ -2,7 +2,6 @@ package com.choujigen.ogre.domain;
 
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -11,7 +10,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "item_formation_organized_as_positi")
+@Table(name = "formation_organized_as_positi")
 public class FormationOrganizedAsPositi {
 	@EmbeddedId
 	private FormationOrganizedAsPositiId id;
@@ -26,28 +25,22 @@ public class FormationOrganizedAsPositi {
 	@JoinColumn(name = "positi_id")
 	private Positi positi;
 
-	@Column(name = "place")
-	private Long place;
-
 	public FormationOrganizedAsPositi() {
 	}
 
-	public FormationOrganizedAsPositi(FormationOrganizedAsPositiId id, ItemFormation itemFormation, Positi positi,
-			Long place) {
+	public FormationOrganizedAsPositi(FormationOrganizedAsPositiId id, ItemFormation itemFormation, Positi positi) {
 		super();
 		this.id = id;
 		this.itemFormation = itemFormation;
 		this.positi = positi;
-		this.place = place;
 	}
 
-	public FormationOrganizedAsPositi(Long itemFormationId, Long positiId, ItemFormation itemFormation, Positi positi,
-			Long place) {
+	public FormationOrganizedAsPositi(Long itemFormationId, Long positiId, Long placeId, ItemFormation itemFormation,
+			Positi positi) {
 		super();
-		this.id = new FormationOrganizedAsPositiId(itemFormationId, positiId);
+		this.id = new FormationOrganizedAsPositiId(itemFormationId, positiId, placeId);
 		this.itemFormation = itemFormation;
 		this.positi = positi;
-		this.place = place;
 	}
 
 	public FormationOrganizedAsPositiId getId() {
@@ -74,17 +67,9 @@ public class FormationOrganizedAsPositi {
 		this.positi = positi;
 	}
 
-	public Long getPlace() {
-		return place;
-	}
-
-	public void setPlace(Long place) {
-		this.place = place;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, itemFormation, place, positi);
+		return Objects.hash(id, itemFormation, positi);
 	}
 
 	@Override
@@ -97,13 +82,12 @@ public class FormationOrganizedAsPositi {
 			return false;
 		FormationOrganizedAsPositi other = (FormationOrganizedAsPositi) obj;
 		return Objects.equals(id, other.id) && Objects.equals(itemFormation, other.itemFormation)
-				&& Objects.equals(place, other.place) && Objects.equals(positi, other.positi);
+				&& Objects.equals(positi, other.positi);
 	}
 
 	@Override
 	public String toString() {
-		return "FormationOrganizedAsPositi [id=" + id + ", itemFormation=" + itemFormation + ", positi=" + positi
-				+ ", place=" + place + "]";
+		return "FormationOrganizedAsPositi [id=" + id + ", itemFormation=" + itemFormation + ", positi=" + positi + "]";
 	}
 
 }

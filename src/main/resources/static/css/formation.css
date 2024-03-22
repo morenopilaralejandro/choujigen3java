@@ -1,0 +1,31 @@
+.formation-scheme {
+    background-color: red;
+}
+
+.formation-field {
+    background-color: cyan;
+}
+
+.formation-row {
+
+}
+
+.formation-player {
+
+}
+.formation-player.fw {
+    background-color: var(--positi-fw-color);
+}
+.formation-player.mf {
+    background-color: var(--positi-mf-color);
+}
+.formation-player.df {
+    background-color: var(--positi-df-color);
+}
+.formation-player.gk {
+    background-color: var(--positi-gk-color);
+}
+
+.formation-bench {
+    background-color: lime;
+}

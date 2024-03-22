@@ -16,14 +16,18 @@ public class FormationOrganizedAsPositiId implements Serializable {
 	@Column(name = "positi_id")
 	private Long positiId;
 
+	@Column(name = "place")
+	private Long placeId;
+
 	public FormationOrganizedAsPositiId() {
 
 	}
 
-	public FormationOrganizedAsPositiId(Long itemFormationId, Long positiId) {
+	public FormationOrganizedAsPositiId(Long itemFormationId, Long positiId, Long placeId) {
 		super();
 		this.itemFormationId = itemFormationId;
 		this.positiId = positiId;
+		this.placeId = placeId;
 	}
 
 	public Long getItemFormationId() {
@@ -42,9 +46,17 @@ public class FormationOrganizedAsPositiId implements Serializable {
 		this.positiId = positiId;
 	}
 
+	public Long getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(Long placeId) {
+		this.placeId = placeId;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(itemFormationId, positiId);
+		return Objects.hash(itemFormationId, placeId, positiId);
 	}
 
 	@Override
@@ -56,12 +68,14 @@ public class FormationOrganizedAsPositiId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		FormationOrganizedAsPositiId other = (FormationOrganizedAsPositiId) obj;
-		return Objects.equals(itemFormationId, other.itemFormationId) && Objects.equals(positiId, other.positiId);
+		return Objects.equals(itemFormationId, other.itemFormationId) && Objects.equals(placeId, other.placeId)
+				&& Objects.equals(positiId, other.positiId);
 	}
 
 	@Override
 	public String toString() {
-		return "FormationOrganizedAsPositiId [itemFormationId=" + itemFormationId + ", positiId=" + positiId + "]";
+		return "FormationOrganizedAsPositiId [itemFormationId=" + itemFormationId + ", positiId=" + positiId
+				+ ", placeId=" + placeId + "]";
 	}
 
 }

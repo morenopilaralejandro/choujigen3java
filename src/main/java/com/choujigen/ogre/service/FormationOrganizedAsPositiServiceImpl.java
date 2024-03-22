@@ -35,7 +35,6 @@ public class FormationOrganizedAsPositiServiceImpl implements FormationOrganized
 	public FormationOrganizedAsPositi replace(FormationOrganizedAsPositi newObj,
 			FormationOrganizedAsPositiId formationOrganizedAsPositiId) {
 		return formationOrganizedAsPositiRepository.findById(formationOrganizedAsPositiId).map(oldObj -> {
-			oldObj.setPlace(newObj.getPlace());
 			return formationOrganizedAsPositiRepository.save(oldObj);
 		}).orElseGet(() -> {
 			newObj.setId(formationOrganizedAsPositiId);
