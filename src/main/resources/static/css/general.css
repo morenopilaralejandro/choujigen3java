@@ -181,6 +181,7 @@ td.td-icon {
     display: inline-block;
     width: max-content;
     font-size: 10px;
+    text-shadow: 0 0 3px black;
     color: white;
     box-sizing: border-box;
     border: 1px solid white;
@@ -237,6 +238,7 @@ table.table-hissatsu-single .hissatsu-type-icon {
     box-sizing: border-box;
     width: 40px;
     font-weight: bold;
+    text-shadow: 0 0 3px black;
     text-align: center;
 }
 
@@ -278,6 +280,8 @@ sup.sup-icon.block {
     display: inline-block;
     width: 50px;
     font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 3px black;
     color: white;
     box-sizing: border-box;
     border: 1px solid white;

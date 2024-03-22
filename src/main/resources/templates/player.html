@@ -92,10 +92,10 @@
             <section>
                 <h2 id="teams" th:text="#{player.teams}"></h2>
                 <p th:if="${player.teams.isEmpty()}" 
-                    th:text="#{general.noData}">
+                    th:text="#{general.none}">
                 </p>
-                <ul th:unless="${player.teams.isEmpty()"
-                    th:replace="~{fragments/player-fragments.html :: 
+                <ul th:unless="${player.teams.isEmpty()}" 
+                    th:insert="~{fragments/player-fragments.html :: 
                     player-teams(
                         playerIsPartOfTeam = ${player.getTeams()}
                     )}">

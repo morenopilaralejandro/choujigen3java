@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <!-- 
+        include formation name and scheme ex three top (4 3 3)
+
+        scheme
+            field
+            bench
+
+    -->
+    <div th:fragment="formation-player(player)" 
+        class="formation-player">
+        <div>
+            atrri
+        </div>
+        <div>
+            name
+        </div>
+    </div>
+
+    <div th:fragment="formation-bench(playerIsPartOfTeam)"
+        class="formation-bench">
+        <div>
+            for each playerIsPartOfTeam
+            if place > 11
+        </div>
+    </div>
+
+    <div th:fragment="formation-scheme(
+            originalFormation,
+            playerIsPartOfTeam, 
+            formationOrganizedAsPositi)"
+        class="formation-scheme">
+        <th:block th:switch="${originalFormation.getItemId().intValue()}">
+            <div th:case="737"
+                th:insert="~{fragments/formation-fragments.html :: 
+                formation-basic(
+                    playerIsPartOfTeam = ${playerIsPartOfTeam},
+                    formationOrganizedAsPositi = ${formationOrganizedAsPositi}
+                )}">
+            </div>
+        </th:block>
+    </div>
+
+    <div th:fragment="formation-basic(
+            playerIsPartOfTeam, 
+            formationOrganizedAsPositi)"
+        class="formation-field">
+        <div class="formation-row">
+
+        </div> 
+    </div>
+</body>
+</html>
