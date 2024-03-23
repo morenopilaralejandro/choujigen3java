@@ -61,6 +61,7 @@
                 <h2 id="formation" th:text="#{team.formation}"></h2>
                 <div th:replace="~{fragments/formation-fragments.html :: 
                     formation-scheme(
+                        formation = ${formation},
                         originalFormation = ${originalFormation},
                         playerIsPartOfTeam = ${playerIsPartOfTeam},
                         positiOrderByPlace = ${positiOrderByPlace}

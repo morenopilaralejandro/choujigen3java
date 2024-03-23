@@ -2,7 +2,6 @@ package com.choujigen.ogre.controller;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -80,7 +79,7 @@ public class TeamController {
 		model.addAttribute("noBinder", noBinder);
 		return "/team-list";
 	}
-	
+
 	@RequestMapping(value = "/team")
 	public String teamNoPathVariable(Model model) {
 		return teamList(model);
@@ -109,7 +108,8 @@ public class TeamController {
 		ItemFormation formation = team.getItemFormation();
 		ItemFormation originalFormation;
 		List<FormationOrganizedAsPositi> formationOrganizedAsPositi;
-		List<Positi> positiOrderByPlace = new ArrayList<Positi>();
+		Positi[] positiOrderByPlace = new Positi[11];
+		int auxPlace;
 		/* tactics */
 		List<ItemTactic> tactics = team.getTactics();
 
@@ -125,13 +125,11 @@ public class TeamController {
 			originalFormation = formation.getOriginalVersion();
 		}
 		formationOrganizedAsPositi = originalFormation.getFormationOrganizedAsPositi();
-		for (int i = 0; i < 11; i++) {
-			positiOrderByPlace.add();
+		for (int i = 0; i < formationOrganizedAsPositi.size(); i++) {
+			auxPlace = formationOrganizedAsPositi.get(i).getId().getPlaceId().intValue();
+			positiOrderByPlace[auxPlace - 1] = formationOrganizedAsPositi.get(i).getPositi();
 		}
-		for (FormationOrganizedAsPositi fop : formationOrganizedAsPositi) {
-			positiOrderByPlace.set(fop.getId().getPlaceId().intValue()-1, fop.getPositi());
-		}
-		
+
 		/* model-add */
 		/* general */
 		model.addAttribute("url", null);

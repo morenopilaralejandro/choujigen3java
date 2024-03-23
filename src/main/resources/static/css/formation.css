@@ -1,31 +1,104 @@
+:root {
+    --zone-fw-color: #581111;
+    --zone-mf-color: #000f4a;
+    --zone-df-color: #012c01;
+    --zone-gk-color: #7a4100;
+    --zone-bench-color: #1c1615;
+
+    --formation-field-bg: #08140e;
+    --formation-bench-bg: #002020;
+}
+
 .formation-scheme {
-    background-color: red;
+    background-color: inherit;
+    overflow-x: auto;
+    margin-bottom: 16px;
 }
 
 .formation-field {
-    background-color: cyan;
+    background-color: var(--formation-field-bg);
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 5px;
 }
 
 .formation-row {
-
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
 }
 
 .formation-player {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid white; */
+    box-shadow: 0px 0px 3px 0px #737373;
+    width: 130px;
+    overflow: hidden;
+    gap: 5px;
+    background-color: var(--zone-bench-color);
+}
+.formation-player-attri {
+    padding: 1px;    
+}
+.formation-player-attri.wind {
+    background-color: var(--attri-wind-color);
+}
+.formation-player-attri.fire {
+    background-color: var(--attri-fire-color);
+}
+.formation-player-attri.wood {
+    background-color: var(--attri-wood-color);
+}
+.formation-player-attri.earth {
+    background-color: var(--attri-earth-color);
+}
+
+
+.formation-player-name {
 
 }
 .formation-player.fw {
-    background-color: var(--positi-fw-color);
+    background-color: var(--zone-fw-color);
 }
 .formation-player.mf {
-    background-color: var(--positi-mf-color);
+    background-color: var(--zone-mf-color);
 }
 .formation-player.df {
-    background-color: var(--positi-df-color);
+    background-color: var(--zone-df-color);
 }
 .formation-player.gk {
-    background-color: var(--positi-gk-color);
+    background-color: var(--zone-gk-color);
 }
 
 .formation-bench {
-    background-color: lime;
+    background-color: var(--formation-bench-bg);
+    width: 700px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.formation-title {
+    background-color: var(--formation-field-bg);
+    width: 700px;
+    box-sizing: border-box;
+    padding-bottom: 2px;
+}
+
+.formation-title span {
+    border: 1px solid white;
+    background-color: black;
+    display: block;
+    width: fit-content;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.formation-player.up {
+    position: relative;
+    top: -15px;
 }
