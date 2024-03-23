@@ -73,21 +73,141 @@
                         positiOrderByPlace = ${positiOrderByPlace}
                     )}">
                 </div>
-
+            </th:block>
+            <th:block th:case="748">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-desuzon(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="759">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-ghost(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="760">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-wild(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="761">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-grid(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="764">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-kakuyoku(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="765">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-super(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="766">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-mugen(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="767">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-mukata(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="771">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-phoenix(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="773">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-heaven(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="775">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-phalanx(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="777">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-dot(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="778">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-bow(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="779">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-middle(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="780">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-neo(
+                        playerIsPartOfTeam = ${playerIsPartOfTeam},
+                        positiOrderByPlace = ${positiOrderByPlace}
+                    )}">
+                </div>
             </th:block>
         </th:block>
-
         <div th:replace="~{fragments/formation-fragments.html :: 
             formation-bench(
                 playerIsPartOfTeam = ${playerIsPartOfTeam}
             )}">
         </div>
     </div>
-
+    <!-- 
+        formation-field
+    -->
     <div th:fragment="formation-field-basic(
             playerIsPartOfTeam, 
             positiOrderByPlace)"
-        class="formation-field">
+        class="formation-field basic">
         <div class="formation-row 1">
             <div th:replace="~{fragments/formation-fragments.html :: 
                 formation-player(
@@ -169,6 +289,307 @@
                 formation-player(
                     player = ${playerIsPartOfTeam.get(0).getPlayer()},
                     positiClass = ${positiOrderByPlace[0].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-desuzon(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field desuzon">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(8).getPlayer()},
+                    positiClass = ${positiOrderByPlace[8].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row 2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(6).getPlayer()},
+                    positiClass = ${positiOrderByPlace[6].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(9).getPlayer()},
+                    positiClass = ${positiOrderByPlace[9].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(7).getPlayer()},
+                    positiClass = ${positiOrderByPlace[7].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row 3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(3).getPlayer()},
+                    positiClass = ${positiOrderByPlace[3].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(1).getPlayer()},
+                    positiClass = ${positiOrderByPlace[1].getCssClass()},
+                    verticalClass = 'down'
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(5).getPlayer()},
+                    positiClass = ${positiOrderByPlace[5].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(2).getPlayer()},
+                    positiClass = ${positiOrderByPlace[2].getCssClass()},
+                    verticalClass = 'down'
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(4).getPlayer()},
+                    positiClass = ${positiOrderByPlace[4].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row 4">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(0).getPlayer()},
+                    positiClass = ${positiOrderByPlace[0].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-ghost(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field ghost">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-wild(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field wild">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-grid(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field grid">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-kakuyoku(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field kakuyoku">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-super(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field super">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-mugen(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field mugen">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-mukata(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field mukata">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-phoenix(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field phoenix">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-heaven(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field heaven">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-phalanx(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field phalanx">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-dot(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field dot">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-bow(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field bow">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-middle(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field middle">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-neo(
+            playerIsPartOfTeam, 
+            positiOrderByPlace)"
+        class="formation-field neo">
+        <div class="formation-row 1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${playerIsPartOfTeam.get(10).getPlayer()},
+                    positiClass = ${positiOrderByPlace[10].getCssClass()},
                     verticalClass = ''
                 )}">
             </div>

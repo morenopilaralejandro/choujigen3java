@@ -23,6 +23,7 @@
     gap: 10px;
     box-sizing: border-box;
     padding: 5px;
+    padding-bottom: 30px;
 }
 
 .formation-row {
@@ -95,10 +96,17 @@
     display: block;
     width: fit-content;
     padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-weight: bold;
 }
 
 .formation-player.up {
     position: relative;
     top: -15px;
+}
+
+.formation-player.down {
+    position: relative;
+    top: 15px;
 }
