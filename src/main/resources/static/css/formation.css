@@ -81,6 +81,8 @@
     width: 700px;
     box-sizing: border-box;
     padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .formation-title {
@@ -96,8 +98,6 @@
     display: block;
     width: fit-content;
     padding: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     font-weight: bold;
 }
 
@@ -109,4 +109,15 @@
 .formation-player.down {
     position: relative;
     top: 15px;
+}
+
+/*kakuyoku*/
+.formation-field.kakuyoku .formation-row.row1,
+.formation-field.kakuyoku .formation-row.row2 {
+    justify-content: space-between;
+}
+
+.formation-field.kakuyoku .formation-row.row3,
+.formation-field.kakuyoku .formation-row.row4 {
+    justify-content: space-around;
 }
