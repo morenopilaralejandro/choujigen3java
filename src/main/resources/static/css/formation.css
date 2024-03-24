@@ -116,8 +116,56 @@
 .formation-field.kakuyoku .formation-row.row2 {
     justify-content: space-between;
 }
-
 .formation-field.kakuyoku .formation-row.row3,
 .formation-field.kakuyoku .formation-row.row4 {
+    justify-content: space-around;
+}
+/*mukata*/
+.formation-field.mukata .formation-row.row1,
+.formation-field.mukata .formation-row.row3 {
+    justify-content: space-between;
+}
+.formation-field.mukata .formation-row.row2 {
+    gap: 50px;
+}
+/*phoenix*/
+.formation-field.phoenix .formation-row.row1 {
+    justify-content: space-between;
+}
+.formation-field.phoenix .formation-row.row3 {
+    justify-content: space-around;
+}
+/*heaven*/
+.formation-field.heaven .formation-row.row2 {
+    justify-content: space-evenly;
+}
+/*dot*/
+.formation-field.dot .formation-row.row1 {
+    justify-content: space-evenly;
+}
+.formation-field.dot .formation-row.row2 {
+    justify-content: space-between;
+}
+.formation-field.dot .formation-row.row3,
+.formation-field.dot .formation-row.row4 {
+    justify-content: space-around;
+}
+/*bow*/
+.formation-field.bow .formation-row.row1 {
+    justify-content: space-around;
+}
+.formation-field.bow .formation-row.row2 {
+    justify-content: space-between;
+}
+/*middle*/
+.formation-field.middle .formation-row.row1 {
+    justify-content: space-evenly;
+}
+/*neo*/
+.formation-field.neo .formation-row.row1,
+.formation-field.neo .formation-row.row4 {
+    justify-content: space-between;
+}
+.formation-field.neo .formation-row.row2 {
     justify-content: space-around;
 }
