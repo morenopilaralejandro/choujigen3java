@@ -64,7 +64,7 @@ public class HissatsuController {
 	@Autowired
 	private HissatsuSkillService hissatsuSkillService;
 
-	@RequestMapping(value = "/hissatsu-list")
+	@RequestMapping(value = { "/hissatsu-list", "/hissatsu-list/" })
 	public String hissatsuList(Model model) {
 		/* declare */
 		/* general */
@@ -216,13 +216,9 @@ public class HissatsuController {
 		return "/hissatsu-list";
 	}
 
-	@RequestMapping(value = "/hissatsu")
-	public String hissatsuNoPathVariable(Model model) {
-		return hissatsuList(model);
-	}
-	
-	@RequestMapping(value = "/hissatsu/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hissatsu(Model model, @PathVariable("id") Long id) {
+	@RequestMapping(value = { "/hissatsu", "/hissatsu/", "/hissatsu/{id}" }, method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String hissatsu(Model model, @PathVariable(name = "id", required = false) Long id) {
 		/* declare */
 		/* general */
 		Locale locale = LocaleContextHolder.getLocale();

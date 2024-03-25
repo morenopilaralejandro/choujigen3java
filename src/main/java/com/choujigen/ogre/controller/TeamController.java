@@ -28,7 +28,7 @@ public class TeamController {
 	@Autowired
 	private TeamService teamService;
 
-	@RequestMapping(value = "/team-list")
+	@RequestMapping(value = { "/team-list", "/team-list/" })
 	public String teamList(Model model) {
 		/* declare */
 		/* general */
@@ -80,13 +80,8 @@ public class TeamController {
 		return "/team-list";
 	}
 
-	@RequestMapping(value = "/team")
-	public String teamNoPathVariable(Model model) {
-		return teamList(model);
-	}
-
-	@RequestMapping(value = "/team/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String team(Model model, @PathVariable("id") Long id) {
+	@RequestMapping(value = { "/team", "/team/", "/team/{id}" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public String team(Model model, @PathVariable(name = "id", required = false) Long id) {
 		/* declare */
 		/* general */
 		Locale locale = LocaleContextHolder.getLocale();

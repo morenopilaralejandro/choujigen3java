@@ -21,7 +21,7 @@ public class TacticController {
 	@Autowired
 	private ItemTacticService itemTacticService;
 
-	@RequestMapping(value = "/tactics-list")
+	@RequestMapping(value = { "/tactics-list", "/tactics-list/" })
 	public String tacticsList(Model model) {
 		/* declare */
 		/* general */
@@ -37,14 +37,10 @@ public class TacticController {
 		model.addAttribute("itemTacticAll", itemTacticAll);
 		return "/tactics-list";
 	}
-	
-	@RequestMapping(value = "/tactics")
-	public String tacticsNoPathVariable(Model model) {
-		return tacticsList(model);
-	}
 
-	@RequestMapping(value = "/tactics/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String tactics(Model model, @PathVariable("id") Long id) {
+	@RequestMapping(value = { "/tactics", "/tactics/", "/tactics/{id}" }, method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String tactics(Model model, @PathVariable(name = "id", required = false) Long id) {
 		/* declare */
 		/* general */
 		Locale locale = LocaleContextHolder.getLocale();
