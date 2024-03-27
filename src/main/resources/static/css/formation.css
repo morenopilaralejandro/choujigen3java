@@ -135,6 +135,14 @@
 .formation-field.phoenix .formation-row.row3 {
     justify-content: space-around;
 }
+/*butterfly*/
+.formation-field.butterfly .formation-row.row1,
+.formation-field.butterfly .formation-row.row4 {
+    justify-content: space-between;
+}
+.formation-field.butterfly .formation-row.row2 {
+    justify-content: space-around;
+}
 /*heaven*/
 .formation-field.heaven .formation-row.row2 {
     justify-content: space-evenly;
