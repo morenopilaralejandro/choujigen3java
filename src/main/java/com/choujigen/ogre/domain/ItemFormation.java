@@ -44,6 +44,15 @@ public class ItemFormation extends Item {
 		this.formationScheme = formationScheme;
 		this.originalVersion = originalVersion;
 	}
+	
+	public Positi[] getPositiOrderByPlace() {
+		Positi[] positiOrderByPlace = new Positi[11];
+		for (int i = 0; i < this.formationOrganizedAsPositi.size(); i++) {
+			int auxPlace = this.formationOrganizedAsPositi.get(i).getId().getPlaceId().intValue();
+			positiOrderByPlace[auxPlace - 1] = this.formationOrganizedAsPositi.get(i).getPositi();
+		}
+		return positiOrderByPlace;
+	}
 
 	public FormationType getFormationType() {
 		return formationType;
