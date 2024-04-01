@@ -19,7 +19,6 @@
         <header th:replace="~{fragments/header.html :: header}"></header>
 
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
-        <br style="clear: both;">
 
         <div class="mainContainer">
             <h1 th:text="#{teamList.title}"></h1>
@@ -46,6 +45,9 @@
                     </li>
                     <li>
                         <a href="#no-binder">7. <span th:text="#{teamList.noBinder}"></span></a>
+                    </li>
+                    <li>
+                        <a href="#source">8. <span th:text="#{source}"></span></a>
                     </li>
                 </ul>
             </div>
@@ -110,6 +112,24 @@
                     team-list(
                         teams = ${noBinder}
                     )}">
+                </ul>
+            </section>
+
+            <section>
+                <h2 id="source" th:text="#{source}"></h2>
+                <ul> 
+                    <li>
+                        <a th:text="#{source.atwiki.text}"
+                            th:href="#{source.atwiki.link}"></a>
+                    </li>
+                    <li>
+                        <a th:text="#{source.fandom.text}"
+                            th:href="#{source.fandom.link}"></a>
+                    </li>
+                    <li>
+                        <a th:text="#{source.fandomes.text}"
+                            th:href="#{source.fandomes.link}"></a>
+                    </li>
                 </ul>
             </section>
         </div>

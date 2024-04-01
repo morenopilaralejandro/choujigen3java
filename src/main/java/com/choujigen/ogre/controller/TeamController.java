@@ -64,6 +64,7 @@ public class TeamController {
 				noBinder.add(team);
 			}
 		}
+		noBinder.sort(Comparator.comparing(Team::getTeamNameJa));
 
 		/* model-add */
 		/* general */

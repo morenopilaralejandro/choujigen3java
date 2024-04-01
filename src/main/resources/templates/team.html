@@ -20,7 +20,6 @@
         <header th:replace="~{fragments/header.html :: header}"></header>
 
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
-        <br style="clear: both;">
 
         <div class="mainContainer">
             <h1 th:text="${team.getNameByLang()}"></h1>
@@ -43,7 +42,10 @@
                         <a href="#tournament">5. <span th:text="#{team.tournament}"></span></a>
                     </li>
                     <li>
-                        <a href="#other-languages">5. <span th:text="#{general.inOtherLanguages}"></span></a>
+                        <a href="#other-languages">6. <span th:text="#{general.inOtherLanguages}"></span></a>
+                    </li>
+                    <li>
+                        <a href="#source">7. <span th:text="#{source}"></span></a>
                     </li>
                 </ul>
             </div>
@@ -98,6 +100,24 @@
                 <div th:replace="~{fragments/other-languages.html :: 
                     other-languages(names = ${inOtherLanguages})}">
                 </div>
+            </section>
+
+            <section>
+                <h2 id="source" th:text="#{source}"></h2>
+                <ul> 
+                    <li>
+                        <a th:text="#{source.atwiki.text}"
+                            th:href="#{source.atwiki.link}"></a>
+                    </li>
+                    <li>
+                        <a th:text="#{source.fandom.text}"
+                            th:href="#{source.fandom.link}"></a>
+                    </li>
+                    <li>
+                        <a th:text="#{source.fandomes.text}"
+                            th:href="#{source.fandomes.link}"></a>
+                    </li>
+                </ul>
             </section>
         </div>
 

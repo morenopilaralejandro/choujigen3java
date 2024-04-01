@@ -19,7 +19,6 @@
         <header th:replace="~{fragments/header.html :: header}"></header>
 
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
-        <br style="clear: both;">
 
         <div class="mainContainer">
             <h1>
@@ -36,16 +35,19 @@
                         <a href="#basic">1. <span th:text="#{hissatsu.basicInformation}"></span></a>
                     </li>
                     <li>
-                        <a href="#stats">2. <span th:text="#{player.stats}"></span></a>
+                        <a href="#hissatsu">2. <span th:text="#{player.hissatsu}"></span></a>
                     </li>
                     <li>
-                        <a href="#hissatsu">3. <span th:text="#{player.hissatsu}"></span></a>
+                        <a href="#stats">3. <span th:text="#{player.stats}"></span></a>
                     </li>
                     <li>
                         <a href="#friend">4. <span th:text="#{player.makeFriends}"></span></a>
                     </li>
                     <li>
                         <a href="#teams">5. <span th:text="#{player.teams}"></span></a>
+                    </li>
+                    <li>
+                        <a href="#source">6. <span th:text="#{source}"></span></a>
                     </li>
                 </ul>
             </div>
@@ -59,15 +61,6 @@
                         currentLang = ${currentLang}
                     )}">
                 </ul>
-            </section>
-
-            <section>
-                <h2 id="stats" th:text="#{player.stats}"></h2>
-                <div th:replace="~{fragments/player-fragments.html :: 
-                    player-stats(
-                        playerStats = ${player.getPlayerStats()}
-                    )}">
-                </div>
             </section>
 
             <section>
@@ -85,6 +78,15 @@
             </section>
 
             <section>
+                <h2 id="stats" th:text="#{player.stats}"></h2>
+                <div th:replace="~{fragments/player-fragments.html :: 
+                    player-stats(
+                        playerStats = ${player.getPlayerStats()}
+                    )}">
+                </div>
+            </section>
+
+            <section>
                 <h2 id="friend" th:text="#{player.makeFriends}"></h2>
                 <p th:text="#{general.noData}"></p>
             </section>
@@ -95,10 +97,20 @@
                     th:text="#{general.none}">
                 </p>
                 <ul th:unless="${player.teams.isEmpty()}" 
-                    th:insert="~{fragments/player-fragments.html :: 
+                    th:replace="~{fragments/player-fragments.html :: 
                     player-teams(
                         playerIsPartOfTeam = ${player.getTeams()}
                     )}">
+                </ul>
+            </section>
+
+            <section>
+                <h2 id="source" th:text="#{source}"></h2>
+                <ul> 
+                    <li>
+                        <a th:text="#{source.atwiki.text}"
+                            th:href="#{source.atwiki.link}"></a>
+                    </li>
                 </ul>
             </section>
 
