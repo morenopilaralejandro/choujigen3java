@@ -204,6 +204,42 @@
 .formation-battle .formation-field {
     width: 450px;
 }
+/*bbasic*/
+.formation-field.bbasic .row1 {
+    justify-content: space-between;
+}
+.formation-field.bbasic .row2 {
+    margin-top: 25px;
+}
+/*bflat*/
+.formation-field.bflat .row1 {
+    justify-content: space-between;
+    margin-top: 25px;
+}
+.formation-field.bflat .row2 {
+    margin-top: 25px;
+}
+/*battacker*/
+.formation-field.battacker .row2 {
+    justify-content: space-between;
+}
+.formation-field.battacker .row3 {
+    margin-top: 25px;
+}
+/*bbreak*/
+.formation-field.bbreak .row1 {
+    justify-content: space-between;
+}
+.formation-field.bbreak .row2 {
+    margin-top: 50px;
+}
+/*bpressure*/
+.formation-field.bpressure .row1 {
+    justify-content: space-between;
+}
+.formation-field.bpressure .row3 {
+    margin-top: 25px;
+}
 /*bslash*/
 .formation-field.bslash .row1 {
     justify-content: flex-start;
@@ -211,11 +247,15 @@
 .formation-field.bslash .row3 {
     justify-content: flex-end;
 }
-
-
-
-
-
-
-
-
+/*btriangle*/
+.formation-field.btriangle .row1 {
+    justify-content: space-between;
+}
+.formation-field.btriangle .row3 {
+    margin-top: 25px;
+}
+/*blance*/
+.formation-field.blance .row2 {
+    justify-content: space-between;
+    margin-top: 25px;
+}
