@@ -1781,5 +1781,383 @@
             </div>
         </div>
     </div>
+
+    <div th:fragment="formation-battle(
+            formation,
+            battlePlayers)"
+        class="formation-battle">
+        <div class="formation-title">
+            <span th:text="
+                ${formation.getNameByLang()} 
+                + ' (' 
+                + ${formation.getFormationScheme().getFormationSchemeName()} 
+                + ')'">
+            </span>
+        </div>
+
+        <th:block th:switch="${formation.getItemId().intValue()}">
+            <th:block th:case="782">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-bbasic(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="783">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-bflat(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="784">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-battacker(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="785">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-bbreak(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="786">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-bpressure(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="787">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-bslash(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+
+
+
+            <th:block th:case="790">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-btriangle(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+            <th:block th:case="791">
+                <div th:replace="~{fragments/formation-fragments.html :: 
+                    formation-field-blance(
+                        battlePlayers = ${battlePlayers}
+                    )}">
+                </div>
+            </th:block>
+        </th:block>
+    </div>
+
+    <div th:fragment="formation-field-bbasic(battlePlayers)"
+        class="formation-field bbasic">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-bflat(battlePlayers)"
+        class="formation-field bflat">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-battacker(battlePlayers)"
+        class="formation-field battacker">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-bbreak(battlePlayers)"
+        class="formation-field bbreak">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-bpressure(battlePlayers)"
+        class="formation-field bpressure">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-bslash(battlePlayers)"
+        class="formation-field bslash">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row4">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-btriangle(battlePlayers)"
+        class="formation-field btriangle">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="formation-field-blance(battlePlayers)"
+        class="formation-field blance">
+        <div class="formation-row row1">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(3)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row2">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(2)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(1)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+        <div class="formation-row row3">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${battlePlayers.get(0)},
+                    positiClass = '',
+                    verticalClass = ''
+                )}">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="keywords" th:content="#{teamList.keywords}">
-	    <meta name="description" th:content="#{teamList.description}">
+	    <meta name="keywords" th:content="#{formationList.keywords}">
+	    <meta name="description" th:content="#{formationList.description}">
 	    <meta name="author" th:content="#{meta.author}">
-        <title th:text="#{teamList.title} + ' - ' + #{webname}"></title>
+        <title th:text="#{formationList.title} + ' - ' + #{webname}"></title>
 
         <link 
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
@@ -14,6 +14,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/general.css}">
+        <link rel="stylesheet" th:href="@{/css/formation.css}">
     </head>
     <body>
         <header th:replace="~{fragments/header.html :: header}"></header>
@@ -21,27 +22,39 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
-            <h1 th:text="#{teamList.title}"></h1>
+            <h1 th:text="#{formationList.title}"></h1>
             <div class="toc">
                 <span class="toc-title" th:text="#{toc.title}"></span>
                 <ul class="toc-list">
                     <li>
-                        <a href="#about">1. <span th:text="#{teamList.ff}"></span></a>
+                        <a href="#about">1. <span th:text="#{formationList.about}"></span></a>
                     </li>
                     <li>
                         <a href="#match">2. <span th:text="#{formationList.match}"></span></a>
                         <ul>
-                        <li><a href="#">2.1. <span th:text="#{}"></span></a></li>
+                            <li th:each="team, iStat : ${teamArray}">
+                                <a th:href="'#' + ${anchorsMatch.get(iStat.index)}"
+                                    th:text="'2.' + (${iStat.index} + 1) + '. ' +
+                                        ${team.getItemFormation().getNameByLang()}">
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#battle">2. <span th:text="#{formationList.battle}"></span></a>
+                        <a href="#battle">3. <span th:text="#{formationList.battle}"></span></a>
                         <ul>
-                        <li><a href="#">2.1. <span th:text="#{}"></span></a></li>
+                            <th:block th:each="formation, iStat : ${formations}">
+                                <li th:if="${iStat.index &gt; 44}">
+                                    <a th:href="'#' + ${anchorsBattle.get(iStat.index - 45)}"
+                                        th:text="'3.' + (${iStat.index} - 45 + 1) + '. ' +
+                                            ${formation.getNameByLang()}">
+                                    </a>
+                                </li>
+                            </th:block>
                         </ul>
                     </li>
                     <li>
-                        <a href="#source">8. <span th:text="#{source}"></span></a>
+                        <a href="#source">4. <span th:text="#{source}"></span></a>
                     </li>
                 </ul>
             </div>
@@ -52,29 +65,75 @@
                 <p th:text="#{formationList.about.p2}"></p>
             </section>
 
-
             <section>
                 <h2 id="match" th:text="#{formationList.match}"></h2>
+                <article th:each="team, iStat : ${teamArray}" class="no-bench">
+                    <h3 th:id="${anchorsMatch.get(iStat.index)}"
+                        th:text="${team.getItemFormation().getNameByLang()}"></h3>
+                    <span th:text="#{formationList.similar}"></span>
+                    <ul>
+                        <th:block th:each="formation : ${formations}">
+                            <th:block th:if="${formation.getOriginalVersion} == null">
+                                <li th:if="${formation.getItemId()} == 
+                                        ${team.getItemFormation().getItemId()}">
+                                    <a th:href="@{/formation/{id}(id=${formation.getItemId()})}"
+                                        th:text="${formation.getNameByLang()}"></a>
+                                </li>                                
+                            </th:block>
+                            <th:block th:unless="${formation.getOriginalVersion} == null">
+                                <li th:if="${formation.getOriginalVersion().getItemId()} ==
+                                        ${team.getItemFormation().getItemId()}">
+                                    <a th:href="@{/formation/{id}(id=${formation.getItemId()})}"
+                                        th:text="${formation.getNameByLang()}"></a>
+                                </li>                  
+                            </th:block>
+                        </th:block>
+                    </ul>
+                    <th:block th:if="${team.getItemFormation().getOriginalVersion} == null">
+                        <div th:replace="~{fragments/formation-fragments.html :: 
+                            formation-scheme(
+                                formation = ${team.getItemFormation()},
+                                originalFormation = ${team.getItemFormation()},
+                                playerIsPartOfTeam = ${pptArray.get(iStat.index)},
+                                positiOrderByPlace = ${popArray.get(iStat.index)}
+                            )}">
+                        </div>
+                    </th:block>
+                    <th:block th:unless="${team.getItemFormation().getOriginalVersion} == null">
+                        <div th:replace="~{fragments/formation-fragments.html :: 
+                            formation-scheme(
+                                formation = ${team.getItemFormation()},
+                                originalFormation = ${team.getItemFormation().getOriginalVersion()},
+                                playerIsPartOfTeam = ${pptArray.get(iStat.index)},
+                                positiOrderByPlace = ${popArray.get(iStat.index)}
+                            )}">
+                        </div>
+                    </th:block>
+                </article>
             </section>
 
             <section>
                 <h2 id="battle" th:text="#{formationList.battle}"></h2>
+                <th:block th:each="formation, iStat : ${formations}">
+                    <article th:if="${iStat.index &gt; 44}">
+                        <h3 th:id="${anchorsBattle.get(iStat.index - 45)}"
+                            th:text="${formation.getNameByLang()}"></h3>
+                        <th:block th:if="${formation.getItemId()} == 788 or
+                                    ${formation.getItemId()} == 789">
+                            <p th:text="#{general.noData}"></p>
+                        </th:block>
+                        <th:block th:unless="${formation.getItemId()} == 788 or
+                                    ${formation.getItemId()} == 789">
+                            <div th:replace="~{fragments/formation-fragments.html :: 
+                                formation-battle(
+                                        formation = ${formation},
+                                        battlePlayers = ${battlePlayers}
+                                )}">
+                            </div>
+                        </th:block>
+                    </article>
+                </th:block>
             </section>
-
-            <article>
-                <h3 id="asd" th:text="${}"></h3>
-                <p th:text="#{formationList.similar}"><p>
-                <ul>
-                    basic
-                    deadzone
-                </ul>
-                <div>
-                    fragment
-                </div>
-            </article>
-
-
-         
 
             <section>
                 <h2 id="source" th:text="#{source}"></h2>

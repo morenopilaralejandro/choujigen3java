@@ -85,6 +85,10 @@
     padding-bottom: 10px;
 }
 
+.no-bench .formation-bench {
+    display: none;
+}
+
 .formation-title {
     background-color: var(--formation-field-bg);
     width: 700px;
@@ -177,3 +181,41 @@
 .formation-field.neo .formation-row.row2 {
     justify-content: space-around;
 }
+
+
+
+
+
+
+
+
+
+
+
+.formation-battle {
+    width: 450px;
+    margin-bottom: 16px;
+}
+
+.formation-battle .formation-title {
+    width: 450px;
+}
+
+.formation-battle .formation-field {
+    width: 450px;
+}
+/*bslash*/
+.formation-field.bslash .row1 {
+    justify-content: flex-start;
+}
+.formation-field.bslash .row3 {
+    justify-content: flex-end;
+}
+
+
+
+
+
+
+
+
