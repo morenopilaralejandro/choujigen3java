@@ -32,6 +32,9 @@ public class ItemFormation extends Item {
 	
 	@OneToMany(mappedBy = "itemFormation")
 	private List<FormationOrganizedAsPositi> formationOrganizedAsPositi;
+	
+	@OneToMany(mappedBy = "itemFormation")
+	private List<Team> teams;
 
 	public ItemFormation() {
 	}
@@ -84,6 +87,14 @@ public class ItemFormation extends Item {
 
 	public void setFormationOrganizedAsPositi(List<FormationOrganizedAsPositi> formationOrganizedAsPositi) {
 		this.formationOrganizedAsPositi = formationOrganizedAsPositi;
+	}
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
 
 	@Override

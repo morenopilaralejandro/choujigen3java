@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.choujigen.ogre.domain.FormationOrganizedAsPositi;
 import com.choujigen.ogre.domain.ItemFormation;
-import com.choujigen.ogre.domain.ItemTactic;
 import com.choujigen.ogre.domain.Player;
 import com.choujigen.ogre.domain.PlayerIsPartOfTeam;
 import com.choujigen.ogre.domain.Positi;
@@ -159,39 +157,30 @@ public class FormationController {
 		} catch (Exception e) {
 			return formationList(model);
 		}
+		Boolean isMatch = false;
+		List<PlayerIsPartOfTeam> ppt = new ArrayList<>();
+		Positi[] pop = new Positi[11];
 		Team team = new Team();
+		List<Team> teams = new ArrayList<Team>();
+		List<Player> battlePlayers = new ArrayList<Player>();
+
 		List<String> inOtherLanguages = new ArrayList<String>();
 		inOtherLanguages.add(itemFormation.getItemNameJa());
 		inOtherLanguages.add(itemFormation.getItemNameEn());
 		inOtherLanguages.add(itemFormation.getItemNameEs());
-		/* players */
-		List<PlayerIsPartOfTeam> playerIsPartOfTeam = team.getPlayers();
-		playerIsPartOfTeam.sort(Comparator.comparing(PlayerIsPartOfTeam::getPlace));
-		List<Player> players = new ArrayList<Player>();
-		/* formation */
-		ItemFormation formation = team.getItemFormation();
-		ItemFormation originalFormation;
-		List<FormationOrganizedAsPositi> formationOrganizedAsPositi;
-		Positi[] positiOrderByPlace = new Positi[11];
-		int auxPlace;
-		/* tactics */
-		List<ItemTactic> tactics = team.getTactics();
 
 		/* do */
-		/* players */
-		for (PlayerIsPartOfTeam ppt : playerIsPartOfTeam) {
-			players.add(ppt.getPlayer());
-		}
-		/* formation */
-		if (formation.getOriginalVersion() == null) {
-			originalFormation = formation;
+		if (itemFormation.getFormationType().getFormationTypeId().intValue() == 1) {
+			isMatch = true;
+			teams = itemFormation.getTeams();
+			team = teams.get(0);
+			ppt = team.getPlayers();
+			pop = itemFormation.getPositiOrderByPlace();
 		} else {
-			originalFormation = formation.getOriginalVersion();
-		}
-		formationOrganizedAsPositi = originalFormation.getFormationOrganizedAsPositi();
-		for (int i = 0; i < formationOrganizedAsPositi.size(); i++) {
-			auxPlace = formationOrganizedAsPositi.get(i).getId().getPlaceId().intValue();
-			positiOrderByPlace[auxPlace - 1] = formationOrganizedAsPositi.get(i).getPositi();
+			battlePlayers.add(playerService.one(220L));
+			battlePlayers.add(playerService.one(1217L));
+			battlePlayers.add(playerService.one(1265L));
+			battlePlayers.add(playerService.one(501L));
 		}
 
 		/* model-add */
@@ -199,16 +188,13 @@ public class FormationController {
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("inOtherLanguages", inOtherLanguages);
-		model.addAttribute("team", team);
-		/* players */
-		model.addAttribute("players", players);
-		model.addAttribute("playerIsPartOfTeam", playerIsPartOfTeam);
-		/* formation */
-		model.addAttribute("formation", formation);
-		model.addAttribute("positiOrderByPlace", positiOrderByPlace);
-		model.addAttribute("originalFormation", originalFormation);
-		/* tactics */
-		model.addAttribute("tactics", tactics);
+		model.addAttribute("itemFormation", itemFormation);
+		model.addAttribute("isMatch", isMatch);
+		model.addAttribute("ppt", ppt);
+		model.addAttribute("pop", pop);
+		model.addAttribute("teams", teams);
+		model.addAttribute("battlePlayers", battlePlayers);
+
 		return "/formation";
 	}
 }

@@ -61,8 +61,25 @@
 
             <section>
                 <h2 id="about" th:text="#{formationList.about}"></h2>
-                <p th:text="#{formationList.about.p1}"></p>
-                <p th:text="#{formationList.about.p2}"></p>
+                <p>
+                    <span th:text="#{formationList.about.p1.l1}"></span>
+                    <span th:text="#{formationList.about.p1.l2}"
+                        class="formation-example fw"></span>
+                    <span th:text="#{formationList.about.p1.l3}"
+                        class="formation-example mf"></span>
+                    <span th:text="#{formationList.about.p1.l4}"
+                        class="formation-example df"></span>
+                    <span th:text="#{formationList.about.p1.l5}"></span>
+                    <span th:text="#{formationList.about.p1.l6}"
+                        class="formation-example gk"></span>
+                    <span th:text="#{formationList.about.p1.l7}"></span>
+                </p>
+                <p>
+                    <span th:text="#{formationList.about.p2.l1}"></span>
+                    <a th:text="#{formationList.about.p2.l2}"
+                        href="/hissatsu-list#skills"></a>
+                </p>
+                <p th:text="#{formationList.about.p3}"></p>
             </section>
 
             <section>
