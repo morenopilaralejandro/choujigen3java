@@ -20,6 +20,7 @@ import com.choujigen.ogre.domain.Positi;
 import com.choujigen.ogre.domain.Team;
 import com.choujigen.ogre.service.ItemFormationService;
 import com.choujigen.ogre.service.PlayerService;
+import com.choujigen.ogre.service.PositiService;
 import com.choujigen.ogre.service.TeamService;
 
 @Controller
@@ -32,6 +33,9 @@ public class FormationController {
 
 	@Autowired
 	private PlayerService playerService;
+	
+	@Autowired
+	private PositiService positiService;
 
 	@RequestMapping(value = { "/formation-list", "/formation-list/" })
 	public String formationList(Model model) {
@@ -40,6 +44,7 @@ public class FormationController {
 		Locale locale = LocaleContextHolder.getLocale();
 		/* list */
 		List<ItemFormation> formations = itemFormationService.all();
+		List<Positi> positis = positiService.all();
 		List<Team> teamArray = new ArrayList<Team>();
 		ArrayList<String> anchorsMatch = new ArrayList<String>();
 		ArrayList<String> anchorsBattle = new ArrayList<String>();
@@ -135,6 +140,7 @@ public class FormationController {
 		model.addAttribute("currentLang", locale.getLanguage());
 		/* list */
 		model.addAttribute("formations", formations);
+		model.addAttribute("positis", positis);
 		model.addAttribute("teamArray", teamArray);
 		model.addAttribute("anchorsMatch", anchorsMatch);
 		model.addAttribute("anchorsBattle", anchorsBattle);
@@ -158,6 +164,7 @@ public class FormationController {
 			return formationList(model);
 		}
 		Boolean isMatch = false;
+		ItemFormation originalFormation = new ItemFormation();
 		List<PlayerIsPartOfTeam> ppt = new ArrayList<>();
 		Positi[] pop = new Positi[11];
 		Team team = new Team();
@@ -172,10 +179,15 @@ public class FormationController {
 		/* do */
 		if (itemFormation.getFormationType().getFormationTypeId().intValue() == 1) {
 			isMatch = true;
+			if (itemFormation.getOriginalVersion() == null) {
+				originalFormation = itemFormation;
+			} else {
+				originalFormation = itemFormation.getOriginalVersion();
+			}
 			teams = itemFormation.getTeams();
 			team = teams.get(0);
 			ppt = team.getPlayers();
-			pop = itemFormation.getPositiOrderByPlace();
+			pop = originalFormation.getPositiOrderByPlace();
 		} else {
 			battlePlayers.add(playerService.one(220L));
 			battlePlayers.add(playerService.one(1217L));
@@ -189,6 +201,7 @@ public class FormationController {
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("inOtherLanguages", inOtherLanguages);
 		model.addAttribute("itemFormation", itemFormation);
+		model.addAttribute("originalFormation", originalFormation);
 		model.addAttribute("isMatch", isMatch);
 		model.addAttribute("ppt", ppt);
 		model.addAttribute("pop", pop);

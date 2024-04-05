@@ -61,19 +61,14 @@
 
             <section>
                 <h2 id="about" th:text="#{formationList.about}"></h2>
-                <p>
-                    <span th:text="#{formationList.about.p1.l1}"></span>
-                    <span th:text="#{formationList.about.p1.l2}"
-                        class="formation-example fw"></span>
-                    <span th:text="#{formationList.about.p1.l3}"
-                        class="formation-example mf"></span>
-                    <span th:text="#{formationList.about.p1.l4}"
-                        class="formation-example df"></span>
-                    <span th:text="#{formationList.about.p1.l5}"></span>
-                    <span th:text="#{formationList.about.p1.l6}"
-                        class="formation-example gk"></span>
-                    <span th:text="#{formationList.about.p1.l7}"></span>
-                </p>
+                <p th:text="#{formationList.about.p1}"></p>
+                <ul>
+                    <li th:each="positi : ${positis}">
+                        <span th:text="${positi.getNameByLang()}"
+                            class="formation-example"
+                            th:classappend="${positi.getCssClass()}"></span>
+                    </li>
+                </ul>
                 <p>
                     <span th:text="#{formationList.about.p2.l1}"></span>
                     <a th:text="#{formationList.about.p2.l2}"

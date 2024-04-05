@@ -27,53 +27,66 @@
                 <span class="toc-title" th:text="#{toc.title}"></span>
                 <ul class="toc-list">
                     <li>
-                        <a href="#player">1. <span th:text="#{team.player}"></span></a>
+                        <a href="#formation">1. <span th:text="#{formation.formation}"></span></a>
                     </li>
-                    <li>
-                        <a href="#formation">2. <span th:text="#{team.formation}"></span></a>
-                    </li>
-                    <li>
-                        <a href="#tactics">3. <span th:text="#{team.tactics}"></span></a>
-                    </li>
-                    <li>
-                        <a href="#route">4. <span th:text="#{team.route}"></span></a>
-                    </li>
-                    <li>
-                        <a href="#tournament">5. <span th:text="#{team.tournament}"></span></a>
-                    </li>
-                    <li>
-                        <a href="#other-languages">6. <span th:text="#{general.inOtherLanguages}"></span></a>
-                    </li>
-                    <li>
-                        <a href="#source">7. <span th:text="#{source}"></span></a>
-                    </li>
+                    <th:block th:if="${isMatch}">
+                        <li>
+                            <a href="#team">2. <span th:text="#{formation.team}"></span></a>
+                        </li>
+                        <li>
+                            <a href="#obtention">3. <span th:text="#{general.obtention}"></span></a>
+                        </li>
+                        <li>
+                            <a href="#other-languages">4. <span th:text="#{general.inOtherLanguages}"></span></a>
+                        </li>
+                        <li>
+                            <a href="#source">5. <span th:text="#{source}"></span></a>
+                        </li>
+                    </th:block>
+                    <th:block th:unless="${isMatch}">
+                        <li>
+                            <a href="#obtention">2. <span th:text="#{general.obtention}"></span></a>
+                        </li>
+                        <li>
+                            <a href="#other-languages">3. <span th:text="#{general.inOtherLanguages}"></span></a>
+                        </li>
+                        <li>
+                            <a href="#source">4. <span th:text="#{source}"></span></a>
+                        </li>
+                    </th:block>
                 </ul>
             </div>
 
-            <section>
+            <section class="no-bench">
                 <h2 id="formation" th:text="#{team.formation}"></h2>
-                <div th:replace="~{fragments/formation-fragments.html :: 
-                    formation-scheme(
-                        formation = ${formation},
-                        originalFormation = ${originalFormation},
-                        playerIsPartOfTeam = ${playerIsPartOfTeam},
-                        positiOrderByPlace = ${positiOrderByPlace}
-                    )}">
-                </div>
+                <th:block th:if="${isMatch}">
+                    <div th:replace="~{fragments/formation-fragments.html :: 
+                        formation-scheme(
+                            formation = ${itemFormation},
+                            originalFormation = ${originalFormation},
+                            playerIsPartOfTeam = ${ppt},
+                            positiOrderByPlace = ${pop}
+                        )}">
+                    </div>
+                </th:block>
+                <th:block th:unless="${isMatch}">
+                    <div th:replace="~{fragments/formation-fragments.html :: 
+                        formation-battle(
+                            formation = ${itemFormation},
+                            battlePlayers = ${battlePlayers}
+                        )}">
+                    </div>
+                </th:block>
             </section>
 
-            <section>
-                <h2 id="tactics" th:text="#{team.tactics}"></h2>
-                <p th:if="${tactics.isEmpty()}" 
-                    th:text="#{general.none}">
-                </p>
-                <div th:unless="${tactics.isEmpty()}" 
-                    th:insert="~{fragments/tactics-fragments.html :: 
-                    tactics-table(
-                        itemTacticAll = ${tactics},
-                        showLink = true
-                    )}">
-                </div>
+            <section th:if="${isMatch}">
+                <h2 id="team" th:text="#{formation.team}"></h2>
+                <ul>
+                    <li th:each="team : ${teams}">
+                        <a th:text="${team.getNameByLang()}"
+                            th:href="@{/team/{id}(id=${team.getTeamId()})}"></a>
+                    </li>
+                </ul>
             </section>
 
             <section>
