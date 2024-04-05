@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="470mm"
+   height="248mm"
+   viewBox="0 0 469.99998 248"
+   version="1.1"
+   id="svg1"
+   inkscape:export-filename="bitmap.svg"
+   inkscape:export-xdpi="56.847618"
+   inkscape:export-ydpi="56.847618"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   sodipodi:docname="soccer-pitch-edit.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.40979237"
+     inkscape:cx="952.9216"
+     inkscape:cy="419.72475"
+     inkscape:window-width="1024"
+     inkscape:window-height="699"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="rect1"
+       width="470"
+       height="1"
+       x="0"
+       y="0" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.265;stroke-dasharray:none"
+       id="rect1-7"
+       width="470"
+       height="1"
+       x="7.1054274e-15"
+       y="123.5" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="rect1-5"
+       width="470"
+       height="1"
+       x="0"
+       y="247" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.121131"
+       id="rect2"
+       width="1"
+       height="248"
+       x="0"
+       y="0" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.121131"
+       id="rect2-2"
+       width="1"
+       height="248"
+       x="469"
+       y="0" />
+    <circle
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-dasharray:none"
+       id="path7"
+       cx="235"
+       cy="124"
+       r="30" />
+    <g
+       id="g19">
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7"
+         width="1"
+         height="30"
+         x="152"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7-6"
+         width="1"
+         height="30"
+         x="317"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.266428;stroke-dasharray:none"
+         id="rect8"
+         width="166"
+         height="1"
+         x="152"
+         y="30" />
+      <path
+         d="M 258.53242,30.5 H 211.46759 A 30,30 0 0 0 235.00001,42.112724 30,30 0 0 0 258.53242,30.5 Z"
+         style="fill:none;stroke:#ffffff"
+         id="path18" />
+    </g>
+    <g
+       id="g19-9"
+       transform="matrix(1,0,0,-1,0,248)">
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7-2"
+         width="1"
+         height="30"
+         x="152"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7-6-2"
+         width="1"
+         height="30"
+         x="317"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.266428;stroke-dasharray:none"
+         id="rect8-8"
+         width="166"
+         height="1"
+         x="152"
+         y="30" />
+      <path
+         d="M 258.53242,30.5 H 211.46759 A 30,30 0 0 0 235.00001,42.112724 30,30 0 0 0 258.53242,30.5 Z"
+         style="fill:none;stroke:#ffffff"
+         id="path18-9" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="469.99997mm"
+   height="248mm"
+   viewBox="0 0 469.99995 248"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <rect
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="rect1"
+       width="470"
+       height="1"
+       x="0"
+       y="0" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.265;stroke-dasharray:none"
+       id="rect1-7"
+       width="470"
+       height="1"
+       x="7.1054274e-15"
+       y="123.5" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="rect1-5"
+       width="470"
+       height="1"
+       x="0"
+       y="247" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.121131"
+       id="rect2"
+       width="1"
+       height="248"
+       x="0"
+       y="0" />
+    <rect
+       style="fill:#ffffff;stroke-width:0.121131"
+       id="rect2-2"
+       width="1"
+       height="248"
+       x="469"
+       y="0" />
+    <circle
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-dasharray:none"
+       id="path7"
+       cx="235"
+       cy="124"
+       r="30" />
+    <g
+       id="g19">
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7"
+         width="1"
+         height="30"
+         x="152"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7-6"
+         width="1"
+         height="30"
+         x="317"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.266428;stroke-dasharray:none"
+         id="rect8"
+         width="166"
+         height="1"
+         x="152"
+         y="30" />
+      <path
+         d="M 258.53242,30.5 H 211.46759 A 30,30 0 0 0 235.00001,42.112724 30,30 0 0 0 258.53242,30.5 Z"
+         style="fill:none;stroke:#ffffff"
+         id="path18" />
+    </g>
+    <g
+       id="g19-9"
+       transform="matrix(1,0,0,-1,0,248)">
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7-2"
+         width="1"
+         height="30"
+         x="152"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.264999;stroke-dasharray:none"
+         id="rect7-6-2"
+         width="1"
+         height="30"
+         x="317"
+         y="0" />
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.266428;stroke-dasharray:none"
+         id="rect8-8"
+         width="166"
+         height="1"
+         x="152"
+         y="30" />
+      <path
+         d="M 258.53242,30.5 H 211.46759 A 30,30 0 0 0 235.00001,42.112724 30,30 0 0 0 258.53242,30.5 Z"
+         style="fill:none;stroke:#ffffff"
+         id="path18-9" />
+    </g>
+  </g>
+</svg>

@@ -3,20 +3,19 @@
 <head>
 </head>
 <body>
-    <!-- 
-        include formation name and scheme ex three top (4 3 3)
-
-        scheme
-            field
-            bench
-
-    -->
     <div th:fragment="formation-player(
             player, 
             positiClass, 
             verticalClass)"
         class = "formation-player"
-        th:classappend="${positiClass} + ' ' + ${verticalClass}">
+        th:classappend="${positiClass} + ' ' + ${verticalClass}"
+        th:style="'background-image:' +
+            'linear-gradient(' +
+                'rgba(0, 0, 0, 0),' + 
+                'rgba(0, 0, 0, 0.5)' +
+            '),' +
+            'url(/img/player-img/player-img-test.png);'">
+        <a th:href="@{/player/{id}(id=${player.getPlayerId()})}">
         <div class = "formation-player-attri"
             th:classappend="${player.getAttri().getCssClass()}">
             <span th:replace="~{fragments/game-icon.html :: 
@@ -26,10 +25,12 @@
             </span>
         </div>
         <div class = "formation-player-name">
-            <a th:replace="~{fragments/player-fragments.html :: 
-                player-name(player = ${player})}">                 
-            </a>
+            <span th:text="${player.getNameByLang()}"></span>
+            <sup th:if="${player.getOriginalVersion()} != null"
+                th:text="2">
+            </sup> 
         </div>
+        </a>
     </div>
 
     <div th:fragment="formation-bench(playerIsPartOfTeam)"
