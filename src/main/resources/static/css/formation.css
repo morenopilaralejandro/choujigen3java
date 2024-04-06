@@ -1,8 +1,8 @@
 :root {
-    --zone-fw-color: #581111;
-    --zone-mf-color: #000f4a;
-    --zone-df-color: #012c01;
-    --zone-gk-color: #7a4100;
+    --zone-fw-color: #7c1818;
+    --zone-mf-color: #00166e;
+    --zone-df-color: #026202;
+    --zone-gk-color: #8c4b00;
     --zone-bench-color: #1c1615;
 
     --formation-field-bg: #08140e;
@@ -44,7 +44,7 @@
 
 .formation-player {
     /* border: 1px solid white; */
-    box-shadow: 0px 0px 3px 0px #737373;
+    box-shadow: 0px 0px 3px 0px #515151;
     border-radius: 1px;
     width: 80px;
     height: 45px;
@@ -109,6 +109,7 @@
 .formation-example {
     padding: 0px;
     box-shadow: 0px 0px 3px 0px #737373;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) !important;
     font-weight: bold;
     width: 30px;
     display: block;
