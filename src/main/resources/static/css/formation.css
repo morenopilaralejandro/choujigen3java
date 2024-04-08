@@ -3,7 +3,7 @@
     --zone-mf-color: #0021a4;
     --zone-df-color: #026202;
     --zone-gk-color: #8c4b00;
-    --zone-bench-color: #1c1615;
+    --zone-bench-color: #49403f;
 
     --formation-field-bg: #08140e;
     --formation-bench-bg: #002020;
@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-height: 200px;
     padding: 8px;
     padding-bottom: 20px;
     padding-top: 20px;
@@ -53,7 +54,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;
-    /*remove to show image*/
+    /*hide image*/
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) !important;
 }
 
@@ -87,7 +88,8 @@
     display: block;
     font-size: 9px;
     height: 15px;
-    width: 14px;
+    width: 15px;
+    text-align: center;
 }
 .formation-player-attri.wind {
     background-color: var(--attri-wind-color);
@@ -315,4 +317,35 @@
 .formation-field.blance .row2 {
     justify-content: space-between;
     margin-top: 25px;
+}
+
+
+
+
+
+
+
+/*responsive*/
+@media only screen and (max-width: 500px) {
+    .formation-player {
+        width: 45px;
+        background-size: 100% 100%;
+    }
+
+    .formation-player a {
+        padding-left: 0px;
+    }
+
+    .formation-player-name {
+        display: none;
+    }
+
+    .formation-field, .formation-title, .formation-bench {
+        width: 100%;
+    }
+
+    .formation-battle .formation-title, 
+    .formation-battle .formation-field {
+        width: 100%;
+    }
 }

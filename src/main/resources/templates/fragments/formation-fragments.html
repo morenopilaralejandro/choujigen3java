@@ -15,7 +15,8 @@
                 'rgba(0, 0, 0, 0.5)' +
             '),' +
             'url(/img/player-img/player-img-test.png);'">
-        <a th:href="@{/player/{id}(id=${player.getPlayerId()})}">
+        <a th:href="@{/player/{id}(id=${player.getPlayerId()})}"
+            th:title="${player.getNameByLang()}">
         <div class = "formation-player-attri"
             th:classappend="${player.getAttri().getCssClass()}">
             <span th:replace="~{fragments/game-icon.html :: 
