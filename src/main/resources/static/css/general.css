@@ -29,6 +29,11 @@
     --tactic-att-color: #b71626;
     --tactic-def-color: #209bd2;
     --tactic-kick-color: #99cb3b;
+
+    --player-portrait-top-bg: #a8b0d0;
+    --player-portrait-bottom-bg: #586890;
+    --player-portrait-inner-border-color: #a8b0d0;
+    --player-portrait-outer-border-color: #586890;
 }
 
 div.mainContainer {
