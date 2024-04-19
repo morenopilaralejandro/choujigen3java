@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="keywords" th:content="#{team.keywords}">
-	    <meta name="description" th:content="#{team.description}">
+	    <meta name="keywords" th:content="#{binder.keywords}">
+	    <meta name="description" th:content="#{binder.description}">
 	    <meta name="author" th:content="#{meta.author}">
-        <title th:text="${team.getNameByLang()} + ' - ' + #{webname}"></title>
+        <title th:text="#{binder.title} + ' - ' + #{webname}"></title>
 
         <link 
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
@@ -22,83 +22,73 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
-            <h1 th:text="${team.getNameByLang()}"></h1>
+            <h1 th:text="#{binder.a}"></h1>
             <div class="toc">
                 <span class="toc-title" th:text="#{toc.title}"></span>
                 <ul class="toc-list">
                     <li>
-                        <a href="#formation">1. <span th:text="#{team.formation}"></span></a>
+                        <a href="#a">1. <span th:text="#{binder.a.a}"></span></a>
                     </li>
                     <li>
-                        <a href="#player">2. <span th:text="#{team.player}"></span></a>
+                        <a href="#i">2. <span th:text="#{binder.a.i}"></span></a>
                     </li>
                     <li>
-                        <a href="#tactics">3. <span th:text="#{team.tactics}"></span></a>
+                        <a href="#u">3. <span th:text="#{binder.a.u}"></span></a>
                     </li>
                     <li>
-                        <a href="#route">4. <span th:text="#{team.route}"></span></a>
+                        <a href="#e">4. <span th:text="#{binder.a.e}"></span></a>
                     </li>
                     <li>
-                        <a href="#tournament">5. <span th:text="#{team.tournament}"></span></a>
+                        <a href="#o">5. <span th:text="#{binder.a.o}"></span></a>
                     </li>
                     <li>
-                        <a href="#other-languages">6. <span th:text="#{general.inOtherLanguages}"></span></a>
-                    </li>
-                    <li>
-                        <a href="#source">7. <span th:text="#{source}"></span></a>
+                        <a href="#source">6. <span th:text="#{source}"></span></a>
                     </li>
                 </ul>
             </div>
 
             <section>
-                <h2 id="formation" th:text="#{team.formation}"></h2>
-                <div th:replace="~{fragments/formation-fragments.html :: 
-                    formation-scheme(
-                        formation = ${formation},
-                        originalFormation = ${originalFormation},
-                        playerIsPartOfTeam = ${playerIsPartOfTeam},
-                        positiOrderByPlace = ${positiOrderByPlace}
-                    )}">
-                </div>
-            </section>
-
-            <section>
-                <h2 id="player" th:text="#{team.player}"></h2>
+                <h2 id="a" th:text="#{binder.a.a}"></h2>
                 <div th:replace="~{fragments/player-fragments.html :: 
-                    player-table(
-                        players = ${players}
+                    player-container(
+                        players = ${a}
                     )}">
                 </div>
             </section>
 
             <section>
-                <h2 id="tactics" th:text="#{team.tactics}"></h2>
-                <p th:if="${tactics.isEmpty()}" 
-                    th:text="#{general.none}">
-                </p>
-                <div th:unless="${tactics.isEmpty()}" 
-                    th:insert="~{fragments/tactics-fragments.html :: 
-                    tactics-table(
-                        itemTacticAll = ${tactics},
-                        showLink = true
+                <h2 id="i" th:text="#{binder.a.i}"></h2>
+                <div th:replace="~{fragments/player-fragments.html :: 
+                    player-container(
+                        players = ${i}
                     )}">
                 </div>
             </section>
 
             <section>
-                <h2 id="route" th:text="#{team.route}"></h2>
-                <p th:text="#{general.noData}"></p>
+                <h2 id="u" th:text="#{binder.a.u}"></h2>
+                <div th:replace="~{fragments/player-fragments.html :: 
+                    player-container(
+                        players = ${u}
+                    )}">
+                </div>
             </section>
 
             <section>
-                <h2 id="tournament" th:text="#{team.tournament}"></h2>
-                <p th:text="#{general.noData}"></p>
+                <h2 id="e" th:text="#{binder.a.e}"></h2>
+                <div th:replace="~{fragments/player-fragments.html :: 
+                    player-container(
+                        players = ${e}
+                    )}">
+                </div>
             </section>
 
             <section>
-                <h2 id="other-languages" th:text="#{general.inOtherLanguages}"></h2>
-                <div th:replace="~{fragments/other-languages.html :: 
-                    other-languages(names = ${inOtherLanguages})}">
+                <h2 id="o" th:text="#{binder.a.o}"></h2>
+                <div th:replace="~{fragments/player-fragments.html :: 
+                    player-container(
+                        players = ${o}
+                    )}">
                 </div>
             </section>
 
@@ -112,10 +102,6 @@
                     <li>
                         <a th:text="#{source.fandom.text}"
                             th:href="#{source.fandom.link}"></a>
-                    </li>
-                    <li>
-                        <a th:text="#{source.fandomes.text}"
-                            th:href="#{source.fandomes.link}"></a>
                     </li>
                 </ul>
             </section>

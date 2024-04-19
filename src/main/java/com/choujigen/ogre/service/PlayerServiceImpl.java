@@ -18,6 +18,11 @@ public class PlayerServiceImpl implements PlayerService {
 	public List<Player> all() {
 		return playerRepository.findAll();
 	}
+	
+	@Override
+	public List<Player> findByPlayerIdBetween(Long startId, Long endId) {
+		return playerRepository.findByPlayerIdBetween(startId, endId);
+	}
 
 	@Override
 	public Player one(Long id) {

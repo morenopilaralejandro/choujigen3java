@@ -8,22 +8,31 @@
             positiClass, 
             verticalClass)"
         class = "formation-player"
-        th:classappend="${positiClass} + ' ' + ${verticalClass}"
-        th:style="'background-image:' +
+        th:classappend="${positiClass} + ' ' + ${verticalClass}">
+        <a th:href="@{/player/{id}(id=${player.getPlayerId()})}"
+            th:title="${player.getNameByLang()}"
+            th:style="'background-image:' +
             'linear-gradient(' +
                 'rgba(0, 0, 0, 0),' + 
                 'rgba(0, 0, 0, 0.5)' +
             '),' +
-            'url(/img/player-img/player-img-test.png);'">
-        <a th:href="@{/player/{id}(id=${player.getPlayerId()})}"
-            th:title="${player.getNameByLang()}">
-        <div class = "formation-player-attri"
-            th:classappend="${player.getAttri().getCssClass()}">
-            <span th:replace="~{fragments/game-icon.html :: 
-                attri-icon(
-                    attri = ${player.getAttri()}
-                )}">
-            </span>
+            'url(/img/player-img/' + ${player.getPlayerId()} + '.png);'">
+        <div class="formation-player-icons">
+            <div class="formation-player-attri"
+                th:classappend="${player.getAttri().getCssClass()}">
+                <span th:replace="~{fragments/game-icon.html :: 
+                    attri-icon(
+                        attri = ${player.getAttri()}
+                    )}">
+                </span>
+            </div>
+            <div class="formation-player-gender">
+                <span th:replace="~{fragments/game-icon.html :: 
+                    gender-icon(
+                        gender = ${player.getGender()}
+                    )}">
+                </span>
+            </div>
         </div>
         <div class = "formation-player-name">
             <span th:text="${player.getNameByLang()}"></span>

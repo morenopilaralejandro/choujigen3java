@@ -165,8 +165,20 @@ public class Player {
 		case "ja":
 			return this.playerNameJa;
 		default:
-			return getPlayerNameRomanjiCapitalize();
+			return this.playerNameEn;
 		}
+	}
+	
+	public String[] getHiraganaSplited() {
+		String[] splited = this.playerNameHiragana.split("\\s+");
+		return splited;
+	}
+	
+	public String[] getKanjiSplited() {
+		if (!this.playerNameKanji.isEmpty()) {
+			return this.playerNameKanji.split("\\s+");			
+		}
+		return null;
 	}
 
 	public void updatePlayerStats() {

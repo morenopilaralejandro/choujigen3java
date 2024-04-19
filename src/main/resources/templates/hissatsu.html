@@ -14,6 +14,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/general.css}">
+        <link rel="stylesheet" th:href="@{/css/formation.css}">
     </head>
     <body>
         <header th:replace="~{fragments/header.html :: header}"></header>
@@ -117,11 +118,16 @@
 
             <section>
                 <h2 id="learners" th:text="#{hissatsu.learners}"></h2>
-                <div th:replace="~{fragments/player-fragments.html :: 
-                    player-table(
-                        players = ${learners}
-                    )}">
-                </div>
+                <p th:if="${learners.isEmpty()}" 
+                    th:text="#{general.none}">
+                </p>
+                <th:block th:unless="${learners.isEmpty()}">
+                    <div th:replace="~{fragments/player-fragments.html :: 
+                        player-container(
+                            players = ${learners}
+                        )}">
+                    </div>
+                </th:block>
             </section>
 
             <section>

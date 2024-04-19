@@ -6,6 +6,8 @@ import com.choujigen.ogre.domain.Player;
 
 public interface PlayerService {
 	List<Player> all();
+	
+	List<Player> findByPlayerIdBetween(Long startId, Long endId);
 
 	Player one(Long id);
 

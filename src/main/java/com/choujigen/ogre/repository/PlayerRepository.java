@@ -14,4 +14,14 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 	List<Player> findByPositi(Positi positi);
 
 	List<Player> findByAttriAndPositi(Attri attri, Positi positi);
+	
+	List<Player> findByPlayerIdBetween(Long startId, Long endId);
+	
+	/*
+	@Query("select p from Player p "
+			+ "where (p.playerNameJa like ?1% "
+				+ "or p.playerNameJa like ?2%) "
+				+ "and p.playerId between 1 and 1607")
+	List<Player> findByIdBetween(String hira, String kana);
+	*/
 }

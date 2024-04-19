@@ -17,9 +17,9 @@
     --positi-df-color: #027a04;
     --positi-gk-color: #e27800;
     
-    --gender-male-color: #9cdeff;
+    --gender-male-color: #e3f6ff;
     --gender-male-bg: #055cc5;
-    --gender-female-color: #ff94a5;
+    --gender-female-color: #ffe7eb;
     --gender-female-bg: #bd1831;
 
     --property-chain-color: #4a6bd6;
@@ -69,6 +69,13 @@ footer {
 
 footer div {
 
+}
+
+.short-page footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
 }
 
 /*lang*/
@@ -148,9 +155,44 @@ ul.player-detail li {
     margin-bottom: 5px;
 }
 
+.player-versions .player-container {
+    padding-left: 32px;
+}
+
 table.hissatsu-player .hissatsu-type-icon {
     width: 50px;
 }
+
+div.player-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 540px;
+    margin-bottom: 20px;
+}
+
+figure.player-portrait {
+    box-sizing: border-box;
+    border: 2px solid var(--player-portrait-outer-border-color);
+    width: fit-content;
+    border-radius: 2px;
+}
+
+figure.player-portrait img {
+    box-sizing: border-box;
+    border: 2px solid var(--player-portrait-inner-border-color);
+    background: linear-gradient(
+        var(--player-portrait-top-bg) 60%,
+        var(--player-portrait-bottom-bg) 40%
+    );
+}
+
+/*
+ul.player-detail ruby + ruby {
+    padding-left: 4px;
+}
+*/
 
 /*attri-icon*/
 td.td-icon {

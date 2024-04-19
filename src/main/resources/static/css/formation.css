@@ -48,14 +48,9 @@
     box-shadow: 0px 0px 3px 0px #515151;
     border-radius: 1px;
     width: 80px;
-    height: 45px;
+    height: 46px;
     overflow: hidden;
     background-color: var(--zone-bench-color);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right;
-    /*hide image*/
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) !important;
 }
 
 .formation-player:hover {
@@ -66,30 +61,39 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 2px;
-    width: 100%;
-    height: 100%;
+    gap: 1px;
+    width: 88px;
+    height: 49px;
     color: white;
     text-decoration: none;
     padding-left: 4px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right -2px;
+    padding-bottom: 2px;
+    /*hide image
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) !important;
+    */
 }
 
-.formation-player-name {
-    font-size: 12px;
-    text-shadow: 0px 0px 2px black;
+.formation-player-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
 }
-
 .formation-player-attri {
     display: block;
-    width: fit-content;
-    padding: 1px;    
+    width: fit-content;   
 }
-.formation-player-attri .attri-icon {
+.formation-player-icons .attri-icon,
+.formation-player-icons .gender-icon {
     display: block;
     font-size: 9px;
     height: 15px;
     width: 15px;
     text-align: center;
+    color: white;
 }
 .formation-player-attri.wind {
     background-color: var(--attri-wind-color);
@@ -105,7 +109,8 @@
 }
 
 .formation-player-name {
-
+    font-size: 12px;
+    text-shadow: 0px 0px 2px black;
 }
 
 .formation-example {
@@ -324,20 +329,37 @@
 
 
 
-
+.formation-field .formation-player-gender,
+.formation-bench .formation-player-gender,
+.formation-battle .formation-player-gender {
+    display: none;
+}
 /*responsive*/
 @media only screen and (max-width: 500px) {
-    .formation-player {
+    .formation-field .formation-player,
+    .formation-bench .formation-player,
+    .formation-battle .formation-player {
         width: 45px;
+    }
+
+    .formation-field .formation-player a,
+    .formation-bench .formation-player a,
+    .formation-battle .formation-player a {
+        width: 100%;
+        padding-left: 0px;
         background-size: 100% 100%;
     }
 
-    .formation-player a {
-        padding-left: 0px;
+    .formation-field .formation-player-name,
+    .formation-bench .formation-player-name,
+    .formation-battle .formation-player-name {
+        display: none;
     }
 
-    .formation-player-name {
-        display: none;
+    .formation-field .formation-player-attri,
+    .formation-bench .formation-player-attri,
+    .formation-battle .formation-player-attri {
+        margin-bottom: 1px;
     }
 
     .formation-field, .formation-title, .formation-bench {

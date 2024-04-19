@@ -11,6 +11,44 @@
         </sup>  
     </a>
 
+    <span th:fragment="player-name-ruby(player)" class="player-name-ruby">
+        <th:block th:if="${player.getKanjiSplited()} == null">
+            <span th:text="${player.getPlayerNameHiragana()}" th:remove="tag"></span>
+        </th:block>
+        <th:block th:unless="${player.getKanjiSplited()} == null">
+            <th:block th:each="split, iStat : ${player.getKanjiSplited()}">
+                <th:block th:if="${split} == ${player.getHiraganaSplited()[iStat.index]}">
+                    <span th:text="${player.getHiraganaSplited()[iStat.index]}"></span>
+                </th:block>
+                <th:block th:unless="${split} == ${player.getHiraganaSplited()[iStat.index]}">
+                    <ruby>
+                        <rb th:text="${split}"></rb>
+                        <rp>(</rp>
+                        <rt th:text="${player.getHiraganaSplited()[iStat.index]}"></rt>
+                        <rp>)</rp>   
+                    </ruby>
+                </th:block>
+            </th:block>
+        </th:block>
+    </span>
+
+    <figure th:fragment="player-portrait(player)" class="player-portrait">
+        <img th:src="'/img/player-img/' + ${player.getPlayerId()} + '.png'" 
+            th:alt="${player.getNameByLang()}">
+    </figure>
+
+    <div th:fragment="player-container(players)" class="player-container">
+        <th:block th:each="player : ${players}">
+            <div th:replace="~{fragments/formation-fragments.html :: 
+                formation-player(
+                    player = ${player},
+                    positiClass = ${player.getPositi().getCssClass()},
+                    verticalClass = ''
+                )}">
+            </div>
+        </th:block>
+    </div>
+
     <div th:fragment="player-table(players)" class="table-responsive">
         <table class="table table-bordered table-sm" style="max-width: 250px;"
             th:unless="${players.isEmpty()}">
@@ -54,22 +92,46 @@
         <!-- name -->
         <th:block th:if="${currentLang} == 'ja'">
             <li>
-                <span th:text="#{player.name}" class="font-weight-bold"></span>
+                <span th:text="#{player.nickname}" class="font-weight-bold"></span>
                 <span th:text="${player.getNameByLang()}"></span>
-            </li>    
+            </li>
+            <li>
+                <span th:text="#{player.name}" class="font-weight-bold"></span>
+                <span th:replace="~{fragments/player-fragments.html :: 
+                    player-name-ruby(
+                        player = ${player}
+                    )}">
+                </span>
+            </li>  
+            <li>
+                <span th:text="#{player.englishNickname}" class="font-weight-bold"></span>
+                <span th:text="${player.getPlayerNameEn()}"></span>
+            </li>
             <li>
                 <span th:text="#{player.englishName}" class="font-weight-bold"></span>
-                <span th:text="${player.getPlayerNameRomanjiCapitalize()}"></span>
-            </li>     
+                <span th:text="${player.getPlayerNameEnFull()}"></span>
+            </li>
         </th:block>
         <th:block th:unless="${currentLang} == 'ja'">
             <li>
-                <span th:text="#{player.name}" class="font-weight-bold"></span>
+                <span th:text="#{player.nickname}" class="font-weight-bold"></span>
                 <span th:text="${player.getNameByLang()}"></span>
-            </li>    
+            </li>
+            <li>
+                <span th:text="#{player.name}" class="font-weight-bold"></span>
+                <span th:text="${player.getPlayerNameEnFull()}"></span>
+            </li>
+            <li>
+                <span th:text="#{player.japanseNickname}" class="font-weight-bold"></span>
+                <span th:text="${player.getPlayerNameJa()}"></span>
+            </li>     
             <li>
                 <span th:text="#{player.japanseName}" class="font-weight-bold"></span>
-                <span th:text="${player.getPlayerNameJa()}"></span>
+                <span th:replace="~{fragments/player-fragments.html :: 
+                    player-name-ruby(
+                        player = ${player}
+                    )}">
+                </span>
             </li>     
         </th:block>
         <!-- attributes -->
@@ -108,15 +170,14 @@
                 th:href="@{/team/{id}(id=${player.getStoryTeam().get(0).getTeamId()})}"></a>
         </li>
         <!-- versions -->
-        <li th:unless="${versions.isEmpty()}">
+        <li th:unless="${versions.isEmpty()}" class="player-versions">
             <span th:text="#{player.versions}" class="font-weight-bold"></span>
-            <ul>
-                <li th:each="p : ${versions}">
-                    <a th:replace="~{fragments/player-fragments.html :: 
-                        player-name(player = ${p})}">                 
-                    </a>
-                </li>
-            </ul>
+
+            <div th:replace="~{fragments/player-fragments.html :: 
+                player-container(
+                    players = ${versions}
+                )}">
+            </div>
         </li>
     </ul>
 
