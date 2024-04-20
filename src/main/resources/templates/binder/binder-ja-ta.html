@@ -6,7 +6,7 @@
 	    <meta name="keywords" th:content="#{binder.keywords}">
 	    <meta name="description" th:content="#{binder.description}">
 	    <meta name="author" th:content="#{meta.author}">
-        <title th:text="#{binder.ka} + ' - ' + #{webname}"></title>
+        <title th:text="#{binder.ta} + ' - ' + #{webname}"></title>
 
         <link 
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
@@ -22,24 +22,24 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
-            <h1 th:text="#{binder.ka}"></h1>
+            <h1 th:text="#{binder.ta}"></h1>
             <div class="toc">
                 <span class="toc-title" th:text="#{toc.title}"></span>
                 <ul class="toc-list">
                     <li>
-                        <a href="#ka">1. <span th:text="#{binder.ka.ka}"></span></a>
+                        <a href="#ta">1. <span th:text="#{binder.ta.ta}"></span></a>
                     </li>
                     <li>
-                        <a href="#ki">2. <span th:text="#{binder.ka.ki}"></span></a>
+                        <a href="#chi">2. <span th:text="#{binder.ta.chi}"></span></a>
                     </li>
                     <li>
-                        <a href="#ku">3. <span th:text="#{binder.ka.ku}"></span></a>
+                        <a href="#tsu">3. <span th:text="#{binder.ta.tsu}"></span></a>
                     </li>
                     <li>
-                        <a href="#ke">4. <span th:text="#{binder.ka.ke}"></span></a>
+                        <a href="#te">4. <span th:text="#{binder.ta.te}"></span></a>
                     </li>
                     <li>
-                        <a href="#ko">5. <span th:text="#{binder.ka.ko}"></span></a>
+                        <a href="#to">5. <span th:text="#{binder.ta.to}"></span></a>
                     </li>
                     <li>
                         <a href="#source">6. <span th:text="#{source}"></span></a>
@@ -48,46 +48,46 @@
             </div>
 
             <section>
-                <h2 id="ka" th:text="#{binder.ka.ka}"></h2>
+                <h2 id="ta" th:text="#{binder.ta.ta}"></h2>
                 <div th:replace="~{fragments/player-fragments.html :: 
                     player-container(
-                        players = ${ka}
+                        players = ${ta}
                     )}">
                 </div>
             </section>
 
             <section>
-                <h2 id="ki" th:text="#{binder.ka.ki}"></h2>
+                <h2 id="chi" th:text="#{binder.ta.chi}"></h2>
                 <div th:replace="~{fragments/player-fragments.html :: 
                     player-container(
-                        players = ${ki}
+                        players = ${chi}
                     )}">
                 </div>
             </section>
 
             <section>
-                <h2 id="ku" th:text="#{binder.ka.ku}"></h2>
+                <h2 id="tsu" th:text="#{binder.ta.tsu}"></h2>
                 <div th:replace="~{fragments/player-fragments.html :: 
                     player-container(
-                        players = ${ku}
+                        players = ${tsu}
                     )}">
                 </div>
             </section>
 
             <section>
-                <h2 id="ke" th:text="#{binder.ka.ke}"></h2>
+                <h2 id="te" th:text="#{binder.ta.te}"></h2>
                 <div th:replace="~{fragments/player-fragments.html :: 
                     player-container(
-                        players = ${ke}
+                        players = ${te}
                     )}">
                 </div>
             </section>
 
             <section>
-                <h2 id="ko" th:text="#{binder.ka.ko}"></h2>
+                <h2 id="to" th:text="#{binder.ta.to}"></h2>
                 <div th:replace="~{fragments/player-fragments.html :: 
                     player-container(
-                        players = ${ko}
+                        players = ${to}
                     )}">
                 </div>
             </section>
@@ -95,12 +95,12 @@
             <nav>
                 <ul class="pagination binder-pre-next">
                     <li class="page-item">
-                        <a th:href="@{/player-binder/a}" class="page-link"
-                            th:text="'&#8249; ' + #{binder.a}"></a>
+                        <a th:href="@{/player-binder/sa}" class="page-link"
+                            th:text="'&#8249; ' + #{binder.sa}"></a>
                     </li>
                     <li class="page-item">
-                        <a th:href="@{/player-binder/sa}" class="page-link"
-                            th:text="#{binder.sa} + ' &#8250;'"></a>
+                        <a th:href="@{/player-binder/na}" class="page-link"
+                            th:text="#{binder.na} + ' &#8250;'"></a>
                     </li>
                 </ul>
             </nav>

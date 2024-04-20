@@ -8,6 +8,8 @@ public interface PlayerService {
 	List<Player> all();
 	
 	List<Player> findByPlayerIdBetween(Long startId, Long endId);
+	
+	List<Player> findByInitialEn(String initial);
 
 	Player one(Long id);
 

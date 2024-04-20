@@ -3,6 +3,7 @@ package com.choujigen.ogre.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.choujigen.ogre.domain.Attri;
 import com.choujigen.ogre.domain.Player;
@@ -17,11 +18,10 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 	
 	List<Player> findByPlayerIdBetween(Long startId, Long endId);
 	
-	/*
 	@Query("select p from Player p "
-			+ "where (p.playerNameJa like ?1% "
-				+ "or p.playerNameJa like ?2%) "
-				+ "and p.playerId between 1 and 1607")
-	List<Player> findByIdBetween(String hira, String kana);
-	*/
+			+ "where (p.playerNameEn like ?1% "
+				+ "and p.playerId between 1 and 1607 "
+				+ "order by p.playerNameEn asc")
+	List<Player> findByInitialEn(String initial);
+
 }

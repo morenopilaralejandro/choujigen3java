@@ -120,7 +120,7 @@ public class PlayerController {
 		model.addAttribute("currentLang", locale.getLanguage());
 		return "/binder/binder-ja";
 	}
-
+	/* player-binder-ja */
 	@RequestMapping(value = { "/player-binder/a", "/player-binder/a/" })
 	public String binderA(Model model) {
 		Locale locale = LocaleContextHolder.getLocale();
@@ -275,4 +275,48 @@ public class PlayerController {
 		
 		return "/binder/binder-ja-wa";
 	}	
+	/* player-binder-en 
+	 * abc
+	 * def
+	 * ghi
+	 * jkl
+	 * mno
+	 * pqrs
+	 * tuv
+	 * wxyz
+	 * */
+	@RequestMapping(value = { "/player-binder/abc", "/player-binder/abc/" })
+	public String binderAbc(Model model) {
+		Locale locale = LocaleContextHolder.getLocale();
+		
+		String title = "abc";
+		List<String> subTitles = new ArrayList<String>();
+		List<List<Player>> sections = new ArrayList<List<Player>>();
+		String prevText = null;
+		String prevUrl = null;
+		String nextText = "def";
+		String nextUrl = "/player-binder/def";
+		
+		subTitles.add("a");
+		subTitles.add("b");
+		subTitles.add("c");
+		
+		sections.add(playerService.findByInitialEn("a"));
+		sections.add(playerService.findByInitialEn("b"));
+		sections.add(playerService.findByInitialEn("c"));
+
+		model.addAttribute("url", null);
+		model.addAttribute("currentLang", locale.getLanguage());
+		
+		model.addAttribute("title", title);
+		model.addAttribute("subTitles", subTitles);
+		model.addAttribute("sections", sections);
+		model.addAttribute("prevText", prevText);
+		model.addAttribute("prevUrl", prevUrl);
+		
+		model.addAttribute("nextText", nextText);
+		model.addAttribute("nextUrl", nextUrl);
+		
+		return "/binder/binder-en-view";
+	}		
 }
