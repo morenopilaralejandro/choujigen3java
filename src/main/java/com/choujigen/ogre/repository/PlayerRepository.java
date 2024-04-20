@@ -19,9 +19,9 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 	List<Player> findByPlayerIdBetween(Long startId, Long endId);
 	
 	@Query("select p from Player p "
-			+ "where (p.playerNameEn like ?1% "
+			+ "where p.playerNameEn like ?1% "
 				+ "and p.playerId between 1 and 1607 "
-				+ "order by p.playerNameEn asc")
+				+ "order by p.playerNameEn")
 	List<Player> findByInitialEn(String initial);
 
 }
