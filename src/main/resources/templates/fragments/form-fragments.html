@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div th:fragment="form-player-search(playerSearch)" 
+        class="form-player-search">
+        <form id="formPlayerSearch" name="formPlayerSearch"
+            th:object="${playerSearch}"
+            action="#" th:action="@{/player-search}" 
+            method="post" enctype="multipart/form-data">
+            <div class="form-container">
+                <!--playerName-->
+                <div class="mb-3">
+                    <label class="form-label" for="playerName"
+                        th:text="#{playerSearch.playerName}"></label>
+                    <input type="text" class="form-control player-name" 
+                        th:field="*{playerName}" id="playerName" maxlength="32"
+                        th:placeholder="#{playerSearch.playerName.placeholder}">
+                </div>
+                <!--attri-->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label th:text="#{playerSearch.element}"
+                            class="form-label" for="attri1"></label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" 
+                                th:field="*{attri}" id="attri1" 
+                                value="0">
+                            <label class="form-check-label" for="attri1">
+                                <span th:text="#{playerSearch.any}"></span>
+                            </label>
+                        </div>
+                        <div th:each="attri, iStat : ${attris}" class="form-check">
+                            <input class="form-check-input" type="radio" 
+                                th:field="*{attri}" 
+                                th:id="'attri' + ${iStat.index} + 2" 
+                                th:value="${attri.getAttriId()}">
+                            <label class="form-check-label" 
+                                th:for="'attri' + ${iStat.index} + 2">
+                                <span th:replace="~{fragments/game-icon.html :: 
+                                    attri-icon(
+                                        attri = ${attri}
+                                    )}">
+                                </span>
+                                <span
+                                    th:unless="${currentLang} == 'ja'" 
+                                    th:text="${attri.getNameByLang()}">
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <!--gender-->
+                    <div class="col">
+                        <label class="form-label" for="gender1"
+                            th:text="#{playerSearch.gender}" ></label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" 
+                                th:field="*{gender}" id="gender1" value="0">
+                            <label class="form-check-label" for="gender1">
+                                <span th:text="#{playerSearch.any}"></span>
+                            </label>
+                        </div>
+                        <div th:each="gender, iStat : ${genders}" class="form-check">
+                            <input class="form-check-input" type="radio" 
+                                th:field="*{gender}" 
+                                th:id="'gender' + ${iStat.index} + 2" 
+                                th:value="${gender.getGenderId()}">
+                            <label class="form-check-label"
+                                th:for="'gender' + ${iStat.index} + 2">
+                                <span th:replace="~{fragments/game-icon.html :: 
+                                    gender-icon(
+                                        gender = ${gender}
+                                    )}">
+                                </span>
+                                <span 
+                                    th:unless="${currentLang} == 'ja'"
+                                    th:text="${gender.getNameByLang()}">
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!--hissatsu-->
+                <datalist id="datalistHissatsu">
+                    <option th:each="hissatsu: ${hissatsus}" 
+                        th:value="${hissatsu.getNameByLang()}">
+                </datalist>
+                <div class="mb-3">
+                    <label class="form-label" for="hissatsu1"
+                        th:text="#{playerSearch.hissatsu}"></label>
+                    <input class="form-control hissatsu-datalist" 
+                        list="datalistHissatsu" maxlength="32"
+                        th:field="*{hissatsu1}" id="hissatsu1"
+                        th:placeholder="#{playerSearch.hissatsu.h1}">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control hissatsu-datalist" 
+                        list="datalistHissatsu" maxlength="32"
+                        th:field="*{hissatsu2}" id="hissatsu2"
+                        th:placeholder="#{playerSearch.hissatsu.h2}">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control hissatsu-datalist" 
+                        list="datalistHissatsu" maxlength="32"
+                        th:field="*{hissatsu3}" id="hissatsu3"
+                        th:placeholder="#{playerSearch.hissatsu.h3}">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control hissatsu-datalist" 
+                        list="datalistHissatsu" maxlength="32"
+                        th:field="*{hissatsu4}" id="hissatsu4"
+                        th:placeholder="#{playerSearch.hissatsu.h4}">
+                    <div id="hissatsuHelp" class="form-text"
+                        th:text="#{playerSearch.hissatsu.help}"></div>
+                </div>
+                <!--submit-->
+                <div class="mb-3">
+                    <button type="submit" name="searchPlayer" 
+                        class="btn btn-primary">
+                        <img th:src="@{/img/svg/search.svg}" th:alt="#{playerSearch.submit}">
+                        <span th:text="#{playerSearch.submit}"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

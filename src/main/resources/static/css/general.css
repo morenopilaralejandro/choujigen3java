@@ -363,3 +363,12 @@ td.td-icon .tactic-icon {
     margin: auto;
 }
 
+/* player-search */
+.form-player-search {
+    max-width: 550px;
+}
+
+.player-name, .hissatsu-datalist {
+    max-width: 310px;
+}
+
