@@ -14,4 +14,10 @@ public interface ItemHissatsuService {
 	ItemHissatsu replace(ItemHissatsu newObj, Long id);
 
 	void delete(Long id);
+	
+	List<ItemHissatsu> findByItemNameJa(String itemNameJa);
+
+	List<ItemHissatsu> findByItemNameEn(String itemNameEn);
+	
+	List<ItemHissatsu> findByItemNameEs(String itemNameEs);
 }

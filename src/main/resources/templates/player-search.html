@@ -28,6 +28,15 @@
                     playerSearch = null
                 )}">
             </div>
+
+            <section id="results" th:unless="${players.isEmpty()}">
+                <h2 th:text="#{playerSearch.results}"></h2>
+                <div th:replace="~{fragments/player-fragments.html :: 
+                    player-container(
+                        players = ${players}
+                    )}">
+                </div>
+            </section>
         </div>
 
         <footer th:replace="~{fragments/footer.html :: footer}"></footer>

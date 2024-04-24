@@ -50,4 +50,19 @@ public class ItemHissatsuServiceImpl implements ItemHissatsuService {
 	public void delete(Long id) {
 		itemRepository.deleteById(id);
 	}
+
+	@Override
+	public List<ItemHissatsu> findByItemNameJa(String itemNameJa) {
+		return itemRepository.findByItemNameJa(itemNameJa);
+	}
+	
+	@Override
+	public List<ItemHissatsu> findByItemNameEn(String itemNameEn) {
+		return itemRepository.findByItemNameEn(itemNameEn);
+	}
+	
+	@Override
+	public List<ItemHissatsu> findByItemNameEs(String itemNameEs) {
+		return itemRepository.findByItemNameEs(itemNameEs);
+	}
 }

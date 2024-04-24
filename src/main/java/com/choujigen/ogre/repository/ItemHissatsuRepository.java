@@ -10,4 +10,7 @@ import com.choujigen.ogre.domain.ItemHissatsu;
 
 public interface ItemHissatsuRepository extends JpaRepository<ItemHissatsu, Long> {
 	List<ItemHissatsu> findByHissatsuTypeAndAttriIn(HissatsuType hissatsuType, List<Attri> attri);
+	List<ItemHissatsu> findByItemNameJa(String itemNameJa);
+	List<ItemHissatsu> findByItemNameEn(String itemNameEn);
+	List<ItemHissatsu> findByItemNameEs(String itemNameEs);
 }

@@ -1,26 +1,69 @@
 package com.choujigen.ogre.form;
 
-import jakarta.validation.constraints.Max;
+import com.choujigen.ogre.domain.Attri;
+import com.choujigen.ogre.domain.Gender;
+import com.choujigen.ogre.domain.ItemHissatsu;
+import com.choujigen.ogre.domain.Positi;
+
+import jakarta.validation.constraints.Size;
 
 public class PlayerSearch {
-	@Max(32)
+	@Size(max = 32)
 	private String playerName;
-	
+
 	private Long attri;
-	
+
+	private Long positi;
+
 	private Long gender;
-	
-	@Max(32)
+
+	private Attri attriObj;
+
+	private Positi positiObj;
+
+	private Gender genderObj;
+
+	@Size(max = 32)
+	@HissatsuNameConstraint
 	private String hissatsu1;
-	
-	@Max(32)
+
+	@Size(max = 32)
+	@HissatsuNameConstraint
 	private String hissatsu2;
-	
-	@Max(32)
+
+	@Size(max = 32)
+	@HissatsuNameConstraint
 	private String hissatsu3;
-	
-	@Max(32)
+
+	@Size(max = 32)
+	@HissatsuNameConstraint
 	private String hissatsu4;
+
+	private ItemHissatsu[] hissatsuArray;
+	
+	public Attri getAttriObj() {
+		return attriObj;
+	}
+
+	public void setAttriObj(Attri attriObj) {
+		this.attriObj = attriObj;
+	}
+
+	public Positi getPositiObj() {
+		return positiObj;
+	}
+
+	public void setPositiObj(Positi positiObj) {
+		this.positiObj = positiObj;
+	}
+
+	public Gender getGenderObj() {
+		return genderObj;
+	}
+
+	public void setGenderObj(Gender genderObj) {
+		this.genderObj = genderObj;
+	}
 
 	public String getPlayerName() {
 		return playerName;
@@ -36,6 +79,14 @@ public class PlayerSearch {
 
 	public void setAttri(Long attri) {
 		this.attri = attri;
+	}
+
+	public Long getPositi() {
+		return positi;
+	}
+
+	public void setPositi(Long positi) {
+		this.positi = positi;
 	}
 
 	public Long getGender() {
@@ -78,11 +129,12 @@ public class PlayerSearch {
 		this.hissatsu4 = hissatsu4;
 	}
 
-	@Override
-	public String toString() {
-		return "PlayerSearch [playerName=" + playerName + ", attri=" + attri + ", gender=" + gender + ", hissatsu1="
-				+ hissatsu1 + ", hissatsu2=" + hissatsu2 + ", hissatsu3=" + hissatsu3 + ", hissatsu4=" + hissatsu4
-				+ "]";
+	public ItemHissatsu[] getHissatsuArray() {
+		return hissatsuArray;
+	}
+
+	public void setHissatsuArray(ItemHissatsu[] hissatsuArray) {
+		this.hissatsuArray = hissatsuArray;
 	}
 
 }

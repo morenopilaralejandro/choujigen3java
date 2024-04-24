@@ -3,11 +3,14 @@ package com.choujigen.ogre.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.choujigen.ogre.domain.Player;
 import com.choujigen.ogre.exception.PlayerNotFoundException;
+import com.choujigen.ogre.form.PlayerSearch;
 import com.choujigen.ogre.repository.PlayerRepository;
+import com.choujigen.ogre.spec.PlayerSpec;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
@@ -18,11 +21,12 @@ public class PlayerServiceImpl implements PlayerService {
 	public List<Player> all() {
 		return playerRepository.findAll();
 	}
-	
+
 	@Override
 	public List<Player> findByPlayerIdBetween(Long startId, Long endId) {
 		return playerRepository.findByPlayerIdBetween(startId, endId);
 	}
+
 	@Override
 	public List<Player> findByInitialEn(String initial) {
 		return playerRepository.findByInitialEn(initial);
@@ -77,4 +81,10 @@ public class PlayerServiceImpl implements PlayerService {
 	public void delete(Long id) {
 		playerRepository.deleteById(id);
 	}
+
+	public List<Player> findByCriteriaPlayerSearch(PlayerSearch playerSearch, String currentLang) {
+		Specification<Player> spec = PlayerSpec.search(playerSearch, currentLang);
+		return playerRepository.findAll(spec);
+	}
+
 }
