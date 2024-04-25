@@ -125,12 +125,14 @@
                     <input class="form-control hissatsu-datalist" 
                         list="datalistHissatsu" maxlength="32"
                         th:field="*{hissatsu2}" id="hissatsu2"
+                        th:classappend="${#fields.hasErrors('hissatsu2')} ?  is-invalid"
                         th:placeholder="#{playerSearch.hissatsu.h2}">
                 </div>
                 <div class="mb-3">
                     <input class="form-control hissatsu-datalist" 
                         list="datalistHissatsu" maxlength="32"
                         th:field="*{hissatsu3}" id="hissatsu3"
+                        th:classappend="${#fields.hasErrors('hissatsu3')} ?  is-invalid"
                         th:placeholder="#{playerSearch.hissatsu.h3}">
                 </div>
                 <div class="mb-3">
@@ -139,6 +141,7 @@
                         th:field="*{hissatsu4}" id="hissatsu4"
                         th:placeholder="#{playerSearch.hissatsu.h4}">
                     <div id="hissatsuHelp" class="form-text"
+                        th:classappend="${#fields.hasErrors('hissatsu4')} ?  is-invalid"
                         th:text="#{playerSearch.hissatsu.help}"></div>
                 </div>
                 <!--submit-->

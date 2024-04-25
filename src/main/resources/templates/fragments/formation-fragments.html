@@ -10,7 +10,7 @@
         class = "formation-player"
         th:classappend="${positiClass} + ' ' + ${verticalClass}">
         <a th:href="@{/player/{id}(id=${player.getPlayerId()})}"
-            th:title="${player.getNameByLang()}"
+            th:title="${player.getNameTitle()}"
             th:style="'background-image:' +
             'linear-gradient(' +
                 'rgba(0, 0, 0, 0),' + 

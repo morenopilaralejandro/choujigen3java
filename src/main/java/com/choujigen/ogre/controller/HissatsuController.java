@@ -339,7 +339,10 @@ public class HissatsuController {
 		}
 		/* learners */
 		for (PlayerLearnsHissatsu plh : itemHissatsu.getPlayerLearnsHissatsu()) {
-			learners.add(plh.getPlayer());
+			/* not real 2305L 2320L */
+			if (plh.getPlayer().getPlayerId() < 2305 || plh.getPlayer().getPlayerId() > 2320) {
+				learners.add(plh.getPlayer());
+			}
 		}
 
 		/* model-add */

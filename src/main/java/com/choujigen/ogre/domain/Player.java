@@ -169,6 +169,20 @@ public class Player {
 		}
 	}
 	
+	public String getNameTitle() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			if(this.playerNameKanji.isEmpty()) {
+				return this.playerNameHiragana;
+			} else {
+				return this.playerNameKanji;
+			}
+		default:
+			return this.playerNameEnFull;
+		}
+	}
+	
 	public String[] getHiraganaSplited() {
 		String[] splited = this.playerNameHiragana.split("\\s+");
 		return splited;

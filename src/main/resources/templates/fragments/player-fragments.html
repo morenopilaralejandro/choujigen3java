@@ -4,7 +4,8 @@
 </head>
 <body>
     <a th:fragment="player-name(player)"
-        th:href="@{/player/{id}(id=${player.getPlayerId()})}">
+        th:href="@{/player/{id}(id=${player.getPlayerId()})}"
+        th:title="${player.getNameTitle()}">
         <span th:text="${player.getNameByLang()}"></span>
         <sup th:if="${player.getOriginalVersion()} != null"
             th:text="2">
