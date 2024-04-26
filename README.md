@@ -17,11 +17,11 @@ Database details can be found on the following repository: [ChouJigen3Mysql](htt
 ## Screenshots
 Hissatsu<br>
 ![alt text](https://github.com/morenopilaralejandro/choujigen3java/blob/main/src/main/resources/static/img/github-img/hissatsu.png?raw=true)
-Player Binder<br>
+<br>Player Binder<br>
 ![alt text](https://github.com/morenopilaralejandro/choujigen3java/blob/main/src/main/resources/static/img/github-img/player-binder.png?raw=true)
-Team<br>
+<br>Team<br>
 ![alt text](https://github.com/morenopilaralejandro/choujigen3java/blob/main/src/main/resources/static/img/github-img/team.png?raw=true)
-Player<br>
+<br>Player<br>
 ![alt text](https://github.com/morenopilaralejandro/choujigen3java/blob/main/src/main/resources/static/img/github-img/player.png?raw=true)
-Player Search<br>
+<br>Player Search<br>
 ![alt text](https://github.com/morenopilaralejandro/choujigen3java/blob/main/src/main/resources/static/img/github-img/player-search.png?raw=true)
