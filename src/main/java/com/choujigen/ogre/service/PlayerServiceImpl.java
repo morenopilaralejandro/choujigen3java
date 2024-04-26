@@ -3,6 +3,8 @@ package com.choujigen.ogre.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -82,9 +84,9 @@ public class PlayerServiceImpl implements PlayerService {
 		playerRepository.deleteById(id);
 	}
 
-	public List<Player> findByCriteriaPlayerSearch(PlayerSearch playerSearch, String currentLang) {
+	public Page<Player> findByCriteriaPlayerSearch(PlayerSearch playerSearch, String currentLang, Pageable pageable) {
 		Specification<Player> spec = PlayerSpec.search(playerSearch, currentLang);
-		return playerRepository.findAll(spec);
+		return playerRepository.findAll(spec, pageable);
 	}
 
 }

@@ -10,6 +10,9 @@
             action="#results" th:action="@{/player-search#results}" 
             method="post" enctype="multipart/form-data">
             <div class="form-container">
+                <!--currentPage-->
+                <input type="hidden" 
+                    th:field="*{currentPage}" id="currentPage" >
                 <!--playerName-->
                 <div class="mb-3">
                     <label class="form-label" for="playerName"
@@ -18,7 +21,7 @@
                         th:field="*{playerName}" id="playerName" maxlength="32"
                         th:placeholder="#{playerSearch.playerName.placeholder}">
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-3" style="margin-right: 0px;">
                     <!--positi-->
                     <div class="col">
                         <label class="form-label" for="positi1"
@@ -146,10 +149,15 @@
                 </div>
                 <!--submit-->
                 <div class="mb-3">
-                    <button type="submit" name="searchPlayer" 
+                    <button type="button" name="searchPlayer" id="submitButton"
                         class="btn btn-primary">
                         <img th:src="@{/img/svg/search.svg}" th:alt="#{playerSearch.submit}">
                         <span th:text="#{playerSearch.submit}"></span>
+                    </button>
+
+                    <button type="button" id="resetButton"
+                        class="btn btn-outline-secondary">
+                        <span th:text="#{playerSearch.reset}"></span>
                     </button>
                 </div>
             </div>

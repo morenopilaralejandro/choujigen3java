@@ -36,6 +36,12 @@
                         players = ${players}
                     )}">
                 </div>
+                <nav th:replace="~{fragments/pagination-fragments.html :: 
+                    search-player-pagination(
+                        page = ${playerPage}
+                    )}">
+
+                </nav>
             </section>
         </div>
 
@@ -46,5 +52,6 @@
             crossorigin="anonymous"></script>
         <script th:src="@{/js/formLang.js}"></script>
         <script th:src="@{/js/preventFormResubmission.js}"></script>
+        <script th:src="@{/js/formPlayerSearch.js}"></script>
     </body>
 </html>

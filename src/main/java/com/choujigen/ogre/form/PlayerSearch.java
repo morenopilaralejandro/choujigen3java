@@ -1,5 +1,8 @@
 package com.choujigen.ogre.form;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import com.choujigen.ogre.domain.Attri;
 import com.choujigen.ogre.domain.Gender;
 import com.choujigen.ogre.domain.ItemHissatsu;
@@ -8,6 +11,8 @@ import com.choujigen.ogre.domain.Positi;
 import jakarta.validation.constraints.Size;
 
 public class PlayerSearch {
+	private Long currentPage;
+	
 	@Size(max = 32)
 	private String playerName;
 
@@ -41,6 +46,14 @@ public class PlayerSearch {
 
 	private ItemHissatsu[] hissatsuArray;
 	
+	public Long getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Long currentPage) {
+		this.currentPage = currentPage;
+	}
+
 	public Attri getAttriObj() {
 		return attriObj;
 	}
@@ -135,6 +148,34 @@ public class PlayerSearch {
 
 	public void setHissatsuArray(ItemHissatsu[] hissatsuArray) {
 		this.hissatsuArray = hissatsuArray;
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerSearch [playerName=" + playerName + ", attri=" + attri + ", positi=" + positi + ", gender="
+				+ gender + ", attriObj=" + attriObj + ", positiObj=" + positiObj + ", genderObj=" + genderObj
+				+ ", hissatsu1=" + hissatsu1 + ", hissatsu2=" + hissatsu2 + ", hissatsu3=" + hissatsu3 + ", hissatsu4="
+				+ hissatsu4 + ", hissatsuArray=" + Arrays.toString(hissatsuArray) + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(attri, gender, hissatsu1, hissatsu2, hissatsu3, hissatsu4, playerName, positi);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PlayerSearch other = (PlayerSearch) obj;
+		return Objects.equals(attri, other.attri) && Objects.equals(gender, other.gender)
+				&& Objects.equals(hissatsu1, other.hissatsu1) && Objects.equals(hissatsu2, other.hissatsu2)
+				&& Objects.equals(hissatsu3, other.hissatsu3) && Objects.equals(hissatsu4, other.hissatsu4)
+				&& Objects.equals(playerName, other.playerName) && Objects.equals(positi, other.positi);
 	}
 
 }

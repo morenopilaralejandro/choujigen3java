@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<nav th:fragment="search-player-pagination(page)" 
+    class="player-search-pagination"
+    th:unless="${page == null} or ${page.getTotalPages()} le 1">
+    <ul class="pagination pagination-sm">
+        <li th:classappend="${page.isFirst()} ? disabled"
+            class="page-item" >
+            <a class="page-link" href="#" th:aria-label="#{page.prev}"
+                onclick="prevPage()">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        <li th:each="p : ${displayPages}" 
+            th:classappend="${page.getNumber()} == ${p} - 1 ? active"
+            th:onclick="'changePage(' + (${p} -1 ) +')'" 
+            class="page-item">
+            <a class="page-link" href="#" th:text="${p}"></a>
+        </li>
+
+        <li th:classappend="${page.isLast()} ? disabled"
+            class="page-item">
+            <a class="page-link" href="#" th:aria-label="#{page.next}" 
+                onclick="nextPage()">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>

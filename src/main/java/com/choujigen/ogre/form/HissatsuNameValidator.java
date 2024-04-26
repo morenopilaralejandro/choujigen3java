@@ -23,7 +23,7 @@ public class HissatsuNameValidator implements ConstraintValidator<HissatsuNameCo
 	@Override
 	public boolean isValid(String hissatsuName, ConstraintValidatorContext cxt) {
 		List<ItemHissatsu> itemHissatsuAux;
-		if(hissatsuName.isEmpty()) {
+		if(hissatsuName == null || hissatsuName.isEmpty()) {
 			return true;
 		} else {
 			try{

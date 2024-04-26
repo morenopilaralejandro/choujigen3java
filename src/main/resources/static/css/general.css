@@ -369,6 +369,12 @@ td.td-icon .tactic-icon {
 }
 
 .player-name, .hissatsu-datalist {
-    max-width: 310px;
+    max-width: 280px;
 }
 
+.player-search-pagination .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
