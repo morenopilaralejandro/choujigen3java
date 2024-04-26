@@ -21,19 +21,23 @@
         <div>
             <ul>
                 <li>
-                    <a th:href="@{hissatsu-list}" 
+                    <a th:href="@{/hissatsu-list}" 
                         th:text="#{index.list.hissatsu}"></a>
                 </li>
                 <li>
-                    <a th:href="@{tactics-list}" 
+                    <a th:href="@{/tactics-list}" 
                         th:text="#{index.list.tactics}"></a>
                 </li>
                 <li>
-                    <a th:href="@{team-list}" 
+                    <a th:href="@{/player-binder}" 
+                        th:text="#{index.list.binder}"></a>
+                </li>
+                <li>
+                    <a th:href="@{/team-list}" 
                         th:text="#{index.list.team}"></a>
                 </li>
                 <li>
-                    <a th:href="@{formation-list}" 
+                    <a th:href="@{/formation-list}" 
                         th:text="#{index.list.formation}"></a>
                 </li>
             </ul>
