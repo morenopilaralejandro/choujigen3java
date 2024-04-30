@@ -115,6 +115,9 @@ public class Player {
 	@ManyToMany
 	@JoinTable(name = "player_plays_during_story_team", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "team_id"))
 	private List<Team> storyTeam;
+	
+	@ManyToMany(mappedBy = "players")
+	private List<TournamentRank> TournamentRank;
 
 	public Player() {
 	}
@@ -475,6 +478,14 @@ public class Player {
 
 	public void setStoryTeam(List<Team> storyTeam) {
 		this.storyTeam = storyTeam;
+	}
+
+	public List<TournamentRank> getTournamentRank() {
+		return TournamentRank;
+	}
+
+	public void setTournamentRank(List<TournamentRank> tournamentRank) {
+		TournamentRank = tournamentRank;
 	}
 
 	@Override
