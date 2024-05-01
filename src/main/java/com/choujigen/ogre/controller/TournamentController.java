@@ -44,6 +44,7 @@ public class TournamentController {
 		model.addAttribute("rankPlus1", rankPlus1);
 		model.addAttribute("rankPlus2", rankPlus2);
 		model.addAttribute("rankPlus3", rankPlus3);
+		
 		return "/tournament";
 	}
 
@@ -76,7 +77,7 @@ public class TournamentController {
 		model.addAttribute("players", players);
 		model.addAttribute("tdt", tdt);
 		model.addAttribute("tdi", tdi);
-
+		
 		return "/tournament-rank";
 	}
 

@@ -17,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -42,6 +43,9 @@ public class Item {
 	@ManyToMany
 	@JoinTable(name = "item_sold_at_stor", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "stor_id"))
 	private List<Stor> stors;
+	
+	@OneToMany(mappedBy = "item")
+	private List<TournamentDropItem> tournamentDropItem;
 
 	public Item() {
 	}
@@ -120,6 +124,14 @@ public class Item {
 
 	public void setStors(List<Stor> stors) {
 		this.stors = stors;
+	}
+
+	public List<TournamentDropItem> getTournamentDropItem() {
+		return tournamentDropItem;
+	}
+
+	public void setTournamentDropItem(List<TournamentDropItem> tournamentDropItem) {
+		this.tournamentDropItem = tournamentDropItem;
 	}
 
 	public String getNameByLang() {

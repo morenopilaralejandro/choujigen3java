@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <a th:fragment="rank-link(rank)"
+        th:href="@{/tournament/{id}(id=${rank.getTournamentRankId()})}"
+        th:text="#{tournament.rank} + ' ' + ${rank.getTournamentRankId()}">
+    </a>
+
+    <div th:fragment="levelToRank(ranks)" 
+        class="table-responsive table-rank-level">
+        <table class="table table-bordered">
+            <!--<caption th:text="#{hissatsu.additionalPower}"></caption>-->
+            <th:block th:each="rank : ${ranks}">
+                <tr th:if="${rank.getTournamentRankId()} le 13">
+                    <th th:text="#{tournament.level} + ' ' + ${rank.getTournamentRankLvRange()}"></th>
+                    <td th:text="${rank.getTournamentRankId()}"></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+
+    <ul th:fragment="rank-teams(tournamentDisputedByTeam)">
+        <li th:each="tdt : ${tournamentDisputedByTeam}">
+            <a th:href="@{/team/{id}(id=${tdt.getTeam().getTeamId()})}"
+                th:text="${tdt.getTeam().getNameByLang()}"></a>
+            <span th:text="'(' + #{tournament.level} + ' ' + ${tdt.getTeamLv()} + ')'"></span>        
+        </li>
+    </ul>
+
+    <div th:fragment="rank-drop(tournamentDropItem)" 
+        class="table-responsive table-rank-level">
+        <table class="table table-bordered table-sm">
+            <tr class="black-th">
+                <th th:text="#{tournament.table.item}"></th>
+                <th th:text="#{tournament.table.select}"></th>
+                <th th:text="#{tournament.table.drop}"></th>
+                <th th:text="#{tournament.table.recovery}"></th>
+            </tr>
+            <tr th:each="tdi : ${tournamentDropItem}">
+                <td>
+                    <span th:text="${tdi.getItem().getNameByLang()}">
+                    </span>
+                    <span th:text="'(' + ${tdi.getId().getAmountId()} + ')'"
+                        th:if="${tdi.getId().getAmountId()} gt 1">
+                    </span>
+                </td>
+                <td th:text="${tdi.getSelectionRate()}"></td>
+                <td th:text="${tdi.getDropRate()} + '%'"></td>
+                <td th:text="${tdi.getNoRecoverRate()} + '%'"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

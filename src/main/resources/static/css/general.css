@@ -377,4 +377,10 @@ td.td-icon .hissatsu-type-icon {
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
+
+}
+/* tournament */
+.table-rank-level {
+    max-width: max-content;
+    text-align: center;
 }
