@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html th:lang="#{lang.code}" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="keywords" th:content="#{route.keywords}">
+	    <meta name="description" th:content="#{route.description}">
+	    <meta name="author" th:content="#{meta.author}">
+        <title th:text="${route.getNameByLang()} + ' - ' + #{webname}"></title>
+
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/css/general.css}">
+    </head>
+    <body>
+        <header th:replace="~{fragments/header.html :: header}"></header>
+
+        <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
+
+        <div class="mainContainer">
+            <h1 th:text="${route.getNameByLang()}"></h1>
+            <p>
+                <span th:text="#{route.host}"></span>
+                <span th:text="${route.getNpc().getNameByLang()}"></span>
+                (<span>zone</span>)
+            </p>
+            <div class="toc">
+                <span class="toc-title" th:text="#{toc.title}"></span>
+                <ul class="toc-list">
+                    <li th:each="path, iStat : ${route.getPaths()}">
+                        <th:block th:switch="${path.getRoutePathOrder()}">
+                            <a th:case="1"
+                                th:href="'#path' + ${path.getRoutePathOrder()}"
+                                th:text="(${iStat.index} + 1) + '. ' + #{route.top}">
+                            </a>
+
+                            <a th:case="2"
+                                th:href="'#path' + ${path.getRoutePathOrder()}"
+                                th:text="(${iStat.index} + 1) + '. ' + #{route.bottom}">
+                            </a>
+
+                            <a th:case="3"
+                                th:href="'#path' + ${path.getRoutePathOrder()}"
+                                th:text="(${iStat.index} + 1) + '. ' + #{route.middle}">
+                            </a>
+                        </th:block>
+                    </li>
+
+                    <li>
+                        <a href="#source" 
+                            th:text="(${pathSize} + 1) + '. ' + #{source}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <section th:each="path, iStat : ${route.getPaths()}">
+                <th:block th:switch="${path.getRoutePathOrder()}">
+                    <h2 th:case="1"
+                        th:id="'path' + ${path.getRoutePathOrder()}"
+                        th:text="#{route.top}">
+                    </h2>
+                    <h2 th:case="2"
+                        th:id="'path' + ${path.getRoutePathOrder()}"
+                        th:text="#{route.bottom}">
+                    </h2>
+                    <h2 th:case="3"
+                        th:id="'path' + ${path.getRoutePathOrder()}"
+                        th:text="#{route.middle}">
+                    </h2>
+                </th:block>
+
+                <th:block th:each="practiceGame : ${path.getPracticeGames()}">
+                    <div th:replace="~{fragments/route-fragments.html :: 
+                        practice-game(
+                            practiceGame = ${practiceGame}
+                        )}">
+                    </div>
+                </th:block>
+
+                <div th:replace="~{fragments/route-fragments.html :: 
+                    path-reward(
+                        path = ${path}
+                    )}">
+                </div>
+            </section>
+
+            <section>
+                <h2 id="source" th:text="#{source}"></h2>
+                <ul> 
+                    <li>
+                        <a th:text="#{source.oupo}"
+                            th:href="#{source.route}"></a>
+                    </li>
+                    <li>
+                        <a th:text="#{source.fandom.text}"
+                            th:href="#{source.fandom.link}"></a>
+                    </li>
+                    <li>
+                        <a th:text="#{source.fandomes.text}"
+                            th:href="#{source.fandomes.link}"></a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <footer th:replace="~{fragments/footer.html :: footer}"></footer>
+        <script 
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+            crossorigin="anonymous"></script>
+        <script th:src="@{/js/formLang.js}"></script>
+        <script th:src="@{/js/preventFormResubmission.js}"></script>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+    <div th:fragment="practice-game(practiceGame)" 
+        class="table-responsive table-practice-game">
+        <table class="table table-bordered table-sm">
+            <tr>
+                <th th:text="#{route.team}" class="w-25"></th>
+                <td colspan="2">
+                    <a
+                        th:text="${practiceGame.getTeam().getNameByLang()}"
+                        th:href="@{/team/{id}(id=${practiceGame.getTeam().getTeamId()})}">
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <th th:text="#{route.condition}" class="black-th"></th>
+                <td colspan="2" 
+                    th:text="${practiceGame.getPracticeGameCondition().getDescByLang()}"></td>
+            </tr>
+
+            <tr th:unless="${practiceGame.getItemVscard().isEmpty()}">
+                <th th:text="#{route.vscard}"></th>
+                <td colspan="2">
+                    <a 
+                        th:text="${practiceGame.getItemVscard().get(0).getNameByLang()}"
+                        th:href="@{/item/{id}(id=${practiceGame.getItemVscard().get(0).getItemId()})}">
+                    </a>
+                </td>
+            </tr>
+
+            <tr th:unless="${practiceGame.getNpc().isEmpty()}">
+                <th th:text="#{route.start}"></th>
+                <td colspan="2">
+                    <span th:text="${practiceGame.getNpc().get(0).getNameByLang()}"></span>
+                    (zone)
+                </td>
+            </tr>
+
+            <tr th:each="pdi, iStat : ${practiceGame.getPracticeGameDropItem()}">
+                <th th:if="${iStat.index} == 0" rowspan="3" th:text="#{route.drop}"></th>
+                <td th:text="${pdi.getItem().getNameByLang()}" class="w-75"></td>
+                <td th:text="${pdi.getDropRate()} + '%'" class="w-10"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:fragment="path-reward(path)" 
+        class="table-responsive table-path-reward">
+        <table class="table table-bordered table-sm table-max-content">
+            <tr>                
+                <th th:text="#{route.rewardN}"></th>
+                <td>
+                    <span th:text="${path.getRewardN().getNameByLang()}">
+                    </span>
+                </td>
+            </tr>
+            <tr>                
+                <th th:text="#{route.rewardS}"></th>
+                <td>
+                    <span th:text="${path.getRewardS().getNameByLang()}">
+                    </span>
+                </td>
+            </tr>              
+        </table>
+    </div>
+</body>
+</html>
