@@ -380,7 +380,26 @@ td.td-icon .hissatsu-type-icon {
 
 }
 /* tournament */
-.table-rank-level {
+.table-max-content {
     max-width: max-content;
+}
+
+.table-align-center {
     text-align: center;
+}
+
+/* route */
+.table-practice-game th,
+.table-path-reward th {
+    background-color: black;
+}
+
+.table-practice-game table {
+    width: 100%;
+}
+
+@media only screen and (min-width: 576px) {
+    .table-practice-game table {
+        max-width: 400px;
+    }
 }

@@ -45,6 +45,9 @@ public class Team {
 
 	@ManyToMany(mappedBy = "teams")
 	private List<ItemTactic> tactics;
+	
+	@OneToMany(mappedBy = "team")
+	private List<PracticeGame> practiceGames;
 
 	public Team() {
 	}

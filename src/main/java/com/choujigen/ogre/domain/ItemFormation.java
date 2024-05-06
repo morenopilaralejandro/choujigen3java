@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
@@ -18,22 +19,22 @@ import jakarta.persistence.Table;
 @PrimaryKeyJoinColumn(name = "item_formation_id")
 public class ItemFormation extends Item {
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "formation_type_id", referencedColumnName = "formation_type_id")
 	private FormationType formationType;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "formation_scheme_id", referencedColumnName = "formation_scheme_id")
 	private FormationScheme formationScheme;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "original_version", referencedColumnName = "item_formation_id")
 	private ItemFormation originalVersion;
 	
-	@OneToMany(mappedBy = "itemFormation")
+	@OneToMany(mappedBy = "itemFormation", fetch = FetchType.LAZY)
 	private List<FormationOrganizedAsPositi> formationOrganizedAsPositi;
 	
-	@OneToMany(mappedBy = "itemFormation")
+	@OneToMany(mappedBy = "itemFormation", fetch = FetchType.LAZY)
 	private List<Team> teams;
 
 	public ItemFormation() {

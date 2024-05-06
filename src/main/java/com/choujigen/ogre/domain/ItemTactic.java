@@ -8,6 +8,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
@@ -37,15 +38,15 @@ public class ItemTactic extends Item {
 	@Column(name = "item_tactic_effect_es")
 	private String itemTacticEffectEs;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tactic_type_id", referencedColumnName = "tactic_type_id")
 	private TacticType tacticType;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tactic_side_id", referencedColumnName = "tactic_side_id")
 	private TacticSide tacticSide;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "tactic_executed_by_team", joinColumns = @JoinColumn(name = "item_tactic_id"), inverseJoinColumns = @JoinColumn(name = "team_id"))
 	private List<Team> teams;
 

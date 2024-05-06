@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
@@ -19,45 +20,45 @@ import jakarta.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @PrimaryKeyJoinColumn(name = "item_hissatsu_id")
 public class ItemHissatsu extends Item {
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hissatsu_type_id", referencedColumnName = "hissatsu_type_id")
 	private HissatsuType hissatsuType;
 
-	@OneToMany(mappedBy = "itemHissatsu")
+	@OneToMany(mappedBy = "itemHissatsu", fetch = FetchType.LAZY)
 	private List<HissatsuEvolves> HissatsuEvolves;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "hissatsu_limited_by_gender", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "gender_id"))
 	private List<Gender> restricGender;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "hissatsu_constrained_by_body_type", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "body_type_id"))
 	private List<BodyType> restricBodyType;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "hissatsu_available_for_positi", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "positi_id"))
 	private List<Positi> restricPositi;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "hissatsu_designed_for_attri", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "attri_id"))
 	private List<Attri> restricAttriUser;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "hissatsu_helped_by_attri", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "attri_id"))
 	private List<Attri> restricAttriHelper;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "hissatsu_combined_with_hissatsu", joinColumns = @JoinColumn(name = "item_hissatsu_id_base"), inverseJoinColumns = @JoinColumn(name = "item_hissatsu_id_combined"))
 	private List<ItemHissatsu> restricHissatsu;
 
-	@ManyToMany(mappedBy = "restricHissatsu")
+	@ManyToMany(mappedBy = "restricHissatsu", fetch = FetchType.LAZY)
 	private List<ItemHissatsu> itemHissatsuRestric;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "hissatsu_evokes_attri", joinColumns = @JoinColumn(name = "item_hissatsu_id"), inverseJoinColumns = @JoinColumn(name = "attri_id"))
 	private List<Attri> attri;
 	
-	@OneToMany(mappedBy = "itemHissatsu")
+	@OneToMany(mappedBy = "itemHissatsu", fetch = FetchType.LAZY)
 	private List<PlayerLearnsHissatsu> playerLearnsHissatsu;
 
 	public ItemHissatsu() {

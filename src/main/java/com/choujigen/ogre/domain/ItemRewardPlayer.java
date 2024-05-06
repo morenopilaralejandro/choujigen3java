@@ -3,6 +3,7 @@ package com.choujigen.ogre.domain;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
@@ -16,7 +17,7 @@ import jakarta.persistence.Table;
 @PrimaryKeyJoinColumn(name = "item_reward_player_id")
 public class ItemRewardPlayer extends Item {
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "player_id", referencedColumnName = "player_id")
 	private Player player;
 

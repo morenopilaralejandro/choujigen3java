@@ -19,33 +19,41 @@ import jakarta.persistence.Table;
 public class Npc {
 	@Column(name = "npc_id")
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long npcId;
-	
+
 	@Column(name = "npc_name_ja")
 	private String npcNameJa;
-	
-	@Column(name = "npc_name_En")
+
+	@Column(name = "npc_name_en")
 	private String npcNameEn;
-	
+
+	@Column(name = "npc_name_es")
+	private String npcNameEs;
+
 	@ManyToOne
 	@JoinColumn(name = "zone_id", referencedColumnName = "zone_id")
 	private Zone zone;
-	
+
 	public Npc() {
 	}
 
-	public Npc(Long npcId, String npcNameJa, String npcNameEn, Zone zone) {
+	public Npc(Long npcId, String npcNameJa, String npcNameEn, String npcNameEs, Zone zone) {
 		super();
 		this.npcId = npcId;
 		this.npcNameJa = npcNameJa;
 		this.npcNameEn = npcNameEn;
+		this.npcNameEs = npcNameEs;
 		this.zone = zone;
 	}
-	
-	public String getHintByLang() {
+
+	public String getNameByLang() {
 		Locale locale = LocaleContextHolder.getLocale();
 		switch (locale.getLanguage()) {
 		case "ja":
 			return this.npcNameJa;
+		case "en":
+			return this.npcNameEn;
+		case "es":
+			return this.npcNameEs;
 		default:
 			return this.npcNameEn;
 		}
@@ -83,9 +91,17 @@ public class Npc {
 		this.zone = zone;
 	}
 
+	public String getNpcNameEs() {
+		return npcNameEs;
+	}
+
+	public void setNpcNameEs(String npcNameEs) {
+		this.npcNameEs = npcNameEs;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(npcId, npcNameEn, npcNameJa, zone);
+		return Objects.hash(npcId, npcNameEn, npcNameEs, npcNameJa, zone);
 	}
 
 	@Override
@@ -98,12 +114,14 @@ public class Npc {
 			return false;
 		Npc other = (Npc) obj;
 		return Objects.equals(npcId, other.npcId) && Objects.equals(npcNameEn, other.npcNameEn)
-				&& Objects.equals(npcNameJa, other.npcNameJa) && Objects.equals(zone, other.zone);
+				&& Objects.equals(npcNameEs, other.npcNameEs) && Objects.equals(npcNameJa, other.npcNameJa)
+				&& Objects.equals(zone, other.zone);
 	}
 
 	@Override
 	public String toString() {
-		return "Npc [npcId=" + npcId + ", npcNameJa=" + npcNameJa + ", npcNameEn=" + npcNameEn + ", zone=" + zone + "]";
+		return "Npc [npcId=" + npcId + ", npcNameJa=" + npcNameJa + ", npcNameEn=" + npcNameEn + ", npcNameEs="
+				+ npcNameEs + ", zone=" + zone + "]";
 	}
 
 }

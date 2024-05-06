@@ -34,6 +34,7 @@ public class NpcServiceImpl implements NpcService {
 		return npcRepository.findById(id).map(oldObj -> {
 			oldObj.setNpcNameJa(newObj.getNpcNameJa());
 			oldObj.setNpcNameEn(newObj.getNpcNameEn());
+			oldObj.setNpcNameEs(newObj.getNpcNameEs());
 			oldObj.setZone(newObj.getZone());
 			return npcRepository.save(oldObj);
 		}).orElseGet(() -> {

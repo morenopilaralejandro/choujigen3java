@@ -8,6 +8,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,16 +37,26 @@ public class Item {
 	private Long itemPriceBuy;
 	@Column(name = "item_price_sell")
 	private Long itemPriceSell;
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "item_type_id", referencedColumnName = "item_type_id")
 	private ItemType itemType;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "item_sold_at_stor", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "stor_id"))
 	private List<Stor> stors;
 	
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
 	private List<TournamentDropItem> tournamentDropItem;
+	
+	@OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
+	private List<PracticeGameDropItem> practiceGameDropItem;
+	
+	@OneToMany(mappedBy = "rewardN", fetch = FetchType.LAZY)
+	private List<RoutePath> pathN;
+	
+	@OneToMany(mappedBy = "rewardS", fetch = FetchType.LAZY)
+	private List<RoutePath> pathS;
 
 	public Item() {
 	}
@@ -132,6 +143,30 @@ public class Item {
 
 	public void setTournamentDropItem(List<TournamentDropItem> tournamentDropItem) {
 		this.tournamentDropItem = tournamentDropItem;
+	}
+
+	public List<RoutePath> getPathN() {
+		return pathN;
+	}
+
+	public void setPathN(List<RoutePath> pathN) {
+		this.pathN = pathN;
+	}
+
+	public List<RoutePath> getPathS() {
+		return pathS;
+	}
+
+	public void setPathS(List<RoutePath> pathS) {
+		this.pathS = pathS;
+	}
+
+	public List<PracticeGameDropItem> getPracticeGameDropItem() {
+		return practiceGameDropItem;
+	}
+
+	public void setPracticeGameDropItem(List<PracticeGameDropItem> practiceGameDropItem) {
+		this.practiceGameDropItem = practiceGameDropItem;
 	}
 
 	public String getNameByLang() {

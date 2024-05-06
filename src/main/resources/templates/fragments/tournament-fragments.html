@@ -9,7 +9,7 @@
     </a>
 
     <div th:fragment="levelToRank(ranks)" 
-        class="table-responsive table-rank-level">
+        class="table-responsive table-max-content table-align-center">
         <table class="table table-bordered">
             <!--<caption th:text="#{hissatsu.additionalPower}"></caption>-->
             <th:block th:each="rank : ${ranks}">
@@ -30,7 +30,7 @@
     </ul>
 
     <div th:fragment="rank-drop(tournamentDropItem)" 
-        class="table-responsive table-rank-level">
+        class="table-responsive table-max-content">
         <table class="table table-bordered table-sm">
             <tr class="black-th">
                 <th th:text="#{tournament.table.item}"></th>
