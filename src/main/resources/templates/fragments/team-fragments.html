@@ -9,5 +9,25 @@
                 th:href="@{/team/{id}(id=${team.getTeamId()})}"></a>
         </li>
     </ul>
+
+    <ul th:fragment="team-routes(routes, team)">
+        <li th:each="route : ${routes}">
+            <a th:href="'/taisen-route/' + 
+                    ${route.getExtraBattleRouteId()} + 
+                    '#team' + 
+                    ${team.getTeamId()}"
+                th:text="${route.getNameByLang()}"></a>
+        </li>
+    </ul>
+
+    <ul th:fragment="team-tournaments(tournamentDisputedByTeam)">
+        <li th:each="tdt : ${tournamentDisputedByTeam}">
+            <a th:replace="~{fragments/tournament-fragments.html :: 
+                rank-link(
+                    rank = ${tdt.getTournamentRank()}
+                )}">
+            </a>
+        </li>
+    </ul>
 </body>
 </html>

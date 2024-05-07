@@ -8,11 +8,11 @@ import com.choujigen.ogre.domain.TournamentDropItemId;
 public interface TournamentDropItemService {
 	List<TournamentDropItem> all();
 
-	TournamentDropItem one(TournamentDropItemId formationOrganizedAsPositiId);
+	TournamentDropItem one(TournamentDropItemId tournamentDropItemId);
 
 	TournamentDropItem insert(TournamentDropItem newObj);
 
-	TournamentDropItem replace(TournamentDropItem newObj, TournamentDropItemId formationOrganizedAsPositiId);
+	TournamentDropItem replace(TournamentDropItem newObj, TournamentDropItemId tournamentDropItemId);
 
-	void delete(TournamentDropItemId formationOrganizedAsPositiId);
+	void delete(TournamentDropItemId tournamentDropItemId);
 }

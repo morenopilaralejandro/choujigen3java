@@ -87,12 +87,27 @@
 
             <section>
                 <h2 id="route" th:text="#{team.route}"></h2>
-                <p th:text="#{general.noData}"></p>
+                <p th:if="${routes.isEmpty()}" 
+                    th:text="#{general.none}"></p>
+                <ul th:unless="${routes.isEmpty()}"
+                    th:replace="~{fragments/team-fragments.html :: 
+                    team-routes(
+                        routes = ${routes},
+                        team = ${team}
+                    )}">
+                </ul>
             </section>
 
             <section>
                 <h2 id="tournament" th:text="#{team.tournament}"></h2>
-                <p th:text="#{general.noData}"></p>
+                <p th:if="${tournamentDisputedByTeam.isEmpty()}" 
+                    th:text="#{general.none}"></p>
+                <ul th:unless="${tournamentDisputedByTeam.isEmpty()}"
+                    th:replace="~{fragments/team-fragments.html :: 
+                    team-tournaments(
+                        tournamentDisputedByTeam = ${tournamentDisputedByTeam}
+                    )}">
+                </ul>
             </section>
 
             <section>

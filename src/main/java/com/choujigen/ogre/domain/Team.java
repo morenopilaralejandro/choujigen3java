@@ -8,6 +8,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,24 +30,27 @@ public class Team {
 	@Column(name = "team_name_es")
 	private String teamNameEs;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "item_formation_id", referencedColumnName = "item_formation_id")
 	private ItemFormation itemFormation;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "item_wear_id", referencedColumnName = "item_wear_id")
 	private ItemWear itemWear;
 
-	@OneToMany(mappedBy = "team")
+	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
 	private List<PlayerIsPartOfTeam> players;
 
-	@ManyToMany(mappedBy = "storyTeam")
+	@ManyToMany(mappedBy = "storyTeam", fetch = FetchType.LAZY)
 	private List<Player> storyPlayers;
 
-	@ManyToMany(mappedBy = "teams")
+	@ManyToMany(mappedBy = "teams", fetch = FetchType.LAZY)
 	private List<ItemTactic> tactics;
+
+	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+	private List<TournamentDisputedByTeam> tournamentDisputedByTeam;
 	
-	@OneToMany(mappedBy = "team")
+	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
 	private List<PracticeGame> practiceGames;
 
 	public Team() {
@@ -152,6 +156,22 @@ public class Team {
 	@Override
 	public int hashCode() {
 		return Objects.hash(itemFormation, itemWear, teamId, teamNameEn, teamNameEs, teamNameJa);
+	}
+
+	public List<TournamentDisputedByTeam> getTournamentDisputedByTeam() {
+		return tournamentDisputedByTeam;
+	}
+
+	public void setTournamentDisputedByTeam(List<TournamentDisputedByTeam> tournamentDisputedByTeam) {
+		this.tournamentDisputedByTeam = tournamentDisputedByTeam;
+	}
+
+	public List<PracticeGame> getPracticeGames() {
+		return practiceGames;
+	}
+
+	public void setPracticeGames(List<PracticeGame> practiceGames) {
+		this.practiceGames = practiceGames;
 	}
 
 	@Override

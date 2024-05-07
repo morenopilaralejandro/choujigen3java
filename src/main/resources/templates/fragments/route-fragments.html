@@ -5,7 +5,8 @@
 <body>
 
     <div th:fragment="practice-game(practiceGame)" 
-        class="table-responsive table-practice-game">
+        class="table-responsive table-practice-game"
+        th:id="'team' + ${practiceGame.getTeam().getTeamId()}">
         <table class="table table-bordered table-sm">
             <tr>
                 <th th:text="#{route.team}" class="w-25"></th>

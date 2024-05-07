@@ -8,11 +8,11 @@ import com.choujigen.ogre.domain.PracticeGameDropItemId;
 public interface PracticeGameDropItemService {
 	List<PracticeGameDropItem> all();
 
-	PracticeGameDropItem one(PracticeGameDropItemId formationOrganizedAsPositiId);
+	PracticeGameDropItem one(PracticeGameDropItemId practiceGameDropItemId);
 
 	PracticeGameDropItem insert(PracticeGameDropItem newObj);
 
-	PracticeGameDropItem replace(PracticeGameDropItem newObj, PracticeGameDropItemId formationOrganizedAsPositiId);
+	PracticeGameDropItem replace(PracticeGameDropItem newObj, PracticeGameDropItemId practiceGameDropItemId);
 
-	void delete(PracticeGameDropItemId formationOrganizedAsPositiId);
+	void delete(PracticeGameDropItemId practiceGameDropItemId);
 }

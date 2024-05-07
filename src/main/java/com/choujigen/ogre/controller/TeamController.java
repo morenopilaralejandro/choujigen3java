@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.choujigen.ogre.domain.ExtraBattleRoute;
 import com.choujigen.ogre.domain.FormationOrganizedAsPositi;
 import com.choujigen.ogre.domain.ItemFormation;
 import com.choujigen.ogre.domain.ItemTactic;
 import com.choujigen.ogre.domain.Player;
 import com.choujigen.ogre.domain.PlayerIsPartOfTeam;
 import com.choujigen.ogre.domain.Positi;
+import com.choujigen.ogre.domain.PracticeGame;
 import com.choujigen.ogre.domain.Team;
+import com.choujigen.ogre.domain.TournamentDisputedByTeam;
 import com.choujigen.ogre.service.TeamService;
 
 @Controller
@@ -108,6 +111,11 @@ public class TeamController {
 		int auxPlace;
 		/* tactics */
 		List<ItemTactic> tactics = team.getTactics();
+		/* tournament */
+		List<TournamentDisputedByTeam> tournamentDisputedByTeam = team.getTournamentDisputedByTeam();
+		/* practice game */
+		List<ExtraBattleRoute> routes = new ArrayList<ExtraBattleRoute>();
+		List<PracticeGame> practiceGames = team.getPracticeGames();
 
 		/* do */
 		/* players */
@@ -125,6 +133,10 @@ public class TeamController {
 			auxPlace = formationOrganizedAsPositi.get(i).getId().getPlaceId().intValue();
 			positiOrderByPlace[auxPlace - 1] = formationOrganizedAsPositi.get(i).getPositi();
 		}
+		/* practice game */
+		for (PracticeGame practiceGame : practiceGames) {
+			routes.add(practiceGame.getRoutePath().getExtraBattleRoute());
+		}
 
 		/* model-add */
 		/* general */
@@ -141,6 +153,10 @@ public class TeamController {
 		model.addAttribute("originalFormation", originalFormation);
 		/* tactics */
 		model.addAttribute("tactics", tactics);
+		/* tournament */
+		model.addAttribute("tournamentDisputedByTeam", tournamentDisputedByTeam);
+		/* practice game */
+		model.addAttribute("routes", routes);
 		return "/team";
 	}
 }
