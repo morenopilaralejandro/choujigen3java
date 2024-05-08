@@ -39,9 +39,12 @@
                 <th th:text="#{tournament.table.recovery}"></th>
             </tr>
             <tr th:each="tdi : ${tournamentDropItem}">
-                <td>
-                    <span th:text="${tdi.getItem().getNameByLang()}">
-                    </span>
+                <td>                    
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${tdi.getItem()}
+                        )}">
+                    </a>
                     <span th:text="'(' + ${tdi.getId().getAmountId()} + ')'"
                         th:if="${tdi.getId().getAmountId()} gt 1">
                     </span>

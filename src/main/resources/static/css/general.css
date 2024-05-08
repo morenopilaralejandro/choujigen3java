@@ -403,3 +403,11 @@ td.td-icon .hissatsu-type-icon {
         max-width: 400px;
     }
 }
+
+/*item*/
+@media only screen and (min-width: 576px) {
+    .table-equipment table {
+        table-layout:fixed;
+        max-width: 400px;
+    }
+}

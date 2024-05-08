@@ -27,9 +27,10 @@
             <tr th:unless="${practiceGame.getItemVscard().isEmpty()}">
                 <th th:text="#{route.vscard}"></th>
                 <td colspan="2">
-                    <a 
-                        th:text="${practiceGame.getItemVscard().get(0).getNameByLang()}"
-                        th:href="@{/item/{id}(id=${practiceGame.getItemVscard().get(0).getItemId()})}">
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${practiceGame.getItemVscard().get(0)}
+                        )}">
                     </a>
                 </td>
             </tr>
@@ -44,7 +45,13 @@
 
             <tr th:each="pdi, iStat : ${practiceGame.getPracticeGameDropItem()}">
                 <th th:if="${iStat.index} == 0" rowspan="3" th:text="#{route.drop}"></th>
-                <td th:text="${pdi.getItem().getNameByLang()}" class="w-75"></td>
+                <td class="w-75">
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${pdi.getItem()}
+                        )}">
+                    </a>
+                </td>
                 <td th:text="${pdi.getDropRate()} + '%'" class="w-10"></td>
             </tr>
         </table>
@@ -56,15 +63,21 @@
             <tr>                
                 <th th:text="#{route.rewardN}"></th>
                 <td>
-                    <span th:text="${path.getRewardN().getNameByLang()}">
-                    </span>
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${path.getRewardN()}
+                        )}">
+                    </a>
                 </td>
             </tr>
             <tr>                
                 <th th:text="#{route.rewardS}"></th>
                 <td>
-                    <span th:text="${path.getRewardS().getNameByLang()}">
-                    </span>
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${path.getRewardS()}
+                        )}">
+                    </a>
                 </td>
             </tr>              
         </table>

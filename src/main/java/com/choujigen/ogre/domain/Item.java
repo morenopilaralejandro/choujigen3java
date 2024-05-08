@@ -72,6 +72,23 @@ public class Item {
 		this.itemPriceSell = itemPriceSell;
 		this.itemType = itemType;
 	}
+	
+	public boolean showObtention() {
+		boolean res = false;
+		if(!tournamentDropItem.isEmpty()) {
+			res = true;
+		}
+		if(!practiceGameDropItem.isEmpty()) {
+			res = true;
+		}
+		if(!pathN.isEmpty()) {
+			res = true;
+		}
+		if(!pathS.isEmpty()) {
+			res = true;
+		}
+		return res;
+	}
 
 	public Long getItemId() {
 		return itemId;

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <a th:fragment="item-link(item)"
+        th:href="@{/item/{id}(id=${item.getItemId()})}"
+        th:text="${item.getNameByLang()}">
+    </a>
+
+    <ul th:fragment="item-obtention(item)">
+        <th:block th:unless="${item.getTournamentDropItem().isEmpty()}">
+            <li>
+                <span th:text="#{itemObtention.tournament}"></span>
+                <ul>
+                    <li th:each="tdi : ${item.getTournamentDropItem()}">
+                        <a th:replace="~{fragments/tournament-fragments.html :: 
+                            rank-link(
+                                rank = ${tdi.getTournamentRank()}
+                            )}">
+                        </a>
+                        <span th:text="'(' + ${tdi.getDropRate()} + '%)'">
+                        </span>
+                    </li>   
+                </ul>
+            </li>
+        </th:block>
+        <th:block th:unless="${item.getPracticeGameDropItem().isEmpty()}">
+            <li>
+                <span th:text="#{itemObtention.route}"></span>
+                <ul>
+                    <li th:each="pdi : ${item.getPracticeGameDropItem()}">
+                        <a th:href="'/taisen-route/' + 
+                                ${pdi.getPracticeGame().getRoutePath().getExtraBattleRoute().getExtraBattleRouteId()} + 
+                                '#team' + 
+                                ${pdi.getPracticeGame().getTeam().getTeamId()}"
+                            th:text="${pdi.getPracticeGame().getTeam().getNameByLang()}">
+                        </a>
+                        <span th:text="'(' + ${pdi.getDropRate()} + '%)'">
+                        </span>
+                    </li>
+                </ul>
+            </li>
+        </th:block>
+        <th:block th:unless="${item.getPathN().isEmpty()}">
+            <li>
+                <span th:text="#{itemObtention.rewardN}"></span>
+                <ul>
+                    <li th:each="path : ${item.getPathN()}">
+                        <a th:href="@{/taisen-route/{id}(id=${path.getExtraBattleRoute().getExtraBattleRouteId()})}"
+                            th:text="${path.getExtraBattleRoute().getNameByLang()}">
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </th:block>
+        <th:block th:unless="${item.getPathS().isEmpty()}">
+            <li>
+                <span th:text="#{itemObtention.rewardS}"></span>
+                <ul>
+                    <li th:each="path : ${item.getPathS()}">
+                        <a th:href="@{/taisen-route/{id}(id=${path.getExtraBattleRoute().getExtraBattleRouteId()})}"
+                            th:text="${path.getExtraBattleRoute().getNameByLang()}">
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </th:block>
+    </ul>
+
+    <div th:fragment="equipment-table(equipments)" 
+        class="table-responsive table-equipment">
+        <table class="table table-bordered table-sm">
+            <tr class="black-th">
+                <th th:text="#{itemEquipment.item}"></th>
+                <th th:text="#{itemEquipment.effect}"></th>
+            </tr>
+            <tr th:each="equipment : ${equipments}">
+                <td>                    
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${equipment}
+                        )}">
+                    </a>
+                </td>
+                <td th:if="${equipment.getEffect().isEmpty()}"
+                    th:text="#{general.none}"></td>
+                <td th:unless="${equipment.getEffect().isEmpty()}"
+                    th:text="${equipment.getEffect()}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

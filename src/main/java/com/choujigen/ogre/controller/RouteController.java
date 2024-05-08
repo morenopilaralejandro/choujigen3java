@@ -59,11 +59,6 @@ public class RouteController {
 
 		model.addAttribute("route", route);
 		model.addAttribute("pathSize", route.getPaths().size());
-		
-		
-		/*
-		 * route.getPaths().get(0)
-		 */
 
 		return "/taisen-route-view";
 	}

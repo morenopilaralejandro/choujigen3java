@@ -34,6 +34,20 @@ public class ItemEquipment extends Item {
 		super(itemId, itemNameJa, itemNameEn, itemNameEs, itemPriceBuy, itemPriceSell, itemType);
 		this.equipmentType = equipmentType;
 	}
+	
+	public String getEffect() {
+		String res = "";
+		for (EquipmentStrengthensStat ess : equipmentStrengthensStat) {
+			res += ess.getStat().getNameByLang();
+			res += "+";
+			res += ess.getAmount();
+			res += ", ";
+		}
+		if(res.length()>2) {
+			res = res.substring(0, res.length()-2);
+		}
+		return res;
+	}
 
 	public EquipmentType getEquipmentType() {
 		return equipmentType;

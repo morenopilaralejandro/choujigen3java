@@ -113,7 +113,15 @@
 
             <section>
                 <h2 id="obtention" th:text="#{general.obtention}"></h2>
-                <p th:text="#{general.noData}"></p>
+                <p th:unless="${itemHissatsu.showObtention()}"
+                    th:text="#{general.noData}"></p>
+                <th:block th:if="${itemHissatsu.showObtention()}">
+                    <div th:replace="~{fragments/item-fragments.html :: 
+                        item-obtention(
+                            item = ${itemHissatsu}
+                        )}">
+                    </div>
+                </th:block>
             </section>
 
             <section>
