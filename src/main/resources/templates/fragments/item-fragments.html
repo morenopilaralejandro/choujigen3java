@@ -90,5 +90,90 @@
             </tr>
         </table>
     </div>
+
+    <div th:fragment="recovery-table(recoveries)" 
+        class="table-responsive table-recovery">
+        <table class="table table-bordered table-sm table-max-content">
+            <tr class="black-th">
+                <th th:text="#{itemRecovery.item}"></th>
+                <th th:text="#{itemRecovery.gp}"></th>
+                <th th:text="#{itemRecovery.tp}"></th>
+            </tr>
+            <tr th:each="recovery : ${recoveries}">
+                <td>                    
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${recovery}
+                        )}">
+                    </a>
+                </td>
+                <!-- gp -->
+                <th:block th:if="${recovery.getItemRecoveryGp()} == null">
+                    <td th:text="'0'"></td>
+                </th:block>
+                <th:block th:unless="${recovery.getItemRecoveryGp()} == null">
+                    <th:block th:if="${recovery.getItemRecoveryGp()} gt 1">
+                        <td th:text="${recovery.getItemRecoveryGp()}"></td>
+                    </th:block>
+                    <th:block th:unless="${recovery.getItemRecoveryGp()} gt 1">
+                        <td th:text="#{itemRecovery.all}"></td>
+                    </th:block>
+                </th:block>
+                <!-- tp -->
+                <th:block th:if="${recovery.getItemRecoveryTp()} == null">
+                    <td th:text="'0'"></td>
+                </th:block>
+                <th:block th:unless="${recovery.getItemRecoveryTp()} == null">
+                    <th:block th:if="${recovery.getItemRecoveryTp()} gt 1">
+                        <td th:text="${recovery.getItemRecoveryTp()}"></td>
+                    </th:block>
+                    <th:block th:unless="${recovery.getItemRecoveryTp()} gt 1">
+                        <td th:text="#{itemRecovery.all}"></td>
+                    </th:block>
+                </th:block>
+            </tr>
+        </table>
+    </div>
+
+    <div th:fragment="ultimate-table(notes)" 
+        class="table-responsive table-ultimate">
+        <table class="table table-bordered table-sm table-max-content">
+            <tr class="black-th">
+                <th th:text="#{itemUltimateNote.item}"></th>
+                <th th:text="#{itemUltimateNote.element}"></th>
+                <th th:text="#{itemUltimateNote.position}"></th>
+                <th th:text="#{itemUltimateNote.amount}"></th>
+            </tr>
+            <th:block th:each="itemUltimateNote : ${notes}">
+                <tr th:each="uif, iStat : ${itemUltimateNote.getUltimateNoteIncreasesFree()}">
+                    <td th:if="${iStat.index} == 0" 
+                        th:rowspan="${itemUltimateNote.getUltimateNoteIncreasesFree().size()}">                    
+                        <a th:replace="~{fragments/item-fragments.html :: 
+                            item-link(
+                                item = ${itemUltimateNote}
+                            )}">
+                        </a>
+                    </td>
+                    <td class="td-icon">
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            attri-icon(
+                                attri = ${uif.getAttri()}
+                            )}">
+                        </span>
+                    </td>
+                    <td class="td-icon">
+                        <span th:replace="~{fragments/game-icon.html :: 
+                            positi-icon(
+                                positi = ${uif.getPositi()}
+                            )}">
+                        </span>
+                    </td>
+                    <td th:text="'20'" style="text-align: center;"></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+
+
 </body>
 </html>

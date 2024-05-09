@@ -40,6 +40,14 @@ public class ItemUltimateNote extends Item {
 		this.itemUltimateNoteOrder = itemUltimateNoteOrder;
 	}
 
+	public List<UltimateNoteIncreasesFree> getUltimateNoteIncreasesFree() {
+		return ultimateNoteIncreasesFree;
+	}
+
+	public void setUltimateNoteIncreasesFree(List<UltimateNoteIncreasesFree> ultimateNoteIncreasesFree) {
+		this.ultimateNoteIncreasesFree = ultimateNoteIncreasesFree;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

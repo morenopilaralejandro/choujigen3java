@@ -40,15 +40,15 @@
                     </li>
                     <li>
                         <a href="#stats">3. <span th:text="#{player.stats}"></span></a>
-                    </li>
+                    </li><!--
                     <li>
                         <a href="#friend">4. <span th:text="#{player.makeFriends}"></span></a>
+                    </li>-->
+                    <li>
+                        <a href="#teams">4. <span th:text="#{player.teams}"></span></a>
                     </li>
                     <li>
-                        <a href="#teams">5. <span th:text="#{player.teams}"></span></a>
-                    </li>
-                    <li>
-                        <a href="#source">6. <span th:text="#{source}"></span></a>
+                        <a href="#source">5. <span th:text="#{source}"></span></a>
                     </li>
                 </ul>
             </div>
@@ -91,12 +91,12 @@
                     )}">
                 </div>
             </section>
-
+<!--
             <section>
                 <h2 id="friend" th:text="#{player.makeFriends}"></h2>
                 <p th:text="#{general.noData}"></p>
             </section>
-
+-->
             <section>
                 <h2 id="teams" th:text="#{player.teams}"></h2>
                 <p th:if="${player.teams.isEmpty()}" 

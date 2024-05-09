@@ -1,11 +1,14 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
@@ -16,6 +19,9 @@ import jakarta.persistence.Table;
 public class ItemWear extends Item {
 	@Column(name = "item_wear_hex")
 	private String itemWearHex;
+	
+	@OneToMany(mappedBy = "itemWear", fetch = FetchType.LAZY)
+	private List<Team> teams;
 
 	public ItemWear() {
 	}
@@ -32,6 +38,14 @@ public class ItemWear extends Item {
 
 	public void setItemWearHex(String itemWearHex) {
 		this.itemWearHex = itemWearHex;
+	}
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
 
 	@Override
