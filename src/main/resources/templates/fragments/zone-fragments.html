@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <a th:fragment="zone-outer(zoneOuter)"
+        th:href="@{/map/{id}(id=${zoneOuter.getZoneId()})}">
+        <div class="zone-outer-img">
+            <img th:src="@{/img/zone-img/{id}.png(id=${zoneOuter.getZoneId()})}" />
+        </div>
+        <div class="zone-outer-name">
+            <span th:text="${zoneOuter.getNameByLang()}"></span>
+        </div>
+    </a>
+</body>
+</html>
