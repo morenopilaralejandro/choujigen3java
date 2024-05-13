@@ -12,5 +12,32 @@
             <span th:text="${zoneOuter.getNameByLang()}"></span>
         </div>
     </a>
+
+    <figure th:fragment="zone-figure(zone, buildingName)" 
+        class="figure figure-ds"
+        th:id="'zone' + ${zone.getZoneId()}">
+        <img 
+            th:src="@{/img/zone-img/{id}.png(id=${zone.getZoneId()})}" 
+            th:alt="'zone' + ${zone.getZoneId()}"
+            class="figure-img img-fluid" 
+        >
+        <th:block th:if="${buildingName} == ''">
+            <figcaption class="figure-caption"
+                th:text="${zone.getNameByLang()}">
+            </figcaption>
+        </th:block>
+        <th:block th:unless="${buildingName} == ''">
+            <th:block th:if="${buildingName} == ${zone.getNameByLang()}">
+                <figcaption class="figure-caption"
+                    th:text="${zone.getNameByLang()}">
+                </figcaption>
+            </th:block>
+            <th:block th:unless="${buildingName} == ${zone.getNameByLang()}">
+                <figcaption class="figure-caption"
+                    th:text="${buildingName} + ' ' + ${zone.getNameByLang()}">
+                </figcaption>
+            </th:block>
+        </th:block>
+    </figure>
 </body>
 </html>

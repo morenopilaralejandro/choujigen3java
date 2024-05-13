@@ -1,12 +1,15 @@
 package com.choujigen.ogre.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
@@ -15,9 +18,12 @@ import jakarta.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @PrimaryKeyJoinColumn(name = "zone_outer_id")
 public class ZoneOuter extends Zone {
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "region_id", referencedColumnName = "region_id")
 	private Region region;
+	
+	@OneToMany(mappedBy = "zoneOuter", fetch = FetchType.EAGER)
+	private List<ZoneInner> zoneInners;
 
 	public ZoneOuter() {
 	}
@@ -34,6 +40,14 @@ public class ZoneOuter extends Zone {
 
 	public void setRegion(Region region) {
 		this.region = region;
+	}
+	
+	public List<ZoneInner> getZoneInners() {
+		return zoneInners;
+	}
+
+	public void setZoneInners(List<ZoneInner> zoneInners) {
+		this.zoneInners = zoneInners;
 	}
 
 	@Override

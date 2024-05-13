@@ -420,13 +420,6 @@ td.td-icon .hissatsu-type-icon {
     justify-content: center;
 }
 
-@media only screen and (min-width: 576px) {
-    .zone-outer-container {
-        justify-content: start;
-    }
-}
-
-
 .zone-outer-name {
     text-align: center;
 }
@@ -439,4 +432,41 @@ td.td-icon .hissatsu-type-icon {
 .zone-outer-img img {
     width: 256px;
     height: 192px;
+}
+
+
+figure.figure-ds {
+    display: block;
+}
+
+.figure-ds img {
+    width: 100%;
+    height: auto;
+}
+
+@media only screen and (min-width: 576px) {
+    .zone-outer-container {
+        justify-content: start;
+    }
+
+    figure.figure-ds {
+        display: inline-block;
+    }
+
+    .figure-ds img {
+        width: 256px;
+        height: 192px;
+    }
+
+    .figure-ds#zone173 img,
+    .figure-ds#zone176 img,
+    .figure-ds#zone206 img,
+    .figure-ds#zone213 img,
+    .figure-ds#zone220 img,
+    .figure-ds#zone242 img,
+    .figure-ds#zone247 img {
+        max-width: 700px;
+        width: 100%;
+        height: auto;
+    }
 }

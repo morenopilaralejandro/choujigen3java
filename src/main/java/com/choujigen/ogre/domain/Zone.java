@@ -7,6 +7,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,7 +33,7 @@ public class Zone {
 	@Column(name = "zone_name_es")
 	private String zoneNameEs;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "zone_type_id", referencedColumnName = "zone_type_id")
 	private ZoneType zoneType;
 
