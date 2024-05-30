@@ -21,11 +21,34 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/}"
+                            th:text="#{breadcrumb.home}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/taisen-route}"
+                            th:text="#{index.list.route}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"
+                        th:text="${route.getNameByLang()}">
+                    </li>
+                </ol>
+            </nav>
             <h1 th:text="${route.getNameByLang()}"></h1>
             <p>
                 <span th:text="#{route.host}"></span>
                 <span th:text="${route.getNpc().getNameByLang()}"></span>
-                (<span>zone</span>)
+                (<a th:replace="~{fragments/zone-fragments.html :: 
+                    zone-link(
+                        zone = ${route.getNpc().getZone()}
+                    )}">
+                </a>)
             </p>
             <div class="toc">
                 <span class="toc-title" th:text="#{toc.title}"></span>

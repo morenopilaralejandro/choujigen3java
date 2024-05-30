@@ -1,7 +1,10 @@
 package com.choujigen.ogre.domain;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,6 +35,25 @@ public class ZoneOuter extends Zone {
 			Region region) {
 		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.region = region;
+	}
+	
+	@Override
+	public String getDisplayName() {
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			return this.getZoneNameJa();
+		case "en":
+			return this.getZoneNameEn();
+		case "es":
+			return this.getZoneNameEs();
+		default:
+			return this.getZoneNameEn();
+		}
+	}
+	
+	public Long getOuterId() {
+		return this.getZoneId();
 	}
 
 	public Region getRegion() {

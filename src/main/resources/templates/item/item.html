@@ -21,6 +21,19 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/}"
+                            th:text="#{breadcrumb.home}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"
+                        th:text="#{index.list.item}">
+                    </li>
+                </ol>
+            </nav>
             <h1 th:text="#{item.title}"></h1>
             <ul>
                 <li th:each="type, iStat : ${typesShown}">

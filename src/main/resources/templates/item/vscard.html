@@ -15,12 +15,31 @@
             crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/general.css}">
     </head>
-    <body class="short-page">
+    <body>
         <header th:replace="~{fragments/header.html :: header}"></header>
 
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/}"
+                            th:text="#{breadcrumb.home}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/item}"
+                            th:text="#{index.list.item}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"
+                        th:text="#{itemVscard.title}">
+                    </li>
+                </ol>
+            </nav>
             <h1 th:text="#{itemVscard.title}"></h1>
             <ul>
                 <li th:each="itemVscard : ${vscards}">

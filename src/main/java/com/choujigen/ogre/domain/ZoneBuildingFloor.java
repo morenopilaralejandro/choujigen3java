@@ -1,6 +1,9 @@
 package com.choujigen.ogre.domain;
 
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
@@ -26,6 +29,55 @@ public class ZoneBuildingFloor extends Zone {
 			ZoneBuilding zoneBuilding) {
 		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.zoneBuilding = zoneBuilding;
+	}
+	
+	@Override
+	public String getDisplayName() {
+		String res = "";
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			res += this.getZoneBuilding().getZoneNameJa();
+			if(!this.getZoneNameJa().equals(this.getZoneBuilding().getZoneNameJa())) {
+				res += " ";
+				res += this.getZoneNameJa();	
+			}
+			res += ", ";
+			res += this.getZoneBuilding().getZoneLevel().getZoneInner().getZoneOuter().getZoneNameJa();
+			break;
+		case "en":
+			res += this.getZoneBuilding().getZoneNameEn();
+			if(!this.getZoneNameEn().equals(this.getZoneBuilding().getZoneNameEn())) {
+				res += " ";
+				res += this.getZoneNameEn();
+			}
+			res += ", ";
+			res += this.getZoneBuilding().getZoneLevel().getZoneInner().getZoneOuter().getZoneNameEn();
+			break;
+		case "es":
+			res += this.getZoneBuilding().getZoneNameEs();
+			if(!this.getZoneNameEs().equals(this.getZoneBuilding().getZoneNameEs())) {
+				res += " ";
+				res += this.getZoneNameEs();
+			}
+			res += ", ";
+			res += this.getZoneBuilding().getZoneLevel().getZoneInner().getZoneOuter().getZoneNameEs();
+			break;
+		default:
+			res += this.getZoneBuilding().getZoneNameEn();
+			if(!this.getZoneNameEn().equals(this.getZoneBuilding().getZoneNameEn())) {
+				res += " ";
+				res += this.getZoneNameEn();
+			}
+			res += ", ";
+			res += this.getZoneBuilding().getZoneLevel().getZoneInner().getZoneOuter().getZoneNameEn();
+			break;
+		}
+		return res;
+	}
+	
+	public Long getOuterId() {
+		return this.getZoneBuilding().getZoneLevel().getZoneInner().getZoneOuter().getZoneId();
 	}
 
 	public ZoneBuilding getZoneBuilding() {

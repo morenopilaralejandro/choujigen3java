@@ -1,7 +1,10 @@
 package com.choujigen.ogre.domain;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,6 +35,39 @@ public class ZoneBuilding extends Zone {
 			ZoneLevel zoneLevel) {
 		super(zoneId, zoneNameJa, zoneNameEn, zoneNameEs, zoneType);
 		this.zoneLevel = zoneLevel;
+	}
+	
+	@Override
+	public String getDisplayName() {
+		String res = "";
+		Locale locale = LocaleContextHolder.getLocale();
+		switch (locale.getLanguage()) {
+		case "ja":
+			res += this.getZoneNameJa();
+			res += ", ";
+			res += this.getZoneLevel().getZoneInner().getZoneOuter().getZoneNameJa();
+			break;
+		case "en":
+			res += this.getZoneNameEn();
+			res += ", ";
+			res += this.getZoneLevel().getZoneInner().getZoneOuter().getZoneNameEn();	
+			break;
+		case "es":
+			res += this.getZoneNameEs();
+			res += ", ";
+			res += this.getZoneLevel().getZoneInner().getZoneOuter().getZoneNameEs();
+			break;
+		default:
+			res += this.getZoneNameEn();
+			res += ", ";
+			res += this.getZoneLevel().getZoneInner().getZoneOuter().getZoneNameEn();
+			break;
+		}
+		return res;
+	}
+	
+	public Long getOuterId() {
+		return this.getZoneLevel().getZoneInner().getZoneOuter().getZoneId();
 	}
 
 	public ZoneLevel getZoneLevel() {

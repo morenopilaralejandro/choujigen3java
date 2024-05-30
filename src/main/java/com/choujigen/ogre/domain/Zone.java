@@ -48,6 +48,83 @@ public class Zone {
 		this.zoneNameEs = zoneNameEs;
 		this.zoneType = zoneType;
 	}
+	
+	/*Override*/
+	public String getDisplayName() {
+		String res = "";
+		ZoneOuter auxOuter;
+		ZoneInner auxInner;
+		ZoneLevel auxLevel;
+		ZoneBuilding auxBuilding;
+		ZoneBuildingFloor auxBuildingFloor;
+		
+		switch (this.zoneType.getZoneTypeId().intValue()) {
+		case 1:
+			auxOuter = (ZoneOuter) this;
+			res = auxOuter.getDisplayName();
+			break;
+		case 2:
+			auxInner = (ZoneInner) this;
+			res = auxInner.getDisplayName();
+			break;
+		case 3:
+			auxLevel = (ZoneLevel) this;
+			res = auxLevel.getDisplayName();
+			break;
+		case 4:
+			auxBuilding = (ZoneBuilding) this;
+			res = auxBuilding.getDisplayName();
+			break;
+		case 5:
+			auxBuildingFloor = (ZoneBuildingFloor) this;
+			res = auxBuildingFloor.getDisplayName();
+			break;
+		}
+		return res;
+	}
+	
+	public String getHref() {
+		String res = "/map/";
+		ZoneOuter auxOuter;
+		ZoneInner auxInner;
+		ZoneLevel auxLevel;
+		ZoneBuilding auxBuilding;
+		ZoneBuildingFloor auxBuildingFloor;
+		
+		switch (this.zoneType.getZoneTypeId().intValue()) {
+		case 1:
+			auxOuter = (ZoneOuter) this;
+			res += auxOuter.getOuterId();
+			res += "#zone";
+			res += auxOuter.getZoneId();
+			break;
+		case 2:
+			auxInner = (ZoneInner) this;
+			res += auxInner.getOuterId();
+			res += "#zone";
+			res += auxInner.getZoneId();
+			break;
+		case 3:
+			auxLevel = (ZoneLevel) this;
+			res += auxLevel.getOuterId();
+			res += "#zone";
+			res += auxLevel.getZoneId();
+			break;
+		case 4:
+			auxBuilding = (ZoneBuilding) this;
+			res += auxBuilding.getOuterId();
+			res += "#zone";
+			res += auxBuilding.getZoneId();
+			break;
+		case 5:
+			auxBuildingFloor = (ZoneBuildingFloor) this;
+			res += auxBuildingFloor.getOuterId();
+			res += "#zone";
+			res += auxBuildingFloor.getZoneId();
+			break;
+		}
+		return res;
+	}
 
 	public String getNameByLang() {
 		Locale locale = LocaleContextHolder.getLocale();

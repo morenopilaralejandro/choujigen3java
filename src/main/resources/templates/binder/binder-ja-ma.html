@@ -22,6 +22,25 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/}"
+                            th:text="#{breadcrumb.home}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/player-binder}"
+                            th:text="#{index.list.binder}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"
+                        th:text="#{binder.ma}">
+                    </li>
+                </ol>
+            </nav>
             <h1 th:text="#{binder.ma}"></h1>
             <div class="toc">
                 <span class="toc-title" th:text="#{toc.title}"></span>

@@ -22,6 +22,31 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/}"
+                            th:text="#{breadcrumb.home}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/item}"
+                            th:text="#{index.list.item}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/item/saigo}"
+                            th:text="#{itemUltimateNote.title}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"
+                        th:text="${itemUltimateNote.getNameByLang()}">
+                    </li>
+                </ol>
+            </nav>
             <h1 th:text="${itemUltimateNote.getNameByLang()}"></h1>
             <div class="toc">
                 <span class="toc-title" th:text="#{toc.title}"></span>

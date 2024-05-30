@@ -39,7 +39,11 @@
                 <th th:text="#{route.start}"></th>
                 <td colspan="2">
                     <span th:text="${practiceGame.getNpc().get(0).getNameByLang()}"></span>
-                    (zone)
+                    (<a th:replace="~{fragments/zone-fragments.html :: 
+                        zone-link(
+                            zone = ${practiceGame.getNpc().get(0).getZone()}
+                        )}">
+                    </a>)
                 </td>
             </tr>
 

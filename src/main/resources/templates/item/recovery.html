@@ -21,6 +21,25 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/}"
+                            th:text="#{breadcrumb.home}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a 
+                            th:href="@{/item}"
+                            th:text="#{index.list.item}">
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"
+                        th:text="#{itemRecovery.title}">
+                    </li>
+                </ol>
+            </nav>
             <h1 th:text="#{itemRecovery.title}"></h1>
             <div th:replace="~{fragments/item-fragments.html :: 
                 recovery-table(

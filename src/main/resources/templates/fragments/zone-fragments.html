@@ -3,6 +3,11 @@
 <head>
 </head>
 <body>
+    <a th:fragment="zone-link(zone)"
+        th:href="${zone.getHref()}"
+        th:text="${zone.getDisplayName()}">
+    </a>
+
     <a th:fragment="zone-outer(zoneOuter)"
         th:href="@{/map/{id}(id=${zoneOuter.getZoneId()})}">
         <div class="zone-outer-img">
