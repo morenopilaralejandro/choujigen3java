@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div th:fragment="index-item(text, href, icon)"
+        class="index-item">
+        <a th:href="${href}">
+            <div>
+                <img th:src="'/img/svg/' + ${icon} + '.svg'" alt="i">
+                <span th:text="${text}"></span>
+            </div>
+        </a>
+    </div>
+</body>
+</html>
