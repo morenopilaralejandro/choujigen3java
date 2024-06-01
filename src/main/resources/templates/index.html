@@ -14,6 +14,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/general.css}">
+        <link rel="stylesheet" th:href="@{/css/formation.css}">
     </head>
     <body>
         <header th:replace="~{fragments/header.html :: header}"></header>
@@ -21,6 +22,7 @@
         <div th:replace="~{fragments/form-lang.html :: form-lang(url = ${url})}"></div>
 
         <div class="mainContainer">
+            <section>
             <h1 th:text="#{breadcrumb.home}"></h1>
             <div class="index-container">
                 <div th:replace="~{fragments/index-fragments.html :: 
@@ -51,7 +53,6 @@
                         icon = 'backpack-fill-white'
                     )}">
                 </div>
-
                 <div th:replace="~{fragments/index-fragments.html :: 
                     index-item(
                         text = #{index.list.route},
@@ -90,6 +91,27 @@
                 </div>
 -->
             </div>
+            </section>
+
+            <section>
+                <h2 th:text="#{index.daily.player}"></h2>
+                <p>
+                    <a th:replace="~{fragments/player-fragments.html :: 
+                        player-name(
+                            player = ${players.get(0)}
+                        )}">
+                    </a>
+                </p>
+                <div class="daily-player">
+                    <img src="/img/misc-img/football1.jpg" alt="background"
+                        class="daily-player-bg-img">
+                    <div th:replace="~{fragments/player-fragments.html :: 
+                        player-container(
+                            players = ${players}
+                        )}">
+                    </div>
+                </div>
+            </section>
         </div>
 
         <footer th:replace="~{fragments/footer.html :: footer}"></footer>

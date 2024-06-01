@@ -4,10 +4,81 @@
 </head>
 <body>
     <header th:fragment="header">
-        <div>
-            <a href="/" class="header-title" 
-                th:text="#{webname}">header</a>
-        </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" 
+                    th:href="@{/}"
+                    th:text="#{webname}"></a>
+                <button class="navbar-toggler" type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/hissatsu-list}">
+                                <img th:src="'/img/svg/' + 'lightning-fill-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.hissatsu}"></span>                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/tactics-list}">
+                                <img th:src="'/img/svg/' + 'tactics-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.tactics}"></span>                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/player-binder}">
+                                <img th:src="'/img/svg/' + 'person-fill-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.binder}"></span>                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/item}">
+                                <img th:src="'/img/svg/' + 'backpack-fill-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.item}"></span>                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/taisen-route}">
+                                <img th:src="'/img/svg/' + 'shuffle-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.route}"></span>                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/tournament}">
+                                <img th:src="'/img/svg/' + 'diagram-2-fill-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.tournament}"></span>                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/formation-list}">
+                                <img th:src="'/img/svg/' + 'grid-3x2-gap-fill-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.formation}"></span>                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                                th:href="@{/map}">
+                                <img th:src="'/img/svg/' + 'map-fill-white' + '.svg'" alt="i">
+                                <span th:text="#{index.list.map}"></span>                            
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 </body>
 </html>

@@ -1,6 +1,13 @@
 # ChouJigen3Java
 Web application for Chou Jigen Soccer 3 made with Spring. <br>
 Database details can be found on the following repository: [ChouJigen3Mysql](https://github.com/morenopilaralejandro/choujigen3mysql)
+## Version 0.3
+- Added tournaments
+- Added competition routes
+- Added items
+- Added map
+- Added header
+- Added index
 ## Version 0.2
 - Added player kanji name with furigana
 - Added player English name
