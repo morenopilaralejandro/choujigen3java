@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.choujigen.ogre.domain.Region;
+import com.choujigen.ogre.domain.Stor;
 import com.choujigen.ogre.domain.ZoneOuter;
 import com.choujigen.ogre.service.RegionService;
+import com.choujigen.ogre.service.StorService;
 import com.choujigen.ogre.service.ZoneOuterService;
 
 @Controller
@@ -24,6 +26,9 @@ public class ZoneController {
 
 	@Autowired
 	private ZoneOuterService zoneOuterService;
+	
+	@Autowired
+	private StorService storService;
 
 	@RequestMapping(value = { "/map", "/map/" })
 	public String map(Model model) {
@@ -75,15 +80,25 @@ public class ZoneController {
 	public String mapView(Model model, @PathVariable(name = "id", required = false) Long id) {
 		Locale locale = LocaleContextHolder.getLocale();
 		ZoneOuter zoneOuter = new ZoneOuter();
+		List<Stor> stores = storService.all();
+		List<Stor> storesAux = new ArrayList<Stor>();
+		
 		try {
 			zoneOuter = zoneOuterService.one(id);
 		} catch (Exception e) {
 			return map(model);
 		}
+		
+		for (Stor stor : stores) {
+			if(stor.getZone().getOuterId() == zoneOuter.getZoneId()) {
+				storesAux.add(stor);
+			}
+		}
 
 		model.addAttribute("url", null);
 		model.addAttribute("currentLang", locale.getLanguage());
 		model.addAttribute("zoneOuter", zoneOuter);
+		model.addAttribute("storesAux", storesAux);
 		zoneOuter.getZoneInners();
 
 		return "/map-view";

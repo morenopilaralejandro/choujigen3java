@@ -76,6 +76,7 @@ public class ZoneBuildingFloor extends Zone {
 		return res;
 	}
 	
+	@Override
 	public Long getOuterId() {
 		return this.getZoneBuilding().getZoneLevel().getZoneInner().getZoneOuter().getZoneId();
 	}

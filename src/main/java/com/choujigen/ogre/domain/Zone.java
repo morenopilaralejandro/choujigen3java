@@ -83,6 +83,40 @@ public class Zone {
 		return res;
 	}
 	
+	/*Override*/
+	public Long getOuterId() {
+		Long res = 1L;
+		ZoneOuter auxOuter;
+		ZoneInner auxInner;
+		ZoneLevel auxLevel;
+		ZoneBuilding auxBuilding;
+		ZoneBuildingFloor auxBuildingFloor;
+		
+		switch (this.zoneType.getZoneTypeId().intValue()) {
+		case 1:
+			auxOuter = (ZoneOuter) this;
+			res = auxOuter.getOuterId();
+			break;
+		case 2:
+			auxInner = (ZoneInner) this;
+			res = auxInner.getOuterId();
+			break;
+		case 3:
+			auxLevel = (ZoneLevel) this;
+			res = auxLevel.getOuterId();
+			break;
+		case 4:
+			auxBuilding = (ZoneBuilding) this;
+			res = auxBuilding.getOuterId();
+			break;
+		case 5:
+			auxBuildingFloor = (ZoneBuildingFloor) this;
+			res = auxBuildingFloor.getOuterId();
+			break;
+		}
+		return res;
+	}
+	
 	public String getHref() {
 		String res = "/map/";
 		ZoneOuter auxOuter;

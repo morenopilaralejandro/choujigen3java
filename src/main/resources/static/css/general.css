@@ -476,6 +476,10 @@ figure.figure-ds {
         width: 100%;
         height: auto;
     }
+
+    .table-stor table {
+        max-width: 300px;
+    }
 }
 
 /*index*/

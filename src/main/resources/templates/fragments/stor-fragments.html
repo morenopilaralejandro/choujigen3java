@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <a th:fragment="stor-link(stor)"
+        th:href="${stor.getHref()}"
+        th:text="${stor.getDisplayName()}">
+    </a>
+
+    <div th:fragment="stor(stor)" 
+        class="table-responsive table-stor"
+        th:id="'stor' + ${stor.getStorId}">
+        <table class="table table-bordered table-sm">
+            <tr class="black-th">
+                <th colspan="2" class="text-center"
+                    th:text=" ${stor.getDisplayName()}">
+                </th>
+            </tr>
+            <!--
+            <tr>
+                <th th:text="#{stor.item}" class="w-75"></th>
+                <th th:text="#{stor.price}"></th>
+            </tr>
+            -->
+            <tr th:each="item : ${stor.getItems()}">
+                <td class="w-75">
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${item}
+                        )}">
+                    </a>
+                </td>
+                <td th:text="${item.getItemPriceBuy()}" class="text-end"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

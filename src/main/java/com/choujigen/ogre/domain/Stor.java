@@ -30,11 +30,40 @@ public class Stor {
 	@ManyToMany(mappedBy = "stors")
 	private List<Item> items;
 
+	public Stor() {}
 	public Stor(Long storId, StorType storType, Zone zone) {
 		super();
 		this.storId = storId;
 		this.storType = storType;
 		this.zone = zone;
+	}
+	
+	public String getDisplayName() {
+		String res = "";
+		ZoneBuildingFloor auxBuildingFloor;
+		
+		res += this.getStorType().getNameByLang();
+		/*sweet shop*/
+		if (this.getStorType().getStorTypeId().intValue() != 7) {
+			res += " - ";
+			if (this.getZone().getZoneType().getZoneTypeId().intValue() == 5) {
+				auxBuildingFloor = (ZoneBuildingFloor) this.getZone();
+				res += auxBuildingFloor.getZoneBuilding().getNameByLang();
+				res += " ";	
+				res += auxBuildingFloor.getNameByLang();
+			} else {
+				res += this.getZone().getNameByLang();
+			}
+		}
+		return res;
+	}
+	
+	public String getHref() {
+		String res = "/map/";
+		res += this.getZone().getOuterId();
+		res += "#store";
+		res += this.getStorId();
+		return res;
 	}
 
 	public Long getStorId() {
@@ -61,6 +90,12 @@ public class Stor {
 		this.zone = zone;
 	}
 
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(storId, storType, zone);

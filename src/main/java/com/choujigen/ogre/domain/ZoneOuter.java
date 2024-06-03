@@ -52,6 +52,7 @@ public class ZoneOuter extends Zone {
 		}
 	}
 	
+	@Override
 	public Long getOuterId() {
 		return this.getZoneId();
 	}
