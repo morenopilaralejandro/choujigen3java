@@ -66,6 +66,49 @@
                 </ul>
             </li>
         </th:block>
+        <th:block th:unless="${item.getStors().isEmpty()}">
+            <li>
+                <span th:text="#{itemObtention.stor}"></span>
+                <ul>
+                    <li th:each="stor : ${item.getStors()}">
+                        <a th:replace="~{fragments/stor-fragments.html :: 
+                            stor-link(
+                                stor = ${stor}
+                            )}">
+                        </a>
+                        <span th:text="'(' + ${item.getItemPriceBuy()} + ')'">
+                        </span>
+                    </li>
+                </ul>
+            </li>
+        </th:block>
+
+
+        <th:block th:unless="${item.getUtcSessionDrops().isEmpty()}">
+            <li>
+                <span th:text="#{itemObtention.utc}"></span>
+                <ul>
+                    <li th:each="usd : ${item.getUtcSessionDrops()}">
+                        <a 
+                            th:if="${usd.getUtcDropType().getUtcDropTypeId().intValue()} == 1"
+                            th:href="'/underground/' + 
+                                ${usd.getUtcSession().getUtcSessionId()} + '#chest'"
+                            th:text="${usd.getUtcSession().getNameByLang()} +
+                                ' - ' + ${usd.getUtcDropType().getNameByLang()}">
+                        </a>
+                        <a 
+                            th:unless="${usd.getUtcDropType().getUtcDropTypeId().intValue()} == 1"
+                            th:href="'/underground/' + 
+                                ${usd.getUtcSession().getUtcSessionId()} + '#boss'"
+                            th:text="${usd.getUtcSession().getNameByLang()} +
+                                ' - ' + ${usd.getUtcDropType().getNameByLang()}">
+                        </a>
+                        <span th:text="'(' + ${usd.getDropRate()} + '%)'">
+                        </span>
+                    </li>
+                </ul>
+            </li>
+        </th:block>
     </ul>
 
     <div th:fragment="equipment-table(equipments)" 

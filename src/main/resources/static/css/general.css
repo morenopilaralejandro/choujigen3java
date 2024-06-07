@@ -407,7 +407,7 @@ td.td-icon .hissatsu-type-icon {
 
 @media only screen and (min-width: 576px) {
     .table-practice-game table {
-        max-width: 400px;
+        max-width: 465px;
     }
 }
 
@@ -565,4 +565,14 @@ figure.figure-ds {
     .daily-player {
         max-width: 620px;
     }
+}
+/*utc*/
+.table-utc-drop table {
+    width: 100%;
+}
+
+@media only screen and (min-width: 576px) {
+    .table-utc-drop table {
+        max-width: 465px;
+    }   
 }

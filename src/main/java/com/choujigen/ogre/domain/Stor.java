@@ -61,7 +61,7 @@ public class Stor {
 	public String getHref() {
 		String res = "/map/";
 		res += this.getZone().getOuterId();
-		res += "#store";
+		res += "#stor";
 		res += this.getStorId();
 		return res;
 	}

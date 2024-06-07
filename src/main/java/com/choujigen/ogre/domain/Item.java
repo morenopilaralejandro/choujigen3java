@@ -57,6 +57,9 @@ public class Item {
 	
 	@OneToMany(mappedBy = "rewardS", fetch = FetchType.LAZY)
 	private List<RoutePath> pathS;
+	
+	@OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
+	private List<UtcSessionDrops> utcSessionDrops;
 
 	public Item() {
 	}
@@ -75,16 +78,22 @@ public class Item {
 	
 	public boolean showObtention() {
 		boolean res = false;
-		if(!tournamentDropItem.isEmpty()) {
+		if(!this.tournamentDropItem.isEmpty()) {
 			res = true;
 		}
-		if(!practiceGameDropItem.isEmpty()) {
+		if(!this.practiceGameDropItem.isEmpty()) {
 			res = true;
 		}
-		if(!pathN.isEmpty()) {
+		if(!this.pathN.isEmpty()) {
 			res = true;
 		}
-		if(!pathS.isEmpty()) {
+		if(!this.pathS.isEmpty()) {
+			res = true;
+		}
+		if(!this.stors.isEmpty()) {
+			res = true;
+		}
+		if(!this.utcSessionDrops.isEmpty()) {
 			res = true;
 		}
 		return res;
@@ -184,6 +193,14 @@ public class Item {
 
 	public void setPracticeGameDropItem(List<PracticeGameDropItem> practiceGameDropItem) {
 		this.practiceGameDropItem = practiceGameDropItem;
+	}
+
+	public List<UtcSessionDrops> getUtcSessionDrops() {
+		return utcSessionDrops;
+	}
+
+	public void setUtcSessionDrops(List<UtcSessionDrops> utcSessionDrops) {
+		this.utcSessionDrops = utcSessionDrops;
 	}
 
 	public String getNameByLang() {

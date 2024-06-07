@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <a th:fragment="utc-link(utcSession)"
+        th:href="@{/underground/{id}(id=${utcSession.getUtcSessionId()})}"
+        th:text="${utcSession.getNameByLang()}">
+    </a>
+
+    <ul th:fragment="utc-stat(utcSession)">
+        <li th:each="stat : ${utcSession.getStats()}"
+            th:text="${stat.getNameByLang()}"> 
+        </li>
+    </ul>
+
+    <div th:fragment="utc-drop(utcSessionDrops)" 
+        class="table-responsive table-max-content table-utc-drop">
+        <table class="table table-bordered table-sm">
+            <tr class="black-th">
+                <th th:text="#{utc.table.item}" class="w-75"></th>
+                <th th:text="#{utc.table.drop}"></th>
+            </tr>
+            <tr th:each="usd : ${utcSessionDrops}">
+                <td>                    
+                    <a th:replace="~{fragments/item-fragments.html :: 
+                        item-link(
+                            item = ${usd.getItem()}
+                        )}">
+                    </a>
+                </td>
+                <td th:text="${usd.getDropRate()} + '%'"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
