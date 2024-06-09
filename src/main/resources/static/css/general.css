@@ -60,10 +60,12 @@ header .navbar-nav li:hover {
     outline: 2px solid rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 992px) {
+/*
     ul.navbar-nav {
         display: none;
     }
+*/
 }
 
 /*footer*/
