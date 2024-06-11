@@ -19,7 +19,7 @@ Database details can be found on the following repository: [ChouJigen3Mysql](htt
 - Added player search
 ## Version 0.1
 - Added hissatsu
-- Added hissatsu Tactics
+- Added hissatsu tactics
 - Added teams
 - Added player stats
 - Added formations
