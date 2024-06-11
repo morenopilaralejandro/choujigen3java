@@ -1,5 +1,5 @@
 # ChouJigen3Java
-Web application for Chou Jigen Soccer 3 made with Spring. <br>
+Web application for Chou Jigen Soccer 3 built with Spring. <br>
 Database details can be found on the following repository: [ChouJigen3Mysql](https://github.com/morenopilaralejandro/choujigen3mysql)
 ## Version 0.4
 - Added shops
@@ -18,12 +18,12 @@ Database details can be found on the following repository: [ChouJigen3Mysql](htt
 - Added player binder (Gojūon and English alphabetical order)
 - Added player search
 ## Version 0.1
-- Added all Hissatsu
-- Added all Hissatsu Tactics
-- Added all Teams
-- Added all Player stats
-- Added all formations
-- Internationalization (English, Japanese and Spanish)
+- Added hissatsu
+- Added hissatsu Tactics
+- Added teams
+- Added player stats
+- Added formations
+- Added internationalization (English, Japanese and Spanish)
 ## Screenshots
 Hissatsu<br>
 ![alt text](https://github.com/morenopilaralejandro/choujigen3java/blob/main/src/main/resources/static/img/github-img/hissatsu.png?raw=true)
